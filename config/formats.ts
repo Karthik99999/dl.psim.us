@@ -29,7 +29,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex Pre-Home Draft",
 	
 		mod: 'gen9',
-		ruleset: ['Draft', '-Unreleased'],
+		ruleset: ['Draft', '-Unreleased', '-Unobtainable'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Post-Home Draft",
@@ -49,7 +49,7 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', '-Unreleased'],
+		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable'],
 	},
 	{
 		name: "[Gen 9] LC Paldea Dex Pre-Home Draft",

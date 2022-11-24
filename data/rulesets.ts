@@ -117,7 +117,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Draft',
 		desc: "The custom Draft League ruleset",
 		ruleset: [
-			'Obtainable', '+Unreleased', 'Team Preview', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
 		],
 		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 	},
@@ -126,7 +126,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Draft VGC',
 		desc: "The custom Draft League ruleset, tailored for VGC",
 		ruleset: [
-			'Obtainable', '+Unreleased', 'Team Preview', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
 			'VGC Timer', 'Adjust Level = 50', 'Picked Team Size = 4',
 		],
 	},
