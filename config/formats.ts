@@ -116,7 +116,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Unrestricted",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '!Obtainable', '-Nonexistant', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy', 'Allow Dynamax'],
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy', 'Allow Dynamax'],
 	},
 	{
 		name: "[Gen 9] National Dex WiFi",
