@@ -66,21 +66,21 @@ export const Formats: FormatList = [
 		ruleset: ['Draft'],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Pre-Home Doubles",
+		name: "[Gen 9] Paldea Dex Post-Home Doubles",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft'],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Pre-Home VGC",
+		name: "[Gen 9] Paldea Dex Post-Home VGC",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['Draft VGC'],
 	},
 	{
-		name: "[Gen 9] LC Paldea Dex Pre-Home Draft",
+		name: "[Gen 9] LC Paldea Dex Post-Home Draft",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
