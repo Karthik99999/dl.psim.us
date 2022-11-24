@@ -1529,7 +1529,7 @@ export class TeamValidator {
 		if (item.isNonstandard && item.isNonstandard !== 'Unobtainable') {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(item.isNonstandard)) {
+				if (['Past', 'Future', 'Legacy'].includes(item.isNonstandard)) {
 					return `${set.name}'s item ${item.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s item ${item.name} does not exist in this game.`;
@@ -1575,7 +1575,7 @@ export class TeamValidator {
 		if (move.isNonstandard && move.isNonstandard !== 'Unobtainable') {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(move.isNonstandard)) {
+				if (['Past', 'Future', 'Legacy'].includes(move.isNonstandard)) {
 					return `${set.name}'s move ${move.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s move ${move.name} does not exist in this game.`;

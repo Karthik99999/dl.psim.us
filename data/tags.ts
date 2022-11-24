@@ -272,6 +272,10 @@ export const Tags: {[id: string]: TagData} = {
 		name: "Nonexistent",
 		genericFilter: thing => !!thing.isNonstandard && thing.isNonstandard !== 'Unobtainable',
 	},
+	legacy: {
+		name: "Legacy",
+		genericFilter: thing => !!thing.isNonstandard && thing.isNonstandard !== 'Legacy',
+	},
 
 	// filter columns
 	// --------------
