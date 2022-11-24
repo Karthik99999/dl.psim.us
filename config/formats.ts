@@ -19,11 +19,11 @@ The column value will be ignored for repeat sections.
 
 export const Formats: FormatList = [
 
-	// Paldea Pre-Home Draft Tiers
+	// Paldea Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "Paldea Pre-Home Draft Tiers",
+		section: "Paldea Draft Tiers",
 	},
 	{
 		name: "[Gen 9] Paldea Dex Pre-Home Draft",
@@ -32,7 +32,13 @@ export const Formats: FormatList = [
 		ruleset: ['Draft', '-Unreleased'],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Pre-Home Doubles",
+		name: "[Gen 9] Paldea Dex Post-Home Draft",
+	
+		mod: 'gen9',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 9] Paldea Dex Doubles",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
@@ -49,42 +55,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] LC Paldea Dex Pre-Home Draft",
 	
 		mod: 'gen9',
-		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
-	},
-
-	// Paldea Post-Home Draft Tiers
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Paldea Post-Home Draft Tiers",
-	},
-	{
-		name: "[Gen 9] Paldea Dex Post-Home Draft",
-	
-		mod: 'gen9',
-		ruleset: ['Draft'],
-	},
-	{
-		name: "[Gen 9] Paldea Dex Post-Home Doubles",
-	
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft'],
-	},
-	{
-		name: "[Gen 9] Paldea Dex Post-Home VGC",
-	
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['Draft VGC'],
-	},
-	{
-		name: "[Gen 9] LC Paldea Dex Post-Home Draft",
-	
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Double Item Clause', 'Little Cup'],
 	},
 
 	// National Draft Tiers
