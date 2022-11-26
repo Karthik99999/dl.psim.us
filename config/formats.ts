@@ -65,6 +65,12 @@ export const Formats: FormatList = [
 		section: "National Dex Draft Tiers",
 	},
 	{
+		name: "[Gen 8] National Dex Draft",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
 		name: "[Gen 9] National Dex Draft",
 
 		mod: 'gen9',
