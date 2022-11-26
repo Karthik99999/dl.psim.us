@@ -41,13 +41,13 @@ export const Formats: FormatList = [
 		name: "[Gen 8] National Dex Legacy",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Unrestricted",
 
 		mod: 'gen8',
-		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex WiFi",
@@ -67,7 +67,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview', '!Sleep Clause Mod'],
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8] National Dex VGC",
@@ -80,14 +80,14 @@ export const Formats: FormatList = [
 		name: "[Gen 8] LC National Dex Draft",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '2 Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
 		name: "[Gen 8] LC National Dex Legacy",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '2 Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
