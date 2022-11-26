@@ -1180,7 +1180,7 @@ export class Pokemon {
 		this.transformed = true;
 		this.weighthg = pokemon.weighthg;
 
-		const types = pokemon.getTypes(true);
+		const types = pokemon.getTypes(true, true);
 		this.setType(pokemon.volatiles['roost'] ? pokemon.volatiles['roost'].typeWas : types, true);
 		this.addedType = pokemon.addedType;
 		this.knownType = this.isAlly(pokemon) && pokemon.knownType;
@@ -1195,6 +1195,7 @@ export class Pokemon {
 		this.set.ivs = (this.battle.gen >= 5 ? this.set.ivs : pokemon.set.ivs);
 		this.hpType = (this.battle.gen >= 5 ? this.hpType : pokemon.hpType);
 		this.hpPower = (this.battle.gen >= 5 ? this.hpPower : pokemon.hpPower);
+		this.timesAttacked = pokemon.timesAttacked;
 		for (const moveSlot of pokemon.moveSlots) {
 			let moveName = moveSlot.move;
 			if (moveSlot.id === 'hiddenpower') {
@@ -1343,8 +1344,6 @@ export class Pokemon {
 			} else if (source.effectType === 'Status') {
 				// Shaymin-Sky -> Shaymin
 				this.battle.add('-formechange', this, species.name, message);
-			} else if (source.effectType === 'Terastal') {
-				this.battle.add('-terastallize', this, this.teraType);
 			}
 		} else {
 			if (source.effectType === 'Ability') {
@@ -1968,7 +1967,7 @@ export class Pokemon {
 		const item = (this.ignoringItem() ? '' : this.item);
 		if (item === 'ironball') return true;
 		// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
-		if (!negateImmunity && this.hasType('Flying') && !('roost' in this.volatiles)) return false;
+		if (!negateImmunity && this.hasType('Flying') && !(this.hasType('???') && 'roost' in this.volatiles)) return false;
 		if (this.hasAbility('levitate') && !this.battle.suppressingAbility()) return null;
 		if ('magnetrise' in this.volatiles) return false;
 		if ('telekinesis' in this.volatiles) return false;

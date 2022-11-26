@@ -2419,7 +2419,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			randomStat = stats.length ? this.sample(stats) : undefined;
 			if (randomStat) boost[randomStat] = -1;
 
-			this.boost(boost);
+			this.boost(boost, pokemon, pokemon);
 		},
 		name: "Moody",
 		rating: 5,
@@ -2716,7 +2716,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	opportunist: {
 		onFoeAfterBoost(boost, target, source, effect) {
-			if (effect?.effectType !== 'Move') return;
+			if (effect?.fullname?.endsWith('Opportunist') || effect?.fullname?.endsWith('Mirror Herb')) return;
 			const pokemon = this.effectState.target;
 			const positiveBoosts: Partial<BoostsTable> = {};
 			let i: BoostID;
@@ -3604,9 +3604,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
-			if (this.field.getWeather().id !== 'sandstorm') {
-				this.field.setWeather('sandstorm');
-			}
+			this.field.setWeather('sandstorm');
 		},
 		name: "Sand Spit",
 		rating: 2,
@@ -3732,10 +3730,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	seedsower: {
 		onDamagingHit(damage, target, source, move) {
-			if (this.field.getTerrain().id !== 'grassyterrain') {
-				this.add('-activate', target, 'ability: Seed Sower');
-				this.field.setTerrain('grassyterrain', target);
-			}
+			this.field.setTerrain('grassyterrain');
 		},
 		name: "Seed Sower",
 		rating: 2,
@@ -4284,21 +4279,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 105,
 	},
 	supremeoverlord: {
-		onStart(target) {
-			this.add('-ability', target, 'Supreme Overlord');
+		onStart(pokemon) {
+			const faintedAllies = pokemon.side.pokemon.filter(ally => ally.fainted).length;
+			if (faintedAllies) {
+				this.add('-activate', pokemon, 'ability: Supreme Overlord');
+			}
 		},
 		onModifyAtk(atk, source, target, move) {
 			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
 			if (faintedAllies < 1) return;
 			this.debug(`Supreme Overlord atk boost for ${faintedAllies} defeated allies.`);
-			// Placeholder 1.1 -> 1.5
 			return this.chainModify(1 + (0.1 * faintedAllies));
 		},
 		onModifySpA(spa, source, target, move) {
 			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
 			if (faintedAllies < 1) return;
 			this.debug(`Supreme Overlord spa boost for ${faintedAllies} defeated allies.`);
-			// Placeholder 1.1 -> 1.5
 			return this.chainModify(1 + (0.1 * faintedAllies));
 		},
 		onAllyFaint() {

@@ -135,6 +135,12 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		ruleset: ['[Gen 9] National Dex Draft', '+CAP'],
 	},
+	{
+		name: "[Gen 8] National Dex Draft",
+
+		mod: 'gen8',
+		ruleset: ['Draft', '+Past', 'Dynamax Clause'],
+	},
 
 	// Past Gens Draft
 	///////////////////////////////////////////////////////////////////

@@ -975,7 +975,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				}
 			}
 			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
-				this.add("-fail", target, "unboost", "[from] item: Clear Amulet", "[of] " + target);
+				this.add('-fail', target, 'unboost', '[from] item: Clear Amulet', '[of] ' + target);
 			}
 		},
 		num: 1882,
@@ -3618,7 +3618,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		spritenum: 0, // TODO
 		onFoeAfterBoost(boost, target, source, effect) {
-			if (effect?.effectType !== 'Move') return;
+			if (effect?.fullname?.endsWith('Opportunist') || effect?.fullname?.endsWith('Mirror Herb')) return;
 			const boostPlus: SparseBoostsTable = {};
 			let statsRaised = false;
 			let i: BoostID;

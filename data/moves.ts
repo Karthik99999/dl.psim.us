@@ -2076,7 +2076,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		self: {
 			onHit(pokemon) {
 				pokemon.setType(pokemon.getTypes(true).map(type => type === "Fire" ? "???" : type));
-				this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[from] move: Burn Up');
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes().join('/'), '[from] move: Burn Up');
 			},
 		},
 		secondary: null,
@@ -3957,7 +3957,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		self: {
 			onHit(pokemon) {
 				pokemon.setType(pokemon.getTypes(true).map(type => type === "Electric" ? "???" : type));
-				this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[from] move: Double Shock');
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes().join('/'), '[from] move: Double Shock');
 			},
 		},
 		secondary: null,
@@ -6616,19 +6616,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		// Move disabling implemented in Battle#nextTurn in sim/battle.ts
-		onTry(source) {
-			source.addVolatile('gigatonhammer');
-		},
-		condition: {
-			duration: 2,
-			onBeforeMove(pokemon, target, move) {
-				if (move.id === 'gigatonhammer') {
-					this.add('cant', pokemon, 'move: Gigaton Hammer', move);
-					pokemon.removeVolatile('gigatonhammer');
-					return false;
-				}
-			},
-		},
 		secondary: null,
 		target: "normal",
 		type: "Steel",
@@ -14746,7 +14733,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 50,
 		basePowerCallback(pokemon) {
-			return Math.min(300, 50 + 50 * pokemon.timesAttacked);
+			return Math.min(350, 50 + 50 * pokemon.timesAttacked);
 		},
 		category: "Physical",
 		name: "Rage Fist",
@@ -15644,7 +15631,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 			duration: 1,
 			onResidualOrder: 25,
 			onStart(target) {
-				this.add('-singleturn', target, 'move: Roost');
+				if (!target.terastallized) {
+					this.add('-singleturn', target, 'move: Roost');
+				} else if (target.terastallized === "Flying") {
+					this.add('-hint', "If a Flying Terastallized Pokemon uses Roost, it remains Flying-type.");
+				}
 			},
 			onTypePriority: -1,
 			onType(types, pokemon) {

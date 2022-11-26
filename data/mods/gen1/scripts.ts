@@ -151,9 +151,6 @@ export const Scripts: ModdedBattleScriptsData = {
 						// We remove recharge
 						if (pokemon.volatiles['mustrecharge']) pokemon.removeVolatile('mustrecharge');
 						delete pokemon.volatiles['partialtrappinglock'];
-						// We remove screens
-						target.side.removeSideCondition('reflect');
-						target.side.removeSideCondition('lightscreen');
 						pokemon.removeVolatile('twoturnmove');
 					} else if (pokemon.hp) {
 						this.battle.runEvent('AfterMoveSelf', pokemon, target, move);
@@ -213,9 +210,6 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			let attrs = '';
 			if (pokemon.fainted) {
-				// Removing screens upon faint.
-				pokemon.side.removeSideCondition('reflect');
-				pokemon.side.removeSideCondition('lightscreen');
 				return false;
 			}
 
@@ -615,7 +609,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 
 			// Apply move secondaries.
-			if (moveData.secondaries) {
+			if (moveData.secondaries && target && target.hp > 0) {
 				for (const secondary of moveData.secondaries) {
 					// Multi-hit moves only roll for status once
 					if (!move.multihit || move.lastHit) {
@@ -623,7 +617,7 @@ export const Scripts: ModdedBattleScriptsData = {
 						// In the game, this is checked and if true, the random number generator is not called.
 						// That means that a move that does not share the type of the target can status it.
 						// If a move that was not fire-type would exist on Gen 1, it could burn a Pokémon.
-						if (!(secondary.status && ['par', 'brn', 'frz'].includes(secondary.status) && target && target.hasType(move.type))) {
+						if (!(secondary.status && ['par', 'brn', 'frz'].includes(secondary.status) && target.hasType(move.type))) {
 							if (secondary.chance === undefined) {
 								this.moveHit(target, pokemon, move, secondary, true, isSelf);
 							} else {
@@ -817,7 +811,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			damage *= basePower;
 			damage *= attack;
 			damage = Math.floor(damage / defense);
-			damage = this.battle.clampIntRange(Math.floor(damage / 50), 1, 997);
+			damage = this.battle.clampIntRange(Math.floor(damage / 50), 0, 997);
 			damage += 2;
 
 			// STAB damage bonus, the "???" type never gets STAB
@@ -826,26 +820,26 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 
 			// Type effectiveness.
-			// The order here is not correct, must change to check the move versus each type.
-			const totalTypeMod = target.runEffectiveness(move);
-			// Super effective attack
-			if (totalTypeMod > 0) {
-				if (!suppressMessages) this.battle.add('-supereffective', target);
-				damage *= 20;
-				damage = Math.floor(damage / 10);
-				if (totalTypeMod >= 2) {
+			// In Gen 1, type effectiveness is applied against each of the target's types.
+			for (const targetType of target.types) {
+				const typeMod = this.battle.dex.getEffectiveness(type, targetType);
+				if (typeMod > 0) {
+					// Super effective against targetType
 					damage *= 20;
 					damage = Math.floor(damage / 10);
 				}
-			}
-			if (totalTypeMod < 0) {
-				if (!suppressMessages) this.battle.add('-resisted', target);
-				damage *= 5;
-				damage = Math.floor(damage / 10);
-				if (totalTypeMod <= -2) {
+				if (typeMod < 0) {
+					// Not very effective against targetType
 					damage *= 5;
 					damage = Math.floor(damage / 10);
 				}
+			}
+			const totalTypeMod = target.runEffectiveness(move);
+			if (totalTypeMod > 0) {
+				if (!suppressMessages) this.battle.add('-supereffective', target);
+			}
+			if (totalTypeMod < 0) {
+				if (!suppressMessages) this.battle.add('-resisted', target);
 			}
 
 			// If damage becomes 0, the move is made to miss.
