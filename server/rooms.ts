@@ -1841,6 +1841,8 @@ export class GlobalRoomState {
 				crashMessage = `|html|<div class="broadcast-red"><b>${crasher} crashed in private code</b></div>`;
 			}
 		}
+		Rooms.get('staff')?.add(crashMessage).update();
+		/*
 		const devRoom = Rooms.get('development');
 		if (devRoom) {
 			devRoom.add(crashMessage).update();
@@ -1848,6 +1850,7 @@ export class GlobalRoomState {
 			Rooms.lobby?.add(crashMessage).update();
 			Rooms.get('staff')?.add(crashMessage).update();
 		}
+		*/
 		if (privateCrashMessage) {
 			upperStaffRoom!.add(privateCrashMessage).update();
 		}
