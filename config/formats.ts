@@ -86,7 +86,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex WiFi",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Dynamax', 'Adjust Level = 50'],
+		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
 	},
 	{
 		name: "[Gen 9] National Dex Doubles",
