@@ -71,12 +71,6 @@ export const Formats: FormatList = [
 		ruleset: ['Draft', '+Past'],
 	},
 	{
-		name: "[Gen 9] National Dex Dynamax",
-
-		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Draft', 'Allow Dynamax'],
-	},
-	{
 		name: "[Gen 9] National Dex Legacy",
 
 		mod: 'gen9',
@@ -86,7 +80,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Unrestricted",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy', 'Allow Dynamax'],
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex WiFi",
@@ -113,7 +107,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', 'Allow Dynamax'],
+		ruleset: ['Draft VGC'],
 	},
 	{
 		name: "[Gen 9] LC National Dex Draft",

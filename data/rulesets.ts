@@ -1171,12 +1171,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
 	},
-	allowdynamax: {
-		effectType: 'Rule',
-		name: 'Allow Dynamax',
-		desc: "Allow Pok&eacute;mon to Dynamax in gens other than 8",
-		// Implemented in side.ts
-	},
 	terastalclause: {
 		effectType: 'Rule',
 		name: 'Terastal Clause',
