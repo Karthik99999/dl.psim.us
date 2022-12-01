@@ -161,4 +161,22 @@ export const Formats: FormatList = [
 		mod: 'gen6',
 		ruleset: ['Draft'],
 	},
+	{
+		name: "[Gen 5] Draft League",
+
+		mod: 'gen5',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 4] Draft League",
+
+		mod: 'gen4',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 3] Draft League",
+
+		mod: 'gen3',
+		ruleset: ['Draft'],
+	},
 ];
