@@ -122,7 +122,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		ruleset: [
 			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
 		],
-		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
+		// timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 	},
 	draftvgc: {
 		effectType: 'ValidatorRule',
