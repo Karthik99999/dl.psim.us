@@ -68,13 +68,13 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Draft",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '+Past'],
+		ruleset: ['Draft', '+Past', 'Z-Move Clause'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Draft', '+Legacy'],
+		ruleset: ['Draft', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex Unrestricted",
@@ -133,7 +133,7 @@ export const Formats: FormatList = [
 		name: "[Gen 8] National Dex Draft",
 
 		mod: 'gen8',
-		ruleset: ['Draft', '+Past', 'Dynamax Clause'],
+		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
 	// Past Gens Draft
