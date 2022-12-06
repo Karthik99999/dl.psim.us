@@ -3068,9 +3068,15 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Unobtainable",
 	},
 	victini: {
+<<<<<<< HEAD
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		natDexTier: "OU",
+=======
+		isNonstandard: "Past",
+		tier: "Illegal",
+		natDexTier: "UU",
+>>>>>>> d984f7582 (Fix Victini legality)
 	},
 	snivy: {
 		isNonstandard: "Past",
