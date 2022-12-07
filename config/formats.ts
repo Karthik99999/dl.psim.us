@@ -492,6 +492,25 @@ export const Formats: FormatList = [
 		column: 2,
 	},
 	{
+<<<<<<< HEAD
+=======
+		name: "[Gen 9] Almost Any Ability",
+		desc: `Pok&eacute;mon have access to almost any ability.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3710568/">Almost Any Ability</a>`,
+		],
+
+		mod: 'gen9',
+		ruleset: ['Standard OMs', '!Obtainable Abilities', 'Ability Clause = 1', 'Sleep Moves Clause', 'Min Source Gen = 9'],
+		banlist: [
+			'Annihilape', 'Koraidon', 'Miraidon', 'Slaking', 'Arena Trap', 'Comatose', 'Contrary', 'Gorilla Tactics', 'Huge Power',
+			'Illusion', 'Imposter', 'Innards Out', 'Magnet Pull', 'Moody', 'Neutralizing Gas', 'Parental Bond', 'Pure Power',
+			'Shadow Tag', 'Simple', 'Speed Boost', 'Unburden', 'Water Bubble', 'Wonder Guard', 'King\'s Rock', 'Baton Pass',
+			'Revival Blessing',
+		],
+	},
+	{
+>>>>>>> bf9684384 (AAA: Update bans)
 		name: "[Gen 9] Balanced Hackmons",
 		desc: `Anything directly hackable onto a set (EVs, IVs, forme, ability, item, and move) and is usable in local battles is allowed.`,
 		threads: [
