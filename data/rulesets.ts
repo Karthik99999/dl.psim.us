@@ -95,18 +95,49 @@ export const Rulesets: {[k: string]: FormatData} = {
 				if (this.ruleTable.has(`+pokemon:${species.id}`)) return;
 				return [`${set.name || set.species} does not exist in the National Dex.`];
 			}
+<<<<<<< HEAD
 			if (species.natDexTier === "Unreleased") {
 				const basePokemon = this.toID(species.baseSpecies);
 				if (this.ruleTable.has(`+pokemon:${species.id}`) || this.ruleTable.has(`+basepokemon:${basePokemon}`)) {
 					return;
 				}
 				return [`${set.name || set.species} does not exist in the National Dex.`];
+=======
+			const requireObtainable = this.ruleTable.has('obtainable');
+			if (requireObtainable) {
+				if (species.natDexTier === "Unreleased") {
+					const basePokemon = this.toID(species.baseSpecies);
+					if (this.ruleTable.has(`+pokemon:${species.id}`) || this.ruleTable.has(`+basepokemon:${basePokemon}`)) {
+						return;
+					}
+					return [`${set.name || set.species} does not exist in the National Dex.`];
+				}
+				for (const moveid of set.moves) {
+					const move = this.dex.moves.get(moveid);
+					if (move.isNonstandard === 'Unobtainable' && move.gen === this.dex.gen || move.id === 'lightofruin') {
+						if (this.ruleTable.has(`+move:${move.id}`)) continue;
+						const problem = `${set.name}'s move ${move.name} does not exist in the National Dex.`;
+						if (this.ruleTable.has('omunobtainablemoves')) {
+							const outOfBattleSpecies = this.getValidationSpecies(set)[0];
+							if (!this.omCheckCanLearn(move, outOfBattleSpecies, this.allSources(outOfBattleSpecies), set, problem)) continue;
+						}
+						return [problem];
+					}
+				}
+>>>>>>> 6071f344e (NatDex BH: Allow unreleased things by default (#9132))
 			}
 			// Items other than Z-Crystals and Pokémon-specific items should be illegal
 			if (!set.item) return;
 			const item = this.dex.items.get(set.item);
 			if (!item.isNonstandard) return;
+<<<<<<< HEAD
 			if (['Past', 'Unobtainable'].includes(item.isNonstandard) && !item.zMove && !item.itemUser && !item.forcedForme) {
+=======
+			if (
+				(item.isNonstandard === 'Past' || requireObtainable && item.isNonstandard === 'Unobtainable') &&
+				!item.zMove && !item.itemUser && !item.forcedForme && !item.isBerry
+			) {
+>>>>>>> 6071f344e (NatDex BH: Allow unreleased things by default (#9132))
 				if (this.ruleTable.has(`+item:${item.id}`)) return;
 				return [`${set.name}'s item ${item.name} does not exist in Gen ${this.dex.gen}.`];
 			}
