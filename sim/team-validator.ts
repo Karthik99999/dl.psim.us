@@ -639,7 +639,23 @@ export class TeamValidator {
 			if (!move.exists) return [`"${move.name}" is an invalid move.`];
 
 			problem = this.checkMove(set, move, setHas);
+<<<<<<< HEAD
 			if (problem) problems.push(problem);
+=======
+			if (problem) {
+				let allowedByOM;
+				if (problem.includes('hacking or glitches') &&
+					ruleTable.has('omunobtainablemoves')) {
+					problem = `${name}'s ${problem}`;
+					allowedByOM = !this.omCheckCanLearn(move, outOfBattleSpecies, setSources, set, problem);
+				}
+				if (!allowedByOM) {
+					problems.push(problem);
+				} else {
+					moveLegalityWhitelist[move.id] = true;
+				}
+			}
+>>>>>>> 6021eed49 (Fix "OM Unobtainable Moves" for pre-Gen 9 moves (#9139))
 		}
 
 		if (ruleTable.has('obtainablemoves')) {
