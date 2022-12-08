@@ -2864,6 +2864,73 @@ export const commands: Chat.ChatCommands = {
 			);
 		}
 	},
+<<<<<<< HEAD
+=======
+
+	adminhelp(target, room, user) {
+		this.checkCan('rangeban');
+		let cmds = Chat.allCommands();
+		const canExecute = (perm: string) => !(
+			// gotta make sure no lower group has it
+			Object.values(Config.groups).slice(1).some(f => (f as any)[perm])
+		);
+		cmds = cmds.filter(
+			f => f.requiredPermission && canExecute(f.requiredPermission) && f.fullCmd !== this.handler?.fullCmd
+		);
+		cmds = Utils.sortBy(cmds, f => f.fullCmd);
+		let namespaces = new Map<string, string[]>;
+		for (const cmd of cmds) {
+			const namespace = cmd.fullCmd.split(' ')[0];
+			const list = namespaces.get(namespace) || [];
+			list.push(cmd.fullCmd.trim());
+			namespaces.set(namespace, list);
+		}
+		let buf = `<strong>Admin commands:</strong><br />`;
+		namespaces = new Map(Utils.sortBy([...namespaces], ([, cmdList]) => cmdList.length === 1));
+		for (const [namespace, cmdList] of namespaces) {
+			if (cmdList.length > 1 || cmdList[0].includes(' ')) {
+				buf += `<details class="readmore"><summary>${namespace}</summary>`;
+				buf += cmdList.map(f => `&bull; /${f}`).join('<br />');
+				buf += `</details>`;
+			} else {
+				buf += `&bull; ${cmdList[0]}`;
+				const help = Chat.commands[namespace + 'help'];
+				if (help) {
+					const text = Array.isArray(help) ?
+						help.join(' | ') : typeof help === 'function' ?
+							`<button class="button" name="send" value="/${cmdList[0] + 'help'}">Get help</button>` : '';
+					buf += text ? ` (<code><small>${text}</small></code>)` : `(no help found)`;
+				}
+			}
+			buf += `<br />`;
+		}
+		this.sendReplyBox(buf);
+	},
+	adminhelphelp: [`/adminhelp - Programmatically generates a list of all administrator commands. Requires: &`],
+
+	altlog: 'altslog',
+	altslog(target, room, user) {
+		this.checkCan('lock');
+		target = toID(target);
+		if (!target) {
+			return this.parse(`/help altslog`);
+		}
+		return this.parse(`/join view-altslog-${target}`);
+	},
+	altsloghelp: [
+		`/altslog [userid] - View the alternate account history for the given [userid]. Requires: % @ &`,
+	],
+};
+
+export const handlers: Chat.Handlers = {
+	onRename(user, oldID, newID) {
+		if (oldID === newID || !Config.usesqlite || [oldID, newID].some(f => f.startsWith('guest'))) return;
+		void Chat.database.run(
+			`REPLACE INTO alts_log (to_id, from_id, ip) VALUES (?, ?, ?)`,
+			[newID, oldID, user.latestIp]
+		);
+	},
+>>>>>>> ffa6e35cc (Info: Add an admin-only command to list admin commands)
 };
 
 export const pages: Chat.PageTable = {
