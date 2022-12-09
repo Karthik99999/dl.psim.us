@@ -509,8 +509,17 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656851/">Pure Hackmons</a>`,
 		],
 
+<<<<<<< HEAD
 		mod: 'gen8',
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+=======
+		mod: 'fullpotential',
+		ruleset: ['Standard OMs', 'Evasion Abilities Clause', 'Evasion Items Clause', 'Sleep Moves Clause', 'Min Source Gen = 9'],
+		banlist: [
+			'Chien-Pao', 'Cyclizar', 'Dragapult', 'Espathra', 'Iron Bundle', 'Koraidon', 'Miraidon', 'Scream Tail', 'Arena Trap', 'Chlorophyll',
+			'Moody', 'Sand Rush', 'Shadow Tag', 'Slush Rush', 'Swift Swim', 'Unburden', 'Booster Energy', 'King\'s Rock', 'Baton Pass',
+		],
+>>>>>>> c0c9f60be (Full Potential: Update bans)
 	},
 
 	// Other Metagames
