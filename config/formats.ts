@@ -632,7 +632,14 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		ruleset: ['Standard OMs', 'Sleep Moves Clause', 'Godly Gift Mod', 'Min Source Gen = 9'],
+<<<<<<< HEAD
 		banlist: ['Blissey', 'Chansey', 'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag'],
+=======
+		banlist: [
+			'Blissey', 'Chansey', 'Chi-Yu', 'Cyclizar', 'Espathra', 'Great Tusk', 'Iron Hands', 'Iron Valiant',
+			'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag', 'Booster Energy', 'Baton Pass',
+		],
+>>>>>>> 203ed4094 (Godly Gift: Update bans)
 	},
 	{
 		name: "[Gen 9] STABmons",
