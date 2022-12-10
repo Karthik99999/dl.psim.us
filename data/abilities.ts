@@ -2747,6 +2747,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	orichalcumpulse: {
 		onStart(pokemon) {
+<<<<<<< HEAD
 			if (
 				!this.field.setWeather('sunnyday') &&
 				['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())
@@ -2758,6 +2759,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const pokemon = this.effectState.target;
 			if (pokemon === source) return;
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+=======
+			// not affected by Utility Umbrella
+			if (!this.field.setWeather('sunnyday') && this.field.effectiveWeather() === 'sunnyday') {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onWeatherChange(pokemon) {
+			if (pokemon === this.field.weatherState.source) return;
+			if (this.field.effectiveWeather() === 'sunnyday') {
+>>>>>>> 89a8192e8 (Update Utility Umbrella mechanics (#9123))
 				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
 			}
 		},
@@ -3159,8 +3170,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 168,
 	},
 	protosynthesis: {
+<<<<<<< HEAD
 		onUpdate(pokemon) {
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+=======
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			if (pokemon.transformed) return;
+			// protosynthesis is not affected by Utility Umbrella
+			if (this.field.effectiveWeather() === 'sunnyday') {
+>>>>>>> 89a8192e8 (Update Utility Umbrella mechanics (#9123))
 				if (!pokemon.volatiles['protosynthesis']) {
 					this.add('-activate', pokemon, 'ability: Protosynthesis');
 					pokemon.addVolatile('protosynthesis');
