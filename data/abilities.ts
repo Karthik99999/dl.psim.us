@@ -4302,6 +4302,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 105,
 	},
 	supremeoverlord: {
+<<<<<<< HEAD
 		onModifyAtk(atk, source, target, move) {
 			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
 			if (faintedAllies < 1) return;
@@ -4318,6 +4319,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onAllyFaint() {
 			this.add('-activate', this.effectState.target, 'ability: Supreme Overlord');
+=======
+		onStart(pokemon) {
+			if (pokemon.side.totalFainted) {
+				this.add('-activate', pokemon, 'ability: Supreme Overlord');
+				const fallen = Math.min(pokemon.side.totalFainted, 5);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
+				this.effectState.fallen = fallen;
+			}
+		},
+		onEnd(pokemon) {
+			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
+		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.effectState.fallen) {
+				const powMod = [4096, 4506, 4915, 5325, 5734, 6144];
+				this.debug(`Supreme Overlord boost: ${powMod[this.effectState.fallen]}/4096`);
+				return this.chainModify([powMod[this.effectState.fallen], 4096]);
+			}
+>>>>>>> 381d4e749 (Tell the client how strong Supreme Overlord is (#9125))
 		},
 		name: "Supreme Overlord",
 		rating: 2.5,
