@@ -29,13 +29,13 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex Pre-Home Draft",
 	
 		mod: 'gen9',
-		ruleset: ['Draft', '-Unreleased', '-Unobtainable'],
+		ruleset: ['Draft', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Post-Home Draft",
 	
 		mod: 'gen9',
-		ruleset: ['Draft'],
+		ruleset: ['Draft', 'Min Source Gen = 9'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Doubles",
@@ -49,7 +49,7 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable'],
+		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
 	},
 	{
 		name: "[Gen 9] LC Paldea Dex Draft",
@@ -68,31 +68,25 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Draft",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '+Past'],
-	},
-	{
-		name: "[Gen 9] National Dex Dynamax",
-
-		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Draft', 'Allow Dynamax'],
+		ruleset: ['Draft', '+Past', 'Z-Move Clause'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Draft', '+Legacy'],
+		ruleset: ['Draft', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex Unrestricted",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy', 'Allow Dynamax'],
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex WiFi",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Dynamax', 'Adjust Level = 50'],
+		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
 	},
 	{
 		name: "[Gen 9] National Dex Doubles",
@@ -113,7 +107,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', 'Allow Dynamax'],
+		ruleset: ['Draft VGC'],
 	},
 	{
 		name: "[Gen 9] LC National Dex Draft",
@@ -134,6 +128,12 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		ruleset: ['[Gen 9] National Dex Draft', '+CAP'],
+	},
+	{
+		name: "[Gen 8] National Dex Draft",
+
+		mod: 'gen8',
+		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
 	// Past Gens Draft
