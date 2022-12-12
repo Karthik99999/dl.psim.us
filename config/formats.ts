@@ -476,9 +476,14 @@ export const Formats: FormatList = [
 	// OM of the Month
 	///////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 	{
 		section: "OM of the Month",
 		column: 2,
+=======
+		mod: 'gen4',
+		ruleset: ['Draft', '!Team Preview'],
+>>>>>>> 6202e2245 (Remove Team Preview from Gen 3/4 draft)
 	},
 	{
 		name: "[Gen 9] Almost Any Ability",
@@ -2091,6 +2096,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen3',
+<<<<<<< HEAD
 		// searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Standard', '!Switch Priority Clause Mod'],
@@ -4318,5 +4324,8 @@ export const Formats: FormatList = [
 		debug: true,
 		battle: {trunc: Math.trunc},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
+=======
+		ruleset: ['Draft', '!Team Preview'],
+>>>>>>> 6202e2245 (Remove Team Preview from Gen 3/4 draft)
 	},
 ];
