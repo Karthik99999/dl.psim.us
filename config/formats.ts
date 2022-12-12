@@ -171,12 +171,12 @@ export const Formats: FormatList = [
 		name: "[Gen 4] Draft League",
 
 		mod: 'gen4',
-		ruleset: ['Draft'],
+		ruleset: ['Draft', '!Team Preview'],
 	},
 	{
 		name: "[Gen 3] Draft League",
 
 		mod: 'gen3',
-		ruleset: ['Draft'],
+		ruleset: ['Draft', '!Team Preview'],
 	},
 ];
