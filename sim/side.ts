@@ -84,6 +84,7 @@ export class Side {
 
 	faintedLastTurn: Pokemon | null;
 	faintedThisTurn: Pokemon | null;
+	totalFainted: number;
 	/** only used by Gen 1 Counter */
 	lastSelectedMove: ID = '';
 
@@ -134,6 +135,7 @@ export class Side {
 		this.pokemonLeft = this.pokemon.length;
 		this.faintedLastTurn = null;
 		this.faintedThisTurn = null;
+		this.totalFainted = 0;
 		this.zMoveUsed = false;
 		this.dynamaxUsed = this.battle.gen !== 8;
 
@@ -680,9 +682,14 @@ export class Side {
 			if (this.requestState !== 'switch') {
 				return this.emitChoiceError(`Can't switch: You need to select a Pokémon to switch in`);
 			}
-			if (!this.choice.forcedSwitchesLeft) return this.choosePass();
-			slot = this.active.length;
-			while (this.choice.switchIns.has(slot) || this.pokemon[slot].fainted) slot++;
+			if (this.slotConditions[pokemon.position]['revivalblessing']) {
+				slot = 0;
+				while (!this.pokemon[slot].fainted) slot++;
+			} else {
+				if (!this.choice.forcedSwitchesLeft) return this.choosePass();
+				slot = this.active.length;
+				while (this.choice.switchIns.has(slot) || this.pokemon[slot].fainted) slot++;
+			}
 		} else {
 			slot = parseInt(slotText) - 1;
 		}
