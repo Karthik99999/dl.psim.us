@@ -151,10 +151,38 @@ export const Formats: FormatList = [
 		section: "S/V Doubles",
 	},
 	{
+<<<<<<< HEAD
 		name: "[Gen 9] Doubles OU",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3710876/">Doubles OU Sample Teams</a>`,
 		],
+=======
+		name: "[Gen 9] National Dex Draft",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9] National Dex Legacy",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex Unrestricted",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex WiFi",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
+	},
+	{
+		name: "[Gen 9] National Dex Doubles",
+>>>>>>> 119ed9bdc (Add Allow Signature Moves rule)
 
 		mod: 'gen9',
 		gameType: 'doubles',
@@ -181,6 +209,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		gameType: 'doubles',
+<<<<<<< HEAD
 		searchShow: false,
 		battle: {trunc: Math.trunc},
 		debug: true,
@@ -193,6 +222,9 @@ export const Formats: FormatList = [
 
 	{
 		section: "National Dex",
+=======
+		ruleset: ['Draft VGC', 'Allow Signature Moves'],
+>>>>>>> 119ed9bdc (Add Allow Signature Moves rule)
 	},
 	{
 		name: "[Gen 9] National Dex",
