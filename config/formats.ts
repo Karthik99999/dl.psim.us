@@ -68,7 +68,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Draft",
 
 		mod: 'gen9',
-		ruleset: ['Draft', '+Past', 'Z-Move Clause'],
+		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy",
@@ -107,7 +107,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC'],
+		ruleset: ['Draft VGC', 'Allow Signature Moves'],
 	},
 	{
 		name: "[Gen 9] LC National Dex Draft",

@@ -150,6 +150,23 @@ export const Rulesets: {[k: string]: FormatData} = {
 			'VGC Timer', 'Adjust Level = 50', 'Picked Team Size = 4',
 		],
 	},
+	allowsignaturemoves: {
+		effectType: 'ValidatorRule',
+		name: 'Allow Signature Moves',
+		desc: "Allow signature moves that were removed from Gen 9 to be used.",
+		unbanlist: [
+			'Lovely Kiss', 'Bonemerang', 'Conversion', 'Sketch', 'Triple Kick', 'Conversion 2', 'Aeroblast', 'Octazooka',
+			'Sacred Fire', 'Luster Purge', 'Mist Ball', 'Rock Wrecker', 'Chatter', 'Crush Grip', 'Dark Void', 'Seed Flare',
+			'Storm Throw', 'Head Charge', 'Gear Grind', 'Searing Shot', 'Techno Blast', 'Secret Sword', 'Glaciate',
+			'Bolt Strike', 'Blue Flare', 'Freeze Shock', 'Ice Burn', 'Fusion Flare', 'Fusion Bolt', 'Trick-or-Treat',
+			'Topsy-Turvy', 'Electrify', "King's Shield", 'Geomancy', 'Oblivion Wing', 'Thousand Arrows', 'Thousand Waves',
+			"Land's Wrath", "Trick-or-Treat", 'Light of Ruin', 'Sparkling Aria', 'Floral Healing', 'Toxic Thread', 'Anchor Shot',
+			'Purify', 'Core Enforcer', 'Beak Blast', 'Clanging Scales', 'Shell Trap', 'Shadow Bone', 'Prismatic Laser',
+			'Spectral Thief', 'Sunsteel Strike', 'Moongeist Beam', "Nature's Madness", 'Multi-Attack', 'Mind Blown',
+			'Plasma Fists', 'Photon Geyser', 'Double Iron Bash', 'Octolock', 'Bolt Beak', 'Fishious Rend', 'Decorate',
+			'Snap Trap', 'Aura Wheel', 'Strange Steam', 'Obstruct', 'Meteor Assault', 'Take Heart',
+		],
+	},
 	obtainable: {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable',
