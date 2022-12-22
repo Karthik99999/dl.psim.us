@@ -146,7 +146,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Draft VGC',
 		desc: "The custom Draft League ruleset, tailored for VGC",
 		ruleset: [
-			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Item Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
 			'VGC Timer', 'Adjust Level = 50', 'Picked Team Size = 4',
 		],
 	},
@@ -155,16 +155,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Allow Signature Moves',
 		desc: "Allow signature moves that were removed from Gen 9 to be used.",
 		unbanlist: [
-			'Lovely Kiss', 'Bonemerang', 'Conversion', 'Sketch', 'Triple Kick', 'Conversion 2', 'Aeroblast', 'Octazooka',
-			'Sacred Fire', 'Luster Purge', 'Mist Ball', 'Rock Wrecker', 'Chatter', 'Crush Grip', 'Dark Void', 'Seed Flare',
-			'Storm Throw', 'Head Charge', 'Gear Grind', 'Searing Shot', 'Techno Blast', 'Secret Sword', 'Glaciate',
-			'Bolt Strike', 'Blue Flare', 'Freeze Shock', 'Ice Burn', 'Fusion Flare', 'Fusion Bolt', 'Topsy-Turvy',
-			'Electrify', "King's Shield", 'Geomancy', 'Oblivion Wing', 'Thousand Arrows', 'Thousand Waves', "Land's Wrath",
-			"Trick-or-Treat", 'Light of Ruin', 'Sparkling Aria', 'Floral Healing', 'Toxic Thread', 'Anchor Shot', 'Purify',
-			'Core Enforcer', 'Beak Blast', 'Clanging Scales', 'Shell Trap', 'Shadow Bone', 'Prismatic Laser',
-			'Spectral Thief', 'Sunsteel Strike', 'Moongeist Beam', "Nature's Madness", 'Multi-Attack', 'Mind Blown',
-			'Plasma Fists', 'Photon Geyser', 'Double Iron Bash', 'Octolock', 'Bolt Beak', 'Fishious Rend', 'Decorate',
-			'Snap Trap', 'Aura Wheel', 'Strange Steam', 'Obstruct', 'Meteor Assault', 'Take Heart',
+			'Aeroblast', 'Anchor Shot', 'Aura Wheel', 'Beak Blast', 'Blue Flare', 'Bolt Beak', 'Bolt Strike', 'Bonemerang', 'Chatter', 'Clanging Scales', 'Clangorous Soul', 'Conversion', 'Conversion 2', 'Core Enforcer', 'Crush Grip', 'Dark Void', 'Decorate', 'Double Iron Bash', 'Electrify', 'Fishious Rend', 'Floral Healing', 'Freeze Shock', 'Fusion Bolt', 'Fusion Flare', 'Gear Grind', 'Geomancy', 'Glaciate', 'Head Charge', 'Ice Burn', 'Kinesis', "King's Shield", "Land's Wrath", 'Light of Ruin', 'Lovely Kiss', 'Luster Purge', 'Meteor Assault', 'Mind Blown', 'Mist Ball', 'Moongeist Beam', 'Multi-Attack', "Nature's Madness", 'Oblivion Wing', 'Obstruct', 'Octazooka', 'Octolock', 'Photon Geyser', 'Plasma Fists', 'Prismatic Laser', 'Purify', 'Rock Wrecker', 'Sacred Fire', 'Searing Shot', 'Secret Sword', 'Seed Flare', 'Shadow Bone', 'Shell Trap', 'Sketch', 'Snap Trap', 'Sparkling Aria', 'Spectral Thief', 'Storm Throw', 'Strange Steam', 'Sunsteel Strike', 'Take Heart', 'Techno Blast', 'Thousand Arrows', 'Thousand Waves', 'Topsy-Turvy', 'Toxic Thread', 'Trick-or-Treat', 'Triple Kick'
 		],
 	},
 	obtainable: {
