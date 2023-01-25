@@ -4973,7 +4973,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	cinderace: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "OU",
 		natDexTier: "UU",
 	},
 	cinderacegmax: {
