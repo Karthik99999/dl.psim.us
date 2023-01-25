@@ -12,9 +12,9 @@ export const Aliases: {[alias: string]: string} = {
 	zeroused: "[Gen 8] ZU",
 	mono: "[Gen 9] Monotype",
 	ag: "[Gen 8] Anything Goes",
-	bss: "[Gen 8] Battle Stadium Singles",
-	vgc: "[Gen 8] VGC 2022",
-	bsd: "[Gen 8] VGC 2022",
+	bss: "[Gen 9] Battle Stadium Singles Series 1",
+	vgc: "[Gen 9] VGC 2023 Series 1",
+	bsd: "[Gen 9] VGC 2023 Series 1",
 	randdubs: "[Gen 8] Random Doubles Battle",
 	doubles: "[Gen 8] Doubles OU",
 	dou: "[Gen 9] Doubles OU",
@@ -72,8 +72,8 @@ export const Aliases: {[alias: string]: string} = {
 	gen6ag: "[Gen 6] Anything Goes",
 	crossevo: "[Gen 9] Cross Evolution",
 	mayhem: "[Gen 9] Random Battle Mayhem",
-	omotm: "[Gen 9] Shared Power",
-	lcotm: "[Gen 9] Full Potential",
+	omotm: "[Gen 9] VoltTurn Mayhem",
+	lcotm: "[Gen 9] Partners in Crime",
 
 	// mega evos
 	fabio: "Ampharos-Mega",
@@ -279,6 +279,9 @@ export const Aliases: {[alias: string]: string} = {
 	urshifurapid: "Urshifu-Rapid-Strike",
 	calyrexir: "Calyrex-Ice",
 	calyrexsr: "Calyrex-Shadow",
+	taurospaldea: "Tauros-Paldea-Combat",
+	taurospaldeafire: "Tauros-Paldea-Blaze",
+	taurospaldeawater: "Tauros-Paldea-Aqua",
 
 	// base formes
 	nidoranfemale: "Nidoran-F",
@@ -693,6 +696,7 @@ export const Aliases: {[alias: string]: string} = {
 	bliss: "Blissey",
 	bull: "Tauros",
 	bulu: "Tapu Bulu",
+	bundlechan: "Iron Bundle",
 	camel: "Camerupt",
 	cathy: "Trevenant",
 	chandy: "Chandelure",

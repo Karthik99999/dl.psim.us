@@ -1110,20 +1110,24 @@ export class Pokemon {
 		return boosts;
 	}
 
+	getCappedBoost(boosts: SparseBoostsTable) {
+		const cappedBoost: SparseBoostsTable = {};
+		let boostName: BoostID;
+		for (boostName in boosts) {
+			const boost = boosts[boostName];
+			if (!boost) continue;
+			cappedBoost[boostName] = this.battle.clampIntRange(this.boosts[boostName] + boost, -6, 6) - this.boosts[boostName];
+		}
+		return cappedBoost;
+	}
+
 	boostBy(boosts: SparseBoostsTable) {
+		boosts = this.getCappedBoost(boosts);
 		let delta = 0;
 		let boostName: BoostID;
 		for (boostName in boosts) {
 			delta = boosts[boostName]!;
 			this.boosts[boostName] += delta;
-			if (this.boosts[boostName] > 6) {
-				delta -= this.boosts[boostName] - 6;
-				this.boosts[boostName] = 6;
-			}
-			if (this.boosts[boostName] < -6) {
-				delta -= this.boosts[boostName] - (-6);
-				this.boosts[boostName] = -6;
-			}
 		}
 		return delta;
 	}
@@ -1331,7 +1335,9 @@ export class Pokemon {
 			this.baseSpecies = rawSpecies;
 			this.details = species.name + (this.level === 100 ? '' : ', L' + this.level) +
 				(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
-			this.battle.add('detailschange', this, (this.illusion || this).details);
+			let details = (this.illusion || this).details;
+			if (this.terastallized) details += `, tera:${this.terastallized}`;
+			this.battle.add('detailschange', this, details);
 			if (source.effectType === 'Item') {
 				if (source.zMove) {
 					this.battle.add('-burst', this, apparentSpecies, species.requiredItem);

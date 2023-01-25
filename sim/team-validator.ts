@@ -889,7 +889,7 @@ export class TeamValidator {
 		}
 
 		const cantBreedNorEvolve = (species.eggGroups[0] === 'Undiscovered' && !species.prevo && !species.nfe);
-		const isLegendary = (cantBreedNorEvolve && ![
+		const isLegendary = (cantBreedNorEvolve && !species.tags.includes('Paradox') && ![
 			'Pikachu', 'Unown', 'Dracozolt', 'Arctozolt', 'Dracovish', 'Arctovish',
 		].includes(species.baseSpecies)) || [
 			'Manaphy', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
@@ -1360,11 +1360,6 @@ export class TeamValidator {
 			if (behemothMove >= 0) {
 				set.moves[behemothMove] = 'ironhead';
 			}
-		}
-
-		// Temporary backwards compatability until Pokemon HOME update
-		if (species.baseSpecies === 'Vivillon' && species.forme !== 'Fancy' && dex.gen === 9) {
-			set.species = 'Vivillon-Fancy';
 		}
 		return problems;
 	}

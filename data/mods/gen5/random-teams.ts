@@ -68,6 +68,18 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			return {cull: !isLead};
 		case 'focuspunch':
 			return {cull: !moves.has('substitute') || counter.damagingMoves.size < 2 || moves.has('swordsdance')};
+		case 'lightscreen':
+			if (movePool.length > 1) {
+				const screen = movePool.indexOf('reflect');
+				if (screen >= 0) this.fastPop(movePool, screen);
+			}
+			return {cull: !moves.has('reflect')};
+		case 'reflect':
+			if (movePool.length > 1) {
+				const screen = movePool.indexOf('lightscreen');
+				if (screen >= 0) this.fastPop(movePool, screen);
+			}
+			return {cull: !moves.has('lightscreen')};
 		case 'rest':
 			return {cull: movePool.includes('sleeptalk')};
 		case 'sleeptalk':
@@ -123,6 +135,8 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			return {cull: !!counter.setupType || !!counter.get('recovery') || moves.has('substitute')};
 		case 'haze': case 'magiccoat': case 'pursuit': case 'spikes':
 			return {cull: !!counter.setupType || !!counter.get('speedsetup') || moves.has('rest') || moves.has('trickroom')};
+		case 'iceshard':
+			return {cull: moves.has('shellsmash')};
 		case 'leechseed': case 'roar': case 'whirlwind':
 			return {cull: !!counter.setupType || !!counter.get('speedsetup') || moves.has('dragontail')};
 		case 'nightshade': case 'seismictoss': case 'superfang':
@@ -140,8 +154,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 		case 'switcheroo': case 'trick':
 			return {cull: (
 				counter.get('Physical') + counter.get('Special') < 3 ||
-				!!counter.get('priority') ||
-				moves.has('rapidspin')
+				['fakeout', 'rapidspin', 'suckerpunch'].some(m => moves.has(m))
 			)};
 		case 'toxic':
 			return {cull: !!counter.setupType || !!counter.get('speedsetup') || moves.has('trickroom')};
@@ -181,28 +194,46 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			return {cull: ['fireblast', 'overheat', 'vcreate'].some(m => moves.has(m))};
 		case 'bravebird': case 'pluck':
 			return {cull: moves.has('acrobatics') || moves.has('hurricane')};
+		case 'acrobatics':
+			return {cull: !counter.setupType && moves.has('hurricane')};
+		case 'hurricane':
+			return {cull: !!counter.setupType && moves.has('acrobatics')};
 		case 'gigadrain':
-			return {cull: (!counter.setupType && moves.has('leafstorm')) || moves.has('petaldance') || moves.has('powerwhip')};
+			return {cull: (!counter.setupType && moves.has('leafstorm')) ||
+				['leafblade', 'petaldance', 'powerwhip'].some(m => moves.has(m))};
 		case 'solarbeam':
 			return {cull: (!abilities.has('Drought') && !moves.has('sunnyday')) || moves.has('gigadrain')};
 		case 'leafstorm':
-			return {cull: !!counter.setupType && moves.has('gigadrain')};
+			return {cull: !!counter.setupType && (moves.has('gigadrain') || moves.has('seedbomb'))};
+		case 'seedbomb':
+			return {cull: !counter.setupType && (moves.has('leafstorm'))};
 		case 'bonemerang': case 'earthpower':
 			return {cull: moves.has('earthquake')};
 		case 'extremespeed': case 'headsmash':
 			return {cull: moves.has('roost')};
 		case 'facade':
 			return {cull: moves.has('suckerpunch') && !types.has('Normal')};
+		case 'hydropump':
+			return {cull: moves.has('waterfall') && !!counter.setupType};
 		case 'judgment':
 			return {cull: counter.setupType !== 'Special' && counter.get('stab') > 1};
 		case 'return':
 			return {cull: moves.has('doubleedge')};
+		case 'rockblast':
+			return {cull: moves.has('stoneedge')};
 		case 'poisonjab':
 			return {cull: moves.has('gunkshot')};
 		case 'psychic':
 			return {cull: moves.has('psyshock')};
 		case 'scald': case 'surf':
 			return {cull: moves.has('hydropump') || moves.has('waterfall')};
+		case 'shadowball':
+			// mono-Psychic types with Calm Mind shouldn't have Shadow Ball as their only coverage
+			// Chimecho is exempt since Shadow Ball is its only coverage move
+			return {cull: types.has('Psychic') && types.size < 2 && counter.get('Special') < 3 &&
+				moves.has('calmmind') && species.id !== 'chimecho'};
+		case 'waterfall':
+			return {cull: moves.has('hydropump') && !counter.setupType && !moves.has('raindance') && !teamDetails.rain};
 		case 'waterspout':
 			return {cull: !!counter.get('Status')};
 
@@ -214,7 +245,9 @@ export class RandomGen5Teams extends RandomGen6Teams {
 		case 'healbell':
 			return {cull: !!counter.get('speedsetup') || moves.has('magiccoat')};
 		case 'moonlight': case 'painsplit': case 'recover': case 'roost': case 'softboiled': case 'synthesis':
-			return {cull: ['leechseed', 'rest', 'wish'].some(m => moves.has(m))};
+			// Prevent Roost + Protect on Gliscor
+			const gliscorCase = species.id === 'gliscor' && moves.has('protect');
+			return {cull: ['leechseed', 'rest', 'wish'].some(m => moves.has(m)) || gliscorCase};
 		case 'substitute':
 			return {cull: (
 				(moves.has('doubleedge') && !abilities.has('rockhead')) ||
@@ -260,6 +293,8 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			return (!counter.get('Physical') && !moves.has('batonpass'));
 		case 'Flash Fire':
 			return abilities.has('Drought');
+		case 'Guts':
+			return (species.id === 'heracross');
 		case 'Hydration': case 'Rain Dish': case 'Swift Swim':
 			return (!moves.has('raindance') && !teamDetails.rain);
 		case 'Hustle':
@@ -346,11 +381,11 @@ export class RandomGen5Teams extends RandomGen6Teams {
 		if (
 			ability === 'Poison Heal' ||
 			ability === 'Toxic Boost' ||
-			(ability === 'Quick Feet' && moves.has('facade')) ||
-			moves.has('psychoshift')
+			(ability === 'Quick Feet' && moves.has('facade'))
 		) {
 			return 'Toxic Orb';
 		}
+		if (moves.has('psychoshift')) return 'Flame Orb';
 		if (moves.has('rest') && !moves.has('sleeptalk') && ability !== 'Natural Cure' && ability !== 'Shed Skin') {
 			return 'Chesto Berry';
 		}
@@ -399,7 +434,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 				species.baseStats.spa >= 100 &&
 				species.baseStats.spe >= 60 && species.baseStats.spe <= 108 &&
 				!moves.has('uturn') &&
-				(ability === 'Download' || moves.has('eruption') || moves.has('waterspout') || this.randomChance(2, 3))
+				(ability === 'Download' || this.randomChance(2, 3))
 			) ? 'Choice Scarf' : 'Choice Specs';
 		}
 
@@ -562,7 +597,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 				// Pokemon should have moves that benefit their Type/Ability/Weather, as well as moves required by its forme
 				if (
 					!cull &&
-					!['judgment', 'quiverdance', 'sleeptalk'].includes(moveid) &&
+					!['judgment', 'lightscreen', 'quiverdance', 'reflect', 'sleeptalk'].includes(moveid) &&
 					!isSetup && !move.weather && !move.damage && (move.category !== 'Status' || !move.flags.heal) && (
 						move.category === 'Status' ||
 						!types.has(move.type) ||
@@ -586,11 +621,14 @@ export class RandomGen5Teams extends RandomGen6Teams {
 						) || (
 							!counter.get('recovery') &&
 							!counter.setupType &&
-							!moves.has('healingwish') &&
-							(counter.get('Status') > 1 || (species.nfe && !!counter.get('Status'))) &&
-							(movePool.includes('recover') || movePool.includes('roost') || movePool.includes('softboiled'))
+							['healingwish', 'trick', 'trickroom'].every(m => !moves.has(m)) &&
+							!abilities.has('Poison Heal') &&
+							(counter.get('Status') || (species.nfe && !!counter.get('Status'))) &&
+							(['recover', 'roost', 'slackoff', 'softboiled'].some(m => movePool.includes(m)))
 						) || (
+							(movePool.includes('moonlight') && types.size < 2 && !moves.has('trickroom')) ||
 							movePool.includes('darkvoid') ||
+							movePool.includes('milkdrink') ||
 							movePool.includes('quiverdance') ||
 							(species.requiredMove && movePool.includes(toID(species.requiredMove)))
 						) || (
@@ -698,6 +736,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			} else if (abilities.has('Swift Swim') && moves.has('raindance')) {
 				ability = 'Swift Swim';
 			}
+			if (species.name === 'Altaria') ability = 'Natural Cure';
 		} else {
 			ability = abilityData[0].name;
 		}
@@ -790,6 +829,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 		const tierCount: {[k: string]: number} = {};
 		const typeCount: {[k: string]: number} = {};
 		const typeComboCount: {[k: string]: number} = {};
+		const typeWeaknesses: {[k: string]: number} = {};
 		const teamDetails: RandomTeamsTypes.TeamDetails = {};
 
 		const pokemonPool = this.getPokemonPool(type, pokemon, isMonotype);
@@ -809,7 +849,7 @@ export class RandomGen5Teams extends RandomGen6Teams {
 			case 'Rotom':
 				if (this.gen < 5 && this.randomChance(5, 6) && !isMonotype) continue;
 				break;
-			case 'Basculin': case 'Castform': case 'Cherrim': case 'Meloetta':
+			case 'Basculin': case 'Castform': case 'Meloetta':
 				if (this.randomChance(1, 2)) continue;
 				break;
 			}
@@ -835,6 +875,19 @@ export class RandomGen5Teams extends RandomGen6Teams {
 					if (typeCount[typeName] >= 2 * limitFactor) {
 						skip = true;
 						break;
+					}
+				}
+				if (skip) continue;
+
+				// Limit three weak to any type
+				for (const typeName of this.dex.types.names()) {
+					// it's weak to the type
+					if (this.dex.getEffectiveness(typeName, species) > 0) {
+						if (!typeWeaknesses[typeName]) typeWeaknesses[typeName] = 0;
+						if (typeWeaknesses[typeName] >= 3 * limitFactor) {
+							skip = true;
+							break;
+						}
 					}
 				}
 				if (skip) continue;
@@ -882,6 +935,14 @@ export class RandomGen5Teams extends RandomGen6Teams {
 				typeComboCount[typeCombo]++;
 			} else {
 				typeComboCount[typeCombo] = 1;
+			}
+
+			// Increment weakness counter
+			for (const typeName of this.dex.types.names()) {
+				// it's weak to the type
+				if (this.dex.getEffectiveness(typeName, species) > 0) {
+					typeWeaknesses[typeName]++;
+				}
 			}
 
 			// Team details

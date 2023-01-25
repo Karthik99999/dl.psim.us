@@ -181,8 +181,12 @@ export class BattleActions {
 			this.battle.runEvent('SwitchIn', pokemon);
 		}
 
-		if (this.battle.gen <= 2 && !pokemon.side.faintedThisTurn && pokemon.draggedIn !== this.battle.turn) {
-			this.battle.runEvent('AfterSwitchInSelf', pokemon);
+		if (this.battle.gen <= 2) {
+			// pokemon.lastMove is reset for all Pokemon on the field after a switch. This affects Mirror Move.
+			for (const poke of this.battle.getAllActive()) poke.lastMove = null;
+			if (!pokemon.side.faintedThisTurn && pokemon.draggedIn !== this.battle.turn) {
+				this.battle.runEvent('AfterSwitchInSelf', pokemon);
+			}
 		}
 		if (!pokemon.hp) return false;
 		pokemon.isStarted = true;
@@ -297,6 +301,8 @@ export class BattleActions {
 			pokemon.side.zMoveUsed = true;
 		}
 
+		const oldActiveMove = move;
+
 		const moveDidSomething = this.useMove(baseMove, pokemon, target, sourceEffect, zMove, maxMove);
 		this.battle.lastSuccessfulMoveThisTurn = moveDidSomething ? this.battle.activeMove && this.battle.activeMove.id : null;
 		if (this.battle.activeMove) move = this.battle.activeMove;
@@ -334,6 +340,11 @@ export class BattleActions {
 		if (noLock && pokemon.volatiles['lockedmove']) delete pokemon.volatiles['lockedmove'];
 		this.battle.faintMessages();
 		this.battle.checkWin();
+
+		if (this.battle.gen <= 4) {
+			// In gen 4, the outermost move is considered the last move for Copycat
+			this.battle.activeMove = oldActiveMove;
+		}
 	}
 	/**
 	 * useMove is the "inside" move caller. It handles effects of the

@@ -64,6 +64,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				this.add('-activate', pokemon, 'Bide');
 				return false;
 			},
+			onDisableMove(pokemon) {
+				if (!pokemon.hasMove('bide')) {
+					return;
+				}
+				for (const moveSlot of pokemon.moveSlots) {
+					if (moveSlot.id !== 'bide') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
 		},
 		type: "???", // Will look as Normal but it's STAB-less
 	},
@@ -209,22 +219,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	dig: {
 		inherit: true,
 		basePower: 100,
-		condition: {
-			duration: 2,
-			onLockMove: 'dig',
-			onInvulnerability(target, source, move) {
-				if (move.id === 'swift' || move.id === 'transform') return true;
-				this.add('-message', 'The foe ' + target.name + ' can\'t be hit underground!');
-				return false;
-			},
-			onDamage(damage, target, source, move) {
-				if (!move || move.effectType !== 'Move') return;
-				if (!source) return;
-				if (move.id === 'earthquake') {
-					this.add('-message', 'The foe ' + target.name + ' can\'t be hit underground!');
-					return null;
-				}
-			},
+		condition: {},
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile('twoturnmove')) {
+				attacker.removeVolatile('invulnerability');
+				return;
+			}
+			this.add('-prepare', attacker, move.name);
+			attacker.addVolatile('twoturnmove', defender);
+			attacker.addVolatile('invulnerability', defender);
+			return null;
 		},
 	},
 	disable: {
@@ -264,6 +268,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 				if (move.id === this.effectState.move) {
 					this.add('cant', pokemon, 'Disable', move);
+					pokemon.removeVolatile('twoturnmove');
 					return false;
 				}
 			},
@@ -328,22 +333,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	fly: {
 		inherit: true,
-		condition: {
-			duration: 2,
-			onLockMove: 'fly',
-			onInvulnerability(target, source, move) {
-				if (move.id === 'swift' || move.id === 'transform') return true;
-				this.add('-message', 'The foe ' + target.name + ' can\'t be hit while flying!');
-				return false;
-			},
-			onDamage(damage, target, source, move) {
-				if (!move || move.effectType !== 'Move') return;
-				if (!source || source.isAlly(target)) return;
-				if (move.id === 'gust' || move.id === 'thunder') {
-					this.add('-message', 'The foe ' + target.name + ' can\'t be hit while flying!');
-					return null;
-				}
-			},
+		condition: {},
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile('twoturnmove')) {
+				attacker.removeVolatile('invulnerability');
+				return;
+			}
+			this.add('-prepare', attacker, move.name);
+			attacker.addVolatile('twoturnmove', defender);
+			attacker.addVolatile('invulnerability', defender);
+			return null;
 		},
 	},
 	focusenergy: {
@@ -530,7 +529,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			onStart(pokemon) {
 				this.add('-start', pokemon, 'Mist');
 			},
-			onBoost(boost, target, source, effect) {
+			onTryBoost(boost, target, source, effect) {
 				if (effect.effectType === 'Move' && effect.category !== 'Status') return;
 				if (source && target !== source) {
 					let showMsg = false;
@@ -552,6 +551,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		ignoreImmunity: true,
 		basePower: 1,
+	},
+	petaldance: {
+		inherit: true,
+		onMoveFail() {},
 	},
 	poisonsting: {
 		inherit: true,
@@ -589,9 +592,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		condition: {
 			// Rage lock
-			duration: 255,
 			onStart(target, source, effect) {
 				this.effectState.move = 'rage';
+				this.effectState.accuracy = 255;
 			},
 			onLockMove: 'rage',
 			onHit(target, source, move) {
@@ -611,6 +614,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		critRatio: 1,
 		target: "normal",
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile('twoturnmove')) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name);
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
 	},
 	recover: {
 		inherit: true,
@@ -698,13 +709,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	skullbash: {
 		inherit: true,
 		onTryMove(attacker, defender, move) {
-			if (attacker.removeVolatile(move.id)) {
+			if (attacker.removeVolatile('twoturnmove')) {
 				return;
 			}
 			this.add('-prepare', attacker, move.name);
-			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+	},
+	skyattack: {
+		inherit: true,
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile('twoturnmove')) {
 				return;
 			}
+			this.add('-prepare', attacker, move.name);
 			attacker.addVolatile('twoturnmove', defender);
 			return null;
 		},
@@ -718,6 +737,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 40,
 			status: 'psn',
+		},
+	},
+	solarbeam: {
+		inherit: true,
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile('twoturnmove')) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name);
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
 		},
 	},
 	sonicboom: {
@@ -855,6 +885,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		ignoreImmunity: true,
 		basePower: 1,
+	},
+	thrash: {
+		inherit: true,
+		onMoveFail() {},
 	},
 	thunder: {
 		inherit: true,
