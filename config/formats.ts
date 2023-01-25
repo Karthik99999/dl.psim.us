@@ -69,7 +69,6 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		ruleset: ['Draft', '+Past', 'Z-Move Clause'],
-		unbanlist: ['Lovely Kiss', 'Bonemerang', 'Conversion', 'Sketch', 'Triple Kick', 'Conversion 2', 'Aeroblast', 'Octazooka', 'Sacred Fire', 'Luster Purge', 'Mist Ball', 'Rock Wrecker', 'Chatter', 'Crush Grip', 'Dark Void', 'Seed Flare', 'Storm Throw', 'Head Charge', 'Gear Grind', 'Searing Shot', 'Techno Blast', 'Secret Sword', 'Glaciate', 'Bolt Strike', 'Blue Flare', 'Freeze Shock', 'Ice Burn', 'Fusion Flare', 'Fusion Bolt', 'Trick-or-Treat', 'Topsy-Turvy', 'Electrify', "King's Shield", 'Geomancy', 'Oblivion Wing', 'Thousand Arrows', 'Thousand Waves', "Land's Wrath", "Trick-or-Treat", 'Light of Ruin', 'Sparkling Aria', 'Floral Healing', 'Toxic Thread', 'Anchor Shot', 'Purify', 'Core Enforcer', 'Beak Blast', 'Clanging Scales', 'Shell Trap', 'Shadow Bone', 'Prismatic Laser', 'Spectral Thief', 'Sunsteel Strike', 'Moongeist Beam', "Nature's Madness", 'Multi-Attack', 'Mind Blown', 'Plasma Fists', 'Photon Geyser', 'Double Iron Bash', 'Octolock', 'Bolt Beak', 'Fishious Rend', 'Decorate', 'Snap Trap', 'Aura Wheel', 'Strange Steam', 'Obstruct', 'Meteor Assault', 'Take Heart'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy",
@@ -108,7 +107,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC'],
+		ruleset: ['Draft VGC', 'Allow Signature Moves'],
 	},
 	{
 		name: "[Gen 9] LC National Dex Draft",
@@ -172,12 +171,12 @@ export const Formats: FormatList = [
 		name: "[Gen 4] Draft League",
 
 		mod: 'gen4',
-		ruleset: ['Draft'],
+		ruleset: ['Draft', '!Team Preview'],
 	},
 	{
 		name: "[Gen 3] Draft League",
 
 		mod: 'gen3',
-		ruleset: ['Draft'],
+		ruleset: ['Draft', '!Team Preview'],
 	},
 ];

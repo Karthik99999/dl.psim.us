@@ -24,18 +24,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	charmander: {
-		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
-		natDexTier: "LC",
+		tier: "LC",
 	},
 	charmeleon: {
-		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
-		natDexTier: "NFE",
+		tier: "NFE",
 	},
 	charizard: {
-		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "OU",
+		doublesTier: "DOU",
 		natDexTier: "UU",
 	},
 	charizardmegax: {
@@ -3065,8 +3061,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Unobtainable",
 	},
 	victini: {
-		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		isNonstandard: "Past",
+		tier: "Illegal",
 		natDexTier: "UU",
 	},
 	snivy: {
@@ -5541,7 +5537,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "Uber",
 	},
 	flittle: {
-		tier: "LC",
+		tier: "NFE",
 	},
 	espathra: {
 		tier: "UU",
@@ -5782,7 +5778,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	fluttermane: {
 		tier: "Uber",
-		doublesTier: "DUU",
+		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
 	slitherwing: {
@@ -5855,7 +5851,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	chiyu: {
 		tier: "OU",
 		doublesTier: "DOU",
-		natDexTier: "UU",
+		natDexTier: "Uber",
 	},
 	koraidon: {
 		tier: "Uber",
