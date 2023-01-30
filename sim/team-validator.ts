@@ -1554,7 +1554,7 @@ export class TeamValidator {
 		if (item.isNonstandard && item.isNonstandard !== 'Unobtainable') {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future', 'Legacy'].includes(item.isNonstandard)) {
+				if (['Past', 'Future'].includes(item.isNonstandard)) {
 					return `${set.name}'s item ${item.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s item ${item.name} does not exist in this game.`;
