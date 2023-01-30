@@ -179,4 +179,17 @@ export const Formats: FormatList = [
 		mod: 'gen3',
 		ruleset: ['Draft', '!Team Preview'],
 	},
+
+	// Custom Partner Formats
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Custom Partner Formats",
+		column: 2,
+	},
+	{
+		name: "[Gen 9] DPL S7",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+	},
 ];
