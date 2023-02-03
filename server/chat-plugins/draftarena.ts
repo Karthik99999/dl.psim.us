@@ -34,7 +34,7 @@ export const commands: Chat.ChatCommands = {
 				return this.popupReply(`Team 1 could not be parsed.`);
 			}
 			if (Teams.import(team2) === null) {
-				throw new Chat.ErrorMessage(`Team 2 could not be parsed.`);
+				return this.popupReply(`Team 2 could not be parsed.`);
 			}
 
 			teamPairs.push([team1, team2]);
@@ -49,8 +49,10 @@ export const commands: Chat.ChatCommands = {
 		removeteampair(target) {
 			this.checkCan('lock');
 			const index = parseInt(target);
-			if (isNaN(index)) return this.errorReply(`You must specify a number to remove a team pair.`);
-			if (index < 0 || index >= teamPairs.length) return this.errorReply(`Team pair index must be between 1 and ${teamPairs.length}.`);
+			if (isNaN(index)) return this.popupReply(`You must specify a number to remove a team pair.`);
+			if (index < 0 || index >= teamPairs.length) {
+				return this.popupReply(`Team pair index must be between 1 and ${teamPairs.length}.`);
+			}
 
 			teamPairs.splice(index, 1);
 			savePairs();
@@ -67,7 +69,7 @@ export const commands: Chat.ChatCommands = {
 			this.parse(`/join view-draftarena-teams`);
 		},
 	},
-}
+};
 export const pages: Chat.PageTable = {
 	draftarena: {
 		teams(query, user) {
@@ -79,7 +81,7 @@ export const pages: Chat.PageTable = {
 			let buf = `<div class="pad"><button style="float:right" class="button" name="send" value="/j view-draftarena-teams"><i class="fa fa-refresh"></i> Refresh</button><h2>Draft Arena Team Management</h2><hr />`;
 
 			// adding teams
-			buf += `<h3>Add a team pair</h3>`
+			buf += `<h3>Add a team pair</h3>`;
 			buf += `<form data-submitsend="/draftarena addteampair {team1} ${SEPARATOR} {team2}">`;
 			buf += `<h4>Enter team #1 importable</h4><textarea style="width:80%;height:75px;" name="team1" contenteditable></textarea><br />`;
 			buf += `<h4>Enter team #2 importable</h4><textarea style="width:80%;height:75px;" name="team2"></textarea><br />`;
@@ -89,7 +91,7 @@ export const pages: Chat.PageTable = {
 			if (!teamPairs.length) {
 				buf += `<h3>There are currently no team pairs.</h3>`;
 			} else {
-				buf += `<h3>Current team pairs</h3>`
+				buf += `<h3>Current team pairs</h3>`;
 				buf += `<div class="ladder pad"><table><tr><th>Team 1</th><th>Team 2</th><th></th></tr>`;
 				for (let i = 0; i < teamPairs.length; i++) {
 					buf += `<tr>`;
@@ -102,8 +104,8 @@ export const pages: Chat.PageTable = {
 			}
 
 			return buf;
-		}
-	}
-}
+		},
+	},
+};
 
 Chat.multiLinePattern.register(`/draftarena addteampair `);
