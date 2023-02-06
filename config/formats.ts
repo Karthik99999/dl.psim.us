@@ -57,6 +57,14 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
 	},
+	{
+		name: "[Gen 9] Draft Arena",
+
+		mod: 'draftarena',
+		team: 'randomPaired',
+		desc: `Teams are chosen randomly from a pool of team pairs, so each team always faces off against the same opposing team.`,
+		ruleset: ['Draft'],
+	},
 
 	// National Draft Tiers
 	///////////////////////////////////////////////////////////////////
