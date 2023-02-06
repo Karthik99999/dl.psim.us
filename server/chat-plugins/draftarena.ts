@@ -26,14 +26,16 @@ export const commands: Chat.ChatCommands = {
 	draftarena: {
 		addteampair(target) {
 			this.checkCan('lock');
-			const [team1, team2] = target.split(SEPARATOR).map(x => x.trim());
-			if (!team1 || !team2) {
+			const [team1Export, team2Export] = target.split(SEPARATOR).map(x => x.trim());
+			if (!team1Export || !team2Export) {
 				return this.popupReply(`You must specify two teams.`);
 			}
-			if (Teams.import(team1) === null) {
+			const team1 = Teams.pack(Teams.import(team1Export));
+			if (!team1) {
 				return this.popupReply(`Team 1 could not be parsed.`);
 			}
-			if (Teams.import(team2) === null) {
+			const team2 = Teams.pack(Teams.import(team2Export));
+			if (!team2) {
 				return this.popupReply(`Team 2 could not be parsed.`);
 			}
 
@@ -94,9 +96,10 @@ export const pages: Chat.PageTable = {
 				buf += `<h3>Current team pairs</h3>`;
 				buf += `<div class="ladder pad"><table><tr><th>Team 1</th><th>Team 2</th><th></th></tr>`;
 				for (let i = 0; i < teamPairs.length; i++) {
+					const [team1, team2] = teamPairs[i].map(t => Teams.import(t)!);
 					buf += `<tr>`;
-					buf += `<td>${Chat.formatText(teamPairs[i][0].trim(), false, true)}</td>`;
-					buf += `<td>${Chat.formatText(teamPairs[i][1].trim(), false, true)}</td>`;
+					buf += `<td>${Chat.formatText(Teams.export(team1), false, true)}</td>`;
+					buf += `<td>${Chat.formatText(Teams.export(team2), false, true)}</td>`;
 					buf += `<td><button class="button" name="send" value="/draftarena removeteampair ${i}">Remove</button></td>`;
 					buf += `</tr>`;
 				}
