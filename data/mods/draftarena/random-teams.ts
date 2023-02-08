@@ -30,10 +30,11 @@ export class DraftArenaTeams extends RandomTeams {
 			throw new Error(`Team supplied for team pairing in ${this.format.name} could not be parsed (team=${team}).`);
 		}
 
-		if (this.adjustLevel) {
-			for (const set of importedTeam) {
-				set.level = this.adjustLevel;
-			}
+		for (const set of importedTeam) {
+			if (this.adjustLevel) set.level = this.adjustLevel;
+
+			const species = Dex.species.get(set.species);
+			if (typeof species.battleOnly === 'string') set.species = species.battleOnly;
 		}
 
 		return importedTeam;
