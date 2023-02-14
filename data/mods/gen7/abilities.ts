@@ -33,7 +33,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	innerfocus: {
 		inherit: true,
 		rating: 1,
-		onBoost() {},
+		onTryBoost() {},
 	},
 	intimidate: {
 		inherit: true,
@@ -63,16 +63,16 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			randomStat = stats.length ? this.sample(stats) : undefined;
 			if (randomStat) boost[randomStat] = -1;
 
-			this.boost(boost);
+			this.boost(boost, pokemon, pokemon);
 		},
 	},
 	oblivious: {
 		inherit: true,
-		onBoost() {},
+		onTryBoost() {},
 	},
 	owntempo: {
 		inherit: true,
-		onBoost() {},
+		onTryBoost() {},
 	},
 	rattled: {
 		onDamagingHit(damage, target, source, move) {
@@ -86,7 +86,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	scrappy: {
 		inherit: true,
-		onBoost() {},
+		onTryBoost() {},
 	},
 	slowstart: {
 		inherit: true,

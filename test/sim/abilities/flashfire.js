@@ -43,6 +43,7 @@ describe('Flash Fire', function () {
 		assert.hurts(battle.p1.active[0], () => battle.makeChoices('move incinerate', 'move firepunch'));
 	});
 
+<<<<<<< HEAD
 	it('should lose the Flash Fire boost if its ability is changed', function () {
 		battle = common.createBattle([[
 			{species: 'Heatran', ability: 'flashfire', moves: ['sleeptalk', 'incinerate']},
@@ -51,8 +52,18 @@ describe('Flash Fire', function () {
 		]]);
 		battle.makeChoices('move sleeptalk', 'move incinerate');
 		battle.resetRNG();
+=======
+	it(`should lose the Flash Fire boost if its ability is changed`, function () {
+		battle = common.createBattle([[
+			{species: 'Heatran', ability: 'flashfire', moves: ['sleeptalk', 'incinerate']},
+		], [
+			{species: 'Talonflame', ability: 'shellarmor', moves: ['flamethrower', 'worryseed']},
+		]]);
+		battle.makeChoices('move sleeptalk', 'move flamethrower');
+>>>>>>> master
 		battle.makeChoices('move incinerate', 'move worryseed');
-		const damage = battle.p2.active[0].maxhp - battle.p2.active[0].hp;
+		const talonflame = battle.p2.active[0];
+		const damage = talonflame.maxhp - talonflame.hp;
 		assert.bounded(damage, [54, 65]);
 	});
 });

@@ -39,6 +39,7 @@ interface BattleOptions {
 	p3?: PlayerOptions; // Player 3 data
 	p4?: PlayerOptions; // Player 4 data
 	debug?: boolean; // show debug mode option
+	forceRandomChance?: boolean; // force Battle#randomChance to always return true or false (used in some tests)
 	deserialized?: boolean;
 	strictChoices?: boolean; // whether invalid choices should throw
 }
@@ -77,6 +78,7 @@ export type RequestState = 'teampreview' | 'move' | 'switch' | '';
 export class Battle {
 	readonly id: ID;
 	readonly debugMode: boolean;
+	readonly forceRandomChance: boolean | null;
 	readonly deserialized: boolean;
 	readonly strictChoices: boolean;
 	readonly format: Format;
@@ -174,6 +176,9 @@ export class Battle {
 
 		this.id = '';
 		this.debugMode = format.debug || !!options.debug;
+		// Require debug mode and explicitly passed true/false
+		this.forceRandomChance = (this.debugMode && typeof options.forceRandomChance === 'boolean') ?
+			options.forceRandomChance : null;
 		this.deserialized = !!options.deserialized;
 		this.strictChoices = !!options.strictChoices;
 		this.formatData = {id: format.id};
@@ -307,6 +312,7 @@ export class Battle {
 	}
 
 	randomChance(numerator: number, denominator: number) {
+		if (this.forceRandomChance !== null) return this.forceRandomChance;
 		return this.prng.randomChance(numerator, denominator);
 	}
 
@@ -322,7 +328,7 @@ export class Battle {
 
 	suppressingAbility(target?: Pokemon) {
 		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
-			this.activeMove && this.activeMove.ignoreAbility;
+			this.activeMove && this.activeMove.ignoreAbility && !target?.hasItem('Ability Shield');
 	}
 
 	setActiveMove(move?: ActiveMove | null, pokemon?: Pokemon | null, target?: Pokemon | null) {
@@ -417,7 +423,7 @@ export class Battle {
 	/**
 	 * Runs an event with no source on each Pokémon on the field, in Speed order.
 	 */
-	eachEvent(eventid: string, effect?: Effect, relayVar?: boolean) {
+	eachEvent(eventid: string, effect?: Effect | null, relayVar?: boolean) {
 		const actives = this.getAllActive();
 		if (!effect && this.effect) effect = this.effect;
 		this.speedSort(actives, (a, b) => b.speed - a.speed);
@@ -877,19 +883,23 @@ export class Battle {
 			}
 			return handlers;
 		}
+		// events usually run through EachEvent should never have any handlers besides `on${eventName}` so don't check for them
+		const prefixedHandlers = !['BeforeTurn', 'Update', 'Weather', 'WeatherChange', 'TerrainChange'].includes(eventName);
 		if (target instanceof Pokemon && (target.isActive || source?.isActive)) {
 			handlers = this.findPokemonEventHandlers(target, `on${eventName}`);
-			for (const allyActive of target.alliesAndSelf()) {
-				handlers.push(...this.findPokemonEventHandlers(allyActive, `onAlly${eventName}`));
-				handlers.push(...this.findPokemonEventHandlers(allyActive, `onAny${eventName}`));
-			}
-			for (const foeActive of target.foes()) {
-				handlers.push(...this.findPokemonEventHandlers(foeActive, `onFoe${eventName}`));
-				handlers.push(...this.findPokemonEventHandlers(foeActive, `onAny${eventName}`));
+			if (prefixedHandlers) {
+				for (const allyActive of target.alliesAndSelf()) {
+					handlers.push(...this.findPokemonEventHandlers(allyActive, `onAlly${eventName}`));
+					handlers.push(...this.findPokemonEventHandlers(allyActive, `onAny${eventName}`));
+				}
+				for (const foeActive of target.foes()) {
+					handlers.push(...this.findPokemonEventHandlers(foeActive, `onFoe${eventName}`));
+					handlers.push(...this.findPokemonEventHandlers(foeActive, `onAny${eventName}`));
+				}
 			}
 			target = target.side;
 		}
-		if (source) {
+		if (source && prefixedHandlers) {
 			handlers.push(...this.findPokemonEventHandlers(source, `onSource${eventName}`));
 		}
 		if (target instanceof Side) {
@@ -897,10 +907,10 @@ export class Battle {
 				if (side.n >= 2 && side.allySide) break;
 				if (side === target || side === target.allySide) {
 					handlers.push(...this.findSideEventHandlers(side, `on${eventName}`));
-				} else {
+				} else if (prefixedHandlers) {
 					handlers.push(...this.findSideEventHandlers(side, `onFoe${eventName}`));
 				}
-				handlers.push(...this.findSideEventHandlers(side, `onAny${eventName}`));
+				if (prefixedHandlers) handlers.push(...this.findSideEventHandlers(side, `onAny${eventName}`));
 			}
 		}
 		handlers.push(...this.findFieldEventHandlers(this.field, `on${eventName}`));
@@ -1459,9 +1469,9 @@ export class Battle {
 					moveSlot.disabledSource = '';
 				}
 				this.runEvent('DisableMove', pokemon);
-				if (!pokemon.ateBerry) pokemon.disableMove('belch');
-				if (!pokemon.getItem().isBerry) pokemon.disableMove('stuffcheeks');
-				if (pokemon.volatiles['gigatonhammer']) pokemon.disableMove('gigatonhammer');
+				for (const moveSlot of pokemon.moveSlots) {
+					this.singleEvent('DisableMove', this.dex.getActiveMove(moveSlot.id), null, pokemon);
+				}
 
 				// If it was an illusion, it's not any more
 				if (pokemon.getLastAttackedBy() && this.gen >= 7) pokemon.knownType = true;
@@ -1475,7 +1485,7 @@ export class Battle {
 					}
 				}
 
-				if (this.gen >= 7) {
+				if (this.gen >= 7 && !pokemon.terastallized) {
 					// In Gen 7, the real type of every Pokemon is visible to all players via the bottom screen while making choices
 					const seenPokemon = pokemon.illusion || pokemon;
 					const realTypeString = seenPokemon.getTypes(true).join('/');
@@ -1787,7 +1797,9 @@ export class Battle {
 		if (!target?.hp) return 0;
 		if (!target.isActive) return false;
 		if (this.gen > 5 && !target.side.foePokemonLeft()) return false;
-		boost = this.runEvent('Boost', target, source, effect, {...boost});
+		boost = this.runEvent('ChangeBoost', target, source, effect, {...boost});
+		boost = target.getCappedBoost(boost);
+		boost = this.runEvent('TryBoost', target, source, effect, {...boost});
 		let success = null;
 		let boosted = isSecondary;
 		let boostName: BoostID;
@@ -1797,15 +1809,15 @@ export class Battle {
 			};
 			let boostBy = target.boostBy(currentBoost);
 			let msg = '-boost';
-			if (boost[boostName]! < 0) {
+			if (boost[boostName]! < 0 || target.boosts[boostName] === -6) {
 				msg = '-unboost';
 				boostBy = -boostBy;
 			}
 			if (boostBy) {
 				success = true;
 				switch (effect?.id) {
-				case 'bellydrum':
-					this.add('-setboost', target, 'atk', target.boosts['atk'], '[from] move: Belly Drum');
+				case 'bellydrum': case 'angerpoint':
+					this.add('-setboost', target, 'atk', target.boosts['atk'], '[from] ' + effect.fullname);
 					break;
 				case 'bellydrum2':
 					this.add(msg, target, boostName, boostBy, '[silent]');
@@ -1925,6 +1937,8 @@ export class Battle {
 				}
 				if (this.gen <= 4 && effect.drain && source) {
 					const amount = this.clampIntRange(Math.floor(targetDamage * effect.drain[0] / effect.drain[1]), 1);
+					// Draining can be countered in gen 1
+					if (this.gen <= 1) this.lastDamage = amount;
 					this.heal(amount, source, target, 'drain');
 				}
 				if (this.gen > 4 && effect.drain && source) {
@@ -1943,7 +1957,17 @@ export class Battle {
 					this.faintMessages(true);
 					if (this.gen <= 2) {
 						target.faint();
-						if (this.gen <= 1) this.queue.clear();
+						if (this.gen <= 1) {
+							this.queue.clear();
+							// Fainting clears accumulated Bide damage
+							for (const pokemon of this.getAllActive()) {
+								if (pokemon.volatiles['bide'] && pokemon.volatiles['bide'].damage) {
+									pokemon.volatiles['bide'].damage = 0;
+									this.hint("Desync Clause Mod activated!");
+									this.hint("In Gen 1, Bide's accumulated damage is reset to 0 when a Pokemon faints.");
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1978,21 +2002,25 @@ export class Battle {
 
 		// In Gen 1 BUT NOT STADIUM, Substitute also takes confusion and HJK recoil damage
 		if (this.gen <= 1 && this.dex.currentMod !== 'gen1stadium' &&
-			['confusion', 'jumpkick', 'highjumpkick'].includes(effect.id) && target.volatiles['substitute']) {
-			const hint = "In Gen 1, if a Pokemon with a Substitute hurts itself due to confusion or Jump Kick/Hi Jump Kick recoil and the target";
-			if (source?.volatiles['substitute']) {
-				source.volatiles['substitute'].hp -= damage;
-				if (source.volatiles['substitute'].hp <= 0) {
-					source.removeVolatile('substitute');
-					source.subFainted = true;
+			['confusion', 'jumpkick', 'highjumpkick'].includes(effect.id)) {
+			// Confusion and recoil damage can be countered
+			this.lastDamage = damage;
+			if (target.volatiles['substitute']) {
+				const hint = "In Gen 1, if a Pokemon with a Substitute hurts itself due to confusion or Jump Kick/Hi Jump Kick recoil and the target";
+				if (source?.volatiles['substitute']) {
+					source.volatiles['substitute'].hp -= damage;
+					if (source.volatiles['substitute'].hp <= 0) {
+						source.removeVolatile('substitute');
+						source.subFainted = true;
+					} else {
+						this.add('-activate', source, 'Substitute', '[damage]');
+					}
+					this.hint(hint + " has a Substitute, the target's Substitute takes the damage.");
+					return damage;
 				} else {
-					this.add('-activate', source, 'Substitute', '[damage]');
+					this.hint(hint + " does not have a Substitute there is no damage dealt.");
+					return 0;
 				}
-				this.hint(hint + " has a Substitute, the target's Substitute takes the damage.");
-				return damage;
-			} else {
-				this.hint(hint + " does not have a Substitute there is no damage dealt.");
-				return 0;
 			}
 		}
 
@@ -2301,6 +2329,7 @@ export class Battle {
 					this.runEvent('BeforeFaint', pokemon, faintData.source, faintData.effect)) {
 				this.add('faint', pokemon);
 				if (pokemon.side.pokemonLeft) pokemon.side.pokemonLeft--;
+				if (pokemon.side.totalFainted < 100) pokemon.side.totalFainted++;
 				this.runEvent('Faint', pokemon, faintData.source, faintData.effect);
 				this.singleEvent('End', pokemon.getAbility(), pokemon.abilityState, pokemon);
 				pokemon.clearVolatile(false);
@@ -2308,6 +2337,7 @@ export class Battle {
 				pokemon.illusion = null;
 				pokemon.isActive = false;
 				pokemon.isStarted = false;
+				delete pokemon.terastallized;
 				pokemon.side.faintedThisTurn = pokemon;
 				if (this.faintQueue.length >= faintQueueLeft) checkWin = true;
 			}
@@ -2317,6 +2347,14 @@ export class Battle {
 			// in gen 1, fainting skips the rest of the turn
 			// residuals don't exist in gen 1
 			this.queue.clear();
+			// Fainting clears accumulated Bide damage
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.volatiles['bide'] && pokemon.volatiles['bide'].damage) {
+					pokemon.volatiles['bide'].damage = 0;
+					this.hint("Desync Clause Mod activated!");
+					this.hint("In Gen 1, Bide's accumulated damage is reset to 0 when a Pokemon faints.");
+				}
+			}
 		} else if (this.gen <= 3 && this.gameType === 'singles') {
 			// in gen 3 or earlier, fainting in singles skips to residuals
 			for (const pokemon of this.getAllActive()) {
@@ -2541,6 +2579,24 @@ export class Battle {
 				}
 			}
 			break;
+		case 'revivalblessing':
+			action.pokemon.side.pokemonLeft++;
+			if (action.target.position < action.pokemon.side.active.length) {
+				this.queue.addChoice({
+					choice: 'instaswitch',
+					pokemon: action.target,
+					target: action.target,
+				});
+			}
+			action.target.fainted = false;
+			action.target.faintQueued = false;
+			action.target.subFainted = false;
+			action.target.status = '';
+			action.target.hp = 1; // Needed so hp functions works
+			action.target.sethp(action.target.maxhp / 2);
+			this.add('-heal', action.target, action.target.getHealth, '[from] move: Revival Blessing');
+			action.pokemon.side.removeSlotCondition(action.pokemon, 'revivalblessing');
+			break;
 		case 'runUnnerve':
 			this.singleEvent('PreStart', action.pokemon.getAbility(), action.pokemon.abilityState, action.pokemon);
 			break;
@@ -2632,11 +2688,16 @@ export class Battle {
 		);
 
 		for (let i = 0; i < this.sides.length; i++) {
+			let reviveSwitch = false; // Used to ignore the fake switch for Revival Blessing
 			if (switches[i] && !this.canSwitch(this.sides[i])) {
 				for (const pokemon of this.sides[i].active) {
-					pokemon.switchFlag = false;
+					if (this.sides[i].slotConditions[pokemon.position]['revivalblessing']) {
+						reviveSwitch = true;
+						continue;
+					}
+				  pokemon.switchFlag = false;
 				}
-				switches[i] = false;
+				if (!reviveSwitch) switches[i] = false;
 			} else if (switches[i]) {
 				for (const pokemon of this.sides[i].active) {
 					if (pokemon.switchFlag && !pokemon.skipBeforeSwitchOutEventFlag) {

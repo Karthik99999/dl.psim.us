@@ -1395,8 +1395,11 @@ export const commands: Chat.ChatCommands = {
 		this.checkCan('receiveauthmessages', null, room);
 		target = target.replace(/\n/g, "; ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const targeted = /\[([^\]]+)\]/.exec(target)?.[1] || null;
 =======
+=======
+>>>>>>> master
 		let targeted = /\[([^\]]+)\]/.exec(target)?.[1] || null;
 		if (!targeted) {
 			// allow `name, note` and `name - note` syntax
@@ -1407,7 +1410,10 @@ export const commands: Chat.ChatCommands = {
 				targeted = null;
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 3dbb27660 (Moderation: Ensure modnotes without a userid specifier don't log as a userid)
+=======
+>>>>>>> master
 		let targetUserid, targetIP;
 
 		if (targeted) {

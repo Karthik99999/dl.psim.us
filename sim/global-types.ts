@@ -32,7 +32,7 @@ type SparseStatsTable = Partial<StatsTable>;
 type BoostID = StatIDExceptHP | 'accuracy' | 'evasion';
 type BoostsTable = {[boost in BoostID]: number };
 type SparseBoostsTable = Partial<BoostsTable>;
-type Nonstandard = 'Past' | 'Future' | 'Unobtainable' | 'CAP' | 'LGPE' | 'Custom' | 'Gigantamax';
+type Nonstandard = 'Past' | 'Future' | 'Unobtainable' | 'CAP' | 'LGPE' | 'Custom' | 'Gigantamax' | 'Legacy';
 
 type PokemonSet = import('./teams').PokemonSet;
 
@@ -387,8 +387,9 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	suppressingWeather?: (this: Battle) => boolean;
 	trunc?: (n: number) => number;
 	win?: (this: Battle, side?: SideID | '' | Side | null) => boolean;
-	faintMessages?: (this: Battle, lastFirst?: boolean) => boolean | undefined;
+	faintMessages?: (this: Battle, lastFirst?: boolean, forceCheck?: boolean, checkWin?: boolean) => boolean | undefined;
 	tiebreak?: (this: Battle) => boolean;
+	checkWin?: (this: Battle, faintQueue?: Battle['faintQueue'][0]) => true | undefined;
 }
 
 interface TypeData {
@@ -438,6 +439,7 @@ interface TextFile extends TextObject {
 	gen5?: ModdedTextObject;
 	gen6?: ModdedTextObject;
 	gen7?: ModdedTextObject;
+	gen8?: ModdedTextObject;
 }
 
 interface MovePlines extends Plines {
@@ -463,6 +465,7 @@ interface MovePlines extends Plines {
 interface AbilityText extends TextFile, Plines {
 	activateFromItem?: string;
 	activateNoTarget?: string;
+	copyBoost?: string;
 	transformEnd?: string;
 }
 
@@ -482,6 +485,7 @@ namespace RandomTeamsTypes {
 	export interface TeamDetails {
 		megaStone?: number;
 		zMove?: number;
+		snow?: number;
 		hail?: number;
 		rain?: number;
 		sand?: number;
@@ -495,6 +499,7 @@ namespace RandomTeamsTypes {
 		screens?: number;
 		illusion?: number;
 		statusCure?: number;
+		teraBlast?: number;
 	}
 	export interface FactoryTeamDetails {
 		megaCount?: number;
@@ -525,6 +530,10 @@ namespace RandomTeamsTypes {
 		dynamaxLevel?: number;
 		gigantamax?: boolean;
 		teraType?: string;
+<<<<<<< HEAD
+=======
+		role?: string;
+>>>>>>> master
 	}
 	export interface RandomFactorySet {
 		name: string;

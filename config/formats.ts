@@ -19,30 +19,26 @@ The column value will be ignored for repeat sections.
 
 export const Formats: FormatList = [
 
-	// S/V Singles
+	// Paldea Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "S/V Singles",
+		section: "Paldea Draft Tiers",
 	},
 	{
-		name: "[Gen 9] OU",
-
+		name: "[Gen 9] Paldea Dex Pre-Home Draft",
+	
 		mod: 'gen9',
-		ruleset: ['Standard'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass'],
+		ruleset: ['Draft', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
 	},
 	{
-		name: "[Gen 9] Ubers",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3710870/">Ubers Metagame Discussion</a>`,
-		],
-
+		name: "[Gen 9] Paldea Dex Post-Home Draft",
+	
 		mod: 'gen9',
-		ruleset: ['Standard'],
-		banlist: ['AG', 'King\'s Rock', 'Baton Pass'],
+		ruleset: ['Draft', 'Min Source Gen = 9'],
 	},
 	{
+<<<<<<< HEAD
 		name: "[Gen 9] LC",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3710868/">Little Cup Metagame Discussion</a>`,
@@ -156,50 +152,31 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3710876/">Doubles OU Sample Teams</a>`,
 		],
 
+=======
+		name: "[Gen 9] Paldea Dex Doubles",
+	
+>>>>>>> master
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Standard Doubles'],
-		banlist: ['DUber'],
+		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft'],
 	},
 	{
-		name: "[Gen 9] 2v2 Doubles",
-		desc: `Double battle where you bring four Pok&eacute;mon to Team Preview and choose only two.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3710849/">2v2 Doubles</a>`,
-		],
-
+		name: "[Gen 9] Paldea Dex VGC",
+	
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: [
-			'Picked Team Size = 2', 'Max Team Size = 4',
-			'Standard Doubles', 'Accuracy Moves Clause', 'Terastal Clause', 'Sleep Clause Mod',
-		],
-		banlist: ['Koraidon', 'Miraidon', 'Focus Sash', 'Ally Switch', 'Perish Song', 'Swagger'],
+		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
 	},
 	{
-		name: "[Gen 9] Doubles Custom Game",
-
+		name: "[Gen 9] LC Paldea Dex Draft",
+	
 		mod: 'gen9',
-		gameType: 'doubles',
-		searchShow: false,
-		battle: {trunc: Math.trunc},
-		debug: true,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
-	},
-
-	// National Dex
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "National Dex",
+		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
 	},
 	{
-		name: "[Gen 9] National Dex",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3710848/">National Dex Metagame Discussion</a>`,
-		],
+		name: "[Gen 9] Draft Arena",
 
+<<<<<<< HEAD
 		mod: 'gen9',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause', 'Sleep Clause Mod'],
 		banlist: ['ND Uber', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Quick Claw', 'Razor Fang', 'Baton Pass'],
@@ -364,130 +341,147 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		searchShow: false,
-		ruleset: ['Draft'],
-	},
-	{
-		name: "[Gen 9] 6v6 Doubles Draft",
-
-		mod: 'gen9',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Draft', '!Sleep Clause Mod', '!Evasion Moves Clause'],
-	},
-	{
-		name: "[Gen 9] 4v4 Doubles Draft",
-
-		mod: 'gen9',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Draft', 'Item Clause', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
-	},
-	{
-		name: "[Gen 9] NatDex Draft",
-
-		mod: 'gen9',
-		searchShow: false,
-		ruleset: ['Draft', '+Past'],
-	},
-	{
-		name: "[Gen 9] NatDex 6v6 Doubles Draft",
-
-		mod: 'gen9',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['[Gen 9] 6v6 Doubles Draft', '+Past'],
-	},
-	{
-		name: "[Gen 9] NatDex 4v4 Doubles Draft",
-
-		mod: 'gen9',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['[Gen 9] 4v4 Doubles Draft', '+Past'],
-	},
-	{
-		name: "[Gen 9] LC NDex Draft",
-
-		mod: 'gen9',
-		searchShow: false,
-		ruleset: ['[Gen 9] NatDex Draft', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 8] Galar Dex Draft",
-
-		mod: 'gen8',
-		searchShow: false,
-		ruleset: ['Draft'],
-	},
-	{
-		name: "[Gen 8] 4v4 Doubles Draft",
-
-		mod: 'gen8',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Draft', 'Item Clause', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
-	},
-	{
-		name: "[Gen 8] NatDex Draft",
-
-		mod: 'gen8',
-		searchShow: false,
-		ruleset: ['Draft', '+Past'],
-	},
-	{
-		name: "[Gen 8] NatDex 4v4 Doubles Draft",
-
-		mod: 'gen8',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['[Gen 8] 4v4 Doubles Draft', '+Past'],
-	},
-	{
-		name: "[Gen 8] LC NDex Draft",
-
-		mod: 'gen8',
-		searchShow: false,
-		ruleset: ['[Gen 8] NatDex Draft', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 8 BDSP] Draft",
-
-		mod: 'gen8bdsp',
-		searchShow: false,
-		ruleset: ['Draft'],
-	},
-	{
-		name: "[Gen 7] Draft",
-
-		mod: 'gen7',
-		searchShow: false,
-		ruleset: ['Draft', '+LGPE'],
-	},
-	{
-		name: "[Gen 6] Draft",
-
-		mod: 'gen6',
-		searchShow: false,
+=======
+		mod: 'draftarena',
+		team: 'randomPaired',
+		desc: `Teams are chosen randomly from a pool of team pairs, so each team always faces off against the same opposing team.`,
+>>>>>>> master
 		ruleset: ['Draft'],
 	},
 
-	// OM of the Month
+	// National Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "OM of the Month",
+		section: "National Dex Draft Tiers",
+	},
+	{
+		name: "[Gen 9] National Dex Draft",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9] National Dex Legacy",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex Unrestricted",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex WiFi",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
+	},
+	{
+		name: "[Gen 9] National Dex Doubles",
+
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] National Dex Draft'],
+	},
+	{
+		name: "[Gen 9] National Dex Doubles Unrestricted",
+
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] National Dex Unrestricted', '!Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 9] National Dex VGC",
+
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9] LC National Dex Draft",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 9] LC National Dex Legacy",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 9] National Dex CAP",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', '+CAP'],
+	},
+	{
+		name: "[Gen 8] National Dex Draft",
+
+		mod: 'gen8',
+		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
+	},
+
+	// Past Gens Draft
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Past Gen Draft Tiers",
 		column: 2,
 	},
 	{
-		name: "[Gen 9] Almost Any Ability",
-		desc: `Pok&eacute;mon have access to almost any ability.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3710568/">Almost Any Ability</a>`,
-		],
+		name: "[Gen 8] Draft League",
+
+		mod: 'gen8',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 7] Draft League",
+
+		mod: 'gen7',
+		ruleset: ['Draft', '+LGPE'],
+	},
+	{
+		name: "[Gen 6] Draft League",
+
+		mod: 'gen6',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 5] Draft League",
+
+		mod: 'gen5',
+		ruleset: ['Draft'],
+	},
+	{
+		name: "[Gen 4] Draft League",
+
+		mod: 'gen4',
+		ruleset: ['Draft', '!Team Preview'],
+	},
+	{
+		name: "[Gen 3] Draft League",
+
+		mod: 'gen3',
+		ruleset: ['Draft', '!Team Preview'],
+	},
+
+	// Custom Partner Formats
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Custom Partner Formats",
+		column: 2,
+	},
+	{
+		name: "[Gen 9] DPL S7",
 
 		mod: 'gen9',
+<<<<<<< HEAD
 		ruleset: ['Standard OMs', '!Obtainable Abilities', 'Ability Clause', 'Sleep Moves Clause', 'Min Source Gen = 9'],
 		banlist: [
 <<<<<<< HEAD
@@ -4302,5 +4296,8 @@ export const Formats: FormatList = [
 		debug: true,
 		battle: {trunc: Math.trunc},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
+=======
+		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+>>>>>>> master
 	},
 ];

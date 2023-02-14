@@ -1,4 +1,5 @@
 export const Items: {[k: string]: ModdedItemData} = {
+<<<<<<< HEAD
 	adrenalineorb: {
 		inherit: true,
 		onAfterBoost(boost, target, source, effect) {
@@ -7,6 +8,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 			}
 		},
 	},
+=======
+>>>>>>> master
 	leppaberry: {
 		inherit: true,
 		onEat(pokemon) {

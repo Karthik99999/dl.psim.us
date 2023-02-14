@@ -19,6 +19,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Steadfast", H: "Justified"},
 	},
+	giratinaorigin: {
+		inherit: true,
+		requiredItem: "Griseous Orb",
+	},
 	cresselia: {
 		inherit: true,
 		baseStats: {hp: 120, atk: 70, def: 120, spa: 75, spd: 130, spe: 85},
@@ -35,6 +39,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Keen Eye", 1: "Sheer Force", H: "Defiant"},
 	},
+	spewpa: {
+		inherit: true,
+		evos: ["Vivillon"],
+	},
+	vivillonfancy: {
+		inherit: true,
+		abilities: {0: "Shield Dust", 1: "Compound Eyes"},
+		prevo: undefined,
+		evoLevel: undefined,
+	},
 	sliggoohisui: {
 		inherit: true,
 		abilities: {0: "Sap Sipper", 1: "Overcoat", H: "Gooey"},
@@ -45,7 +59,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	decidueyehisui: {
 		inherit: true,
-		abilities: {0: "Overgrow", H: "Scrappy"},
+		abilities: {0: "Overgrow", H: "Long Reach"},
 	},
 	zacian: {
 		inherit: true,
@@ -83,6 +97,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	sneasler: {
 		inherit: true,
 		abilities: {0: "Pressure", H: "Poison Touch"},
+		evoType: "useItem",
+		evoItem: "Razor Claw",
+		evoCondition: "during the day",
 	},
 	enamorus: {
 		inherit: true,

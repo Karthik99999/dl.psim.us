@@ -61,6 +61,7 @@ interface ChatRoomTable {
 	section?: string;
 	subRooms?: string[];
 	spotlight?: string;
+	privacy: RoomSettings['isPrivate'];
 }
 
 interface ShowRequest {
@@ -89,7 +90,7 @@ export interface RoomSettings {
 	readonly autojoin?: boolean;
 	aliases?: string[];
 	banwords?: string[];
-	isPrivate?: boolean | 'hidden' | 'voice';
+	isPrivate?: PrivacySetting;
 	modjoin?: AuthLevel | true | null;
 	modchat?: AuthLevel | null;
 	staffRoom?: boolean;
@@ -142,6 +143,7 @@ export interface RoomSettings {
 
 export type MessageHandler = (room: BasicRoom, message: string) => void;
 export type Room = GameRoom | ChatRoom;
+export type PrivacySetting = boolean | 'hidden' | 'voice' | 'unlisted';
 
 import type {AnnouncementData} from './chat-plugins/announcements';
 import type {PollData} from './chat-plugins/poll';
@@ -803,7 +805,7 @@ export abstract class BasicRoom {
 		// this doesn't update parentid or subroom user symbols because it's
 		// intended to be used for cleanup only
 	}
-	setPrivate(privacy: boolean | 'voice' | 'hidden') {
+	setPrivate(privacy: PrivacySetting) {
 		this.settings.isPrivate = privacy;
 		this.saveSettings();
 
@@ -1182,7 +1184,7 @@ export class GlobalRoomState {
 	constructor() {
 		this.settingsList = [];
 		try {
-			this.settingsList = require('../config/chatrooms.json');
+			this.settingsList = require(FS('config/chatrooms.json').path);
 			if (!Array.isArray(this.settingsList)) this.settingsList = [];
 		} catch {} // file doesn't exist [yet]
 
@@ -1309,6 +1311,7 @@ export class GlobalRoomState {
 				`SET input_log = EXCLUDED.input_log, players = EXCLUDED.players, title = EXCLUDED.title, rated = EXCLUDED.rated`,
 				[room.roomid, log.join('\n'), players, room.title, room.battle.rated, timerData]
 			);
+			room.battle.timer.stop();
 			count++;
 		}
 		return count;
@@ -1563,13 +1566,18 @@ export class GlobalRoomState {
 		for (const room of this.chatRooms) {
 			if (!room) continue;
 			if (room.parent) continue;
-			if (room.settings.isPrivate && !(room.settings.isPrivate === 'voice' && user.tempGroup !== ' ')) continue;
+			if (
+				room.settings.modjoin ||
+				(room.settings.isPrivate && !(['hidden', 'voice'] as any).includes(room.settings.isPrivate)) ||
+				(room.settings.isPrivate === 'voice' && user.tempGroup === ' ')
+			) continue;
 			const roomData: ChatRoomTable = {
 				title: room.title,
 				desc: room.settings.desc || '',
 				userCount: room.userCount,
 				section: room.settings.section ?
 					(RoomSections.sectionNames[room.settings.section] || room.settings.section) : undefined,
+				privacy: !room.settings.isPrivate ? undefined : room.settings.isPrivate,
 			};
 			const subrooms = room.getSubRooms().map(r => r.title);
 			if (subrooms.length) roomData.subRooms = subrooms;
@@ -1833,6 +1841,8 @@ export class GlobalRoomState {
 				crashMessage = `|html|<div class="broadcast-red"><b>${crasher} crashed in private code</b></div>`;
 			}
 		}
+		Rooms.get('staff')?.add(crashMessage).update();
+		/*
 		const devRoom = Rooms.get('development');
 		if (devRoom) {
 			devRoom.add(crashMessage).update();
@@ -1840,6 +1850,7 @@ export class GlobalRoomState {
 			Rooms.lobby?.add(crashMessage).update();
 			Rooms.get('staff')?.add(crashMessage).update();
 		}
+		*/
 		if (privateCrashMessage) {
 			upperStaffRoom!.add(privateCrashMessage).update();
 		}
@@ -1978,6 +1989,40 @@ export class GameRoom extends BasicRoom {
 	onConnect(user: User, connection: Connection) {
 		this.sendUser(connection, '|init|battle\n|title|' + this.title + '\n' + this.getLogForUser(user));
 		if (this.game && this.game.onConnect) this.game.onConnect(user, connection);
+	}
+	onJoin(user: User, connection: Connection) {
+		if (!user) return false; // ???
+		if (this.users[user.id]) return false;
+
+		if (user.named) {
+			this.reportJoin('j', user.getIdentityWithStatus(this), user);
+		}
+
+		// This is only here because of an issue with private logs not getting resent
+		// when a user reloads on a battle and autojoins. This should be removed when that gets fixed.
+		void (async () => {
+			if (this.battle) {
+				const player = this.battle.playerTable[user.id];
+				if (player && this.battle.players.every(curPlayer => curPlayer.wantsOpenTeamSheets)) {
+					let buf = '|uhtml|ots|';
+					for (const curPlayer of this.battle.players) {
+						const team = await this.battle.getTeam(curPlayer.id);
+						if (!team) continue;
+						buf += Utils.html`<div class="infobox" style="margin-top:5px"><details><summary>Open Team Sheet for ${curPlayer.name}</summary>${Teams.export(team, {hideStats: true})}</details></div>`;
+					}
+					player.sendRoom(buf);
+				}
+			}
+		})();
+
+		this.users[user.id] = user;
+		this.userCount++;
+		this.checkAutoModchat(user);
+
+		this.minorActivity?.onConnect?.(user, connection);
+		this.game?.onJoin?.(user, connection);
+		Chat.runHandlers('onRoomJoin', this, user, connection);
+		return true;
 	}
 	/**
 	 * Sends this room's replay to the connection to be uploaded to the replay
