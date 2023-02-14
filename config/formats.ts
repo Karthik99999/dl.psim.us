@@ -147,10 +147,38 @@ export const Formats: FormatList = [
 		section: "S/V Doubles",
 	},
 	{
+<<<<<<< HEAD
 		name: "[Gen 9] Doubles OU",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3710876/">Doubles OU Sample Teams</a>`,
 		],
+=======
+		name: "[Gen 9] National Dex Draft",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9] National Dex Legacy",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex Unrestricted",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex WiFi",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
+	},
+	{
+		name: "[Gen 9] National Dex Doubles",
+>>>>>>> 119ed9bdc (Add Allow Signature Moves rule)
 
 =======
 		name: "[Gen 9] Paldea Dex Doubles",
@@ -171,7 +199,27 @@ export const Formats: FormatList = [
 		name: "[Gen 9] LC Paldea Dex Draft",
 	
 		mod: 'gen9',
+<<<<<<< HEAD
 		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
+=======
+		gameType: 'doubles',
+<<<<<<< HEAD
+		searchShow: false,
+		battle: {trunc: Math.trunc},
+		debug: true,
+		// no restrictions, for serious (other than team preview)
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
+	},
+
+	// National Dex
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "National Dex",
+=======
+		ruleset: ['Draft VGC', 'Allow Signature Moves'],
+>>>>>>> 119ed9bdc (Add Allow Signature Moves rule)
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	},
 	{
 		name: "[Gen 9] Draft Arena",
@@ -352,6 +400,7 @@ export const Formats: FormatList = [
 	// National Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 	{
 		section: "National Dex Draft Tiers",
 	},
@@ -433,6 +482,10 @@ export const Formats: FormatList = [
 	{
 		section: "Past Gen Draft Tiers",
 		column: 2,
+=======
+		mod: 'gen4',
+		ruleset: ['Draft', '!Team Preview'],
+>>>>>>> 6202e2245 (Remove Team Preview from Gen 3/4 draft)
 	},
 	{
 		name: "[Gen 8] Draft League",
@@ -503,8 +556,17 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656851/">Pure Hackmons</a>`,
 		],
 
+<<<<<<< HEAD
 		mod: 'gen8',
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+=======
+		mod: 'fullpotential',
+		ruleset: ['Standard OMs', 'Evasion Abilities Clause', 'Evasion Items Clause', 'Sleep Moves Clause', 'Min Source Gen = 9'],
+		banlist: [
+			'Chien-Pao', 'Cyclizar', 'Dragapult', 'Espathra', 'Iron Bundle', 'Koraidon', 'Miraidon', 'Scream Tail', 'Arena Trap', 'Chlorophyll',
+			'Moody', 'Sand Rush', 'Shadow Tag', 'Slush Rush', 'Swift Swim', 'Unburden', 'Booster Energy', 'King\'s Rock', 'Baton Pass',
+		],
+>>>>>>> c0c9f60be (Full Potential: Update bans)
 	},
 
 	// Other Metagames
@@ -527,9 +589,9 @@ export const Formats: FormatList = [
 		ruleset: ['Standard OMs', '!Obtainable Abilities', 'Ability Clause = 1', 'Sleep Moves Clause', 'Terastal Clause', 'Min Source Gen = 9'],
 		banlist: [
 			'Annihilape', 'Koraidon', 'Miraidon', 'Slaking', 'Arena Trap', 'Comatose', 'Contrary', 'Gorilla Tactics', 'Huge Power',
-			'Illusion', 'Imposter', 'Innards Out', 'Magnet Pull', 'Moody', 'Neutralizing Gas', 'Parental Bond', 'Pure Power',
-			'Shadow Tag', 'Simple', 'Speed Boost', 'Unburden', 'Water Bubble', 'Wonder Guard', 'King\'s Rock', 'Baton Pass',
-			'Revival Blessing',
+			'Illusion', 'Imposter', 'Innards Out', 'Magic Bounce', 'Magnet Pull', 'Moody', 'Neutralizing Gas', 'Parental Bond',
+			'Poison Heal', 'Pure Power', 'Shadow Tag', 'Simple', 'Speed Boost', 'Unburden', 'Water Bubble', 'Wonder Guard',
+			'King\'s Rock', 'Baton Pass', 'Revival Blessing',
 		],
 	},
 	{
@@ -617,7 +679,14 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		ruleset: ['Standard OMs', 'Sleep Moves Clause', 'Godly Gift Mod', 'Min Source Gen = 9'],
+<<<<<<< HEAD
 		banlist: ['Blissey', 'Chansey', 'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag'],
+=======
+		banlist: [
+			'Blissey', 'Chansey', 'Chi-Yu', 'Cyclizar', 'Espathra', 'Great Tusk', 'Iron Hands', 'Iron Valiant',
+			'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag', 'Booster Energy', 'Baton Pass',
+		],
+>>>>>>> 203ed4094 (Godly Gift: Update bans)
 	},
 	{
 		name: "[Gen 9] STABmons",
@@ -2069,6 +2138,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen3',
+<<<<<<< HEAD
 		// searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Standard', '!Switch Priority Clause Mod'],
@@ -4297,7 +4367,12 @@ export const Formats: FormatList = [
 		battle: {trunc: Math.trunc},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 =======
+<<<<<<< HEAD
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
 >>>>>>> master
+=======
+		ruleset: ['Draft', '!Team Preview'],
+>>>>>>> 6202e2245 (Remove Team Preview from Gen 3/4 draft)
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	},
 ];

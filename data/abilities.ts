@@ -2766,6 +2766,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	orichalcumpulse: {
 		onStart(pokemon) {
+<<<<<<< HEAD
 			// not affected by Utility Umbrella
 			if (!this.field.setWeather('sunnyday') && this.field.effectiveWeather() === 'sunnyday') {
 				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
@@ -2774,6 +2775,30 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onWeatherChange(pokemon) {
 			if (pokemon === this.field.weatherState.source) return;
 			if (this.field.effectiveWeather() === 'sunnyday') {
+=======
+<<<<<<< HEAD
+			if (
+				!this.field.setWeather('sunnyday') &&
+				['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())
+			) {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onAnyWeatherStart(target, source) {
+			const pokemon = this.effectState.target;
+			if (pokemon === source) return;
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+=======
+			// not affected by Utility Umbrella
+			if (!this.field.setWeather('sunnyday') && this.field.effectiveWeather() === 'sunnyday') {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onWeatherChange(pokemon) {
+			if (pokemon === this.field.weatherState.source) return;
+			if (this.field.effectiveWeather() === 'sunnyday') {
+>>>>>>> 89a8192e8 (Update Utility Umbrella mechanics (#9123))
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
 			}
 		},
@@ -3177,14 +3202,31 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 168,
 	},
 	protosynthesis: {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		onUpdate(pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+=======
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 		onStart(pokemon) {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon) {
 			if (pokemon.transformed) return;
+<<<<<<< HEAD
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isWeather('sunnyday')) {
 				pokemon.addVolatile('protosynthesis');
+=======
+			// protosynthesis is not affected by Utility Umbrella
+			if (this.field.effectiveWeather() === 'sunnyday') {
+>>>>>>> 89a8192e8 (Update Utility Umbrella mechanics (#9123))
+				if (!pokemon.volatiles['protosynthesis']) {
+					this.add('-activate', pokemon, 'ability: Protosynthesis');
+					pokemon.addVolatile('protosynthesis');
+				}
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster) {
 				pokemon.removeVolatile('protosynthesis');
 			}
@@ -4315,6 +4357,32 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 105,
 	},
 	supremeoverlord: {
+<<<<<<< HEAD
+		onStart(pokemon) {
+			if (pokemon.side.totalFainted) {
+				this.add('-activate', pokemon, 'ability: Supreme Overlord');
+				const fallen = Math.min(pokemon.side.totalFainted, 5);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
+				this.effectState.fallen = fallen;
+			}
+=======
+<<<<<<< HEAD
+		onModifyAtk(atk, source, target, move) {
+			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
+			if (faintedAllies < 1) return;
+			this.debug(`Supreme Overlord atk boost for ${faintedAllies} defeated allies.`);
+			// Placeholder 1.1 -> 1.5
+			return this.chainModify(1 + (0.1 * faintedAllies));
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
+		},
+		onEnd(pokemon) {
+			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
+		},
+<<<<<<< HEAD
+=======
+		onAllyFaint() {
+			this.add('-activate', this.effectState.target, 'ability: Supreme Overlord');
+=======
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
 				this.add('-activate', pokemon, 'ability: Supreme Overlord');
@@ -4326,6 +4394,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 		onBasePowerPriority: 21,
 		onBasePower(basePower, attacker, defender, move) {
 			if (this.effectState.fallen) {
@@ -4333,6 +4402,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.debug(`Supreme Overlord boost: ${powMod[this.effectState.fallen]}/4096`);
 				return this.chainModify([powMod[this.effectState.fallen], 4096]);
 			}
+<<<<<<< HEAD
+=======
+>>>>>>> 381d4e749 (Tell the client how strong Supreme Overlord is (#9125))
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 		},
 		name: "Supreme Overlord",
 		rating: 3.5,

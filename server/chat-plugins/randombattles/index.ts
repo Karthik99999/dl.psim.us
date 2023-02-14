@@ -1152,7 +1152,10 @@ export const commands: Chat.ChatCommands = {
 			.map((set: PokemonSet) => {
 				// moves are sometimes given as IDs
 				set.moves = set.moves.map(m => dex.moves.get(m).name);
+<<<<<<< HEAD:server/chat-plugins/randombattles/index.ts
 				set.item = dex.items.get(set.item).name;
+=======
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801:server/chat-plugins/random-battles.ts
 				return `<details><summary>${set.name}</summary>${Utils.escapeHTML(Teams.exportSet(set))}<br /></details>`;
 			})
 			.join('');

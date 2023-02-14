@@ -188,12 +188,21 @@ export const Rulesets: {[k: string]: FormatData} = {
 		],
 		// timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	draftvgc: {
 		effectType: 'ValidatorRule',
 		name: 'Draft VGC',
 		desc: "The custom Draft League ruleset, tailored for VGC",
 		ruleset: [
+<<<<<<< HEAD
 			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Item Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+=======
+			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 			'VGC Timer', 'Adjust Level = 50', 'Picked Team Size = 4',
 		],
 	},
@@ -202,9 +211,25 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Allow Signature Moves',
 		desc: "Allow signature moves that were removed from Gen 9 to be used.",
 		unbanlist: [
+<<<<<<< HEAD
 			'Aeroblast', 'Anchor Shot', 'Aura Wheel', 'Beak Blast', 'Blue Flare', 'Bolt Beak', 'Bolt Strike', 'Bonemerang', 'Chatter', 'Clanging Scales', 'Clangorous Soul', 'Conversion', 'Conversion 2', 'Core Enforcer', 'Crush Grip', 'Dark Void', 'Decorate', 'Double Iron Bash', 'Electrify', 'Fishious Rend', 'Floral Healing', 'Freeze Shock', 'Fusion Bolt', 'Fusion Flare', 'Gear Grind', 'Geomancy', 'Glaciate', 'Head Charge', 'Ice Burn', 'Kinesis', "King's Shield", "Land's Wrath", 'Light of Ruin', 'Lovely Kiss', 'Luster Purge', 'Meteor Assault', 'Mind Blown', 'Mist Ball', 'Moongeist Beam', 'Multi-Attack', "Nature's Madness", 'Oblivion Wing', 'Obstruct', 'Octazooka', 'Octolock', 'Photon Geyser', 'Plasma Fists', 'Prismatic Laser', 'Purify', 'Rock Wrecker', 'Sacred Fire', 'Searing Shot', 'Secret Sword', 'Seed Flare', 'Shadow Bone', 'Shell Trap', 'Sketch', 'Snap Trap', 'Sparkling Aria', 'Spectral Thief', 'Storm Throw', 'Strange Steam', 'Sunsteel Strike', 'Take Heart', 'Techno Blast', 'Thousand Arrows', 'Thousand Waves', 'Topsy-Turvy', 'Toxic Thread', 'Trick-or-Treat', 'Triple Kick'
 		],
 	},
+=======
+			'Lovely Kiss', 'Bonemerang', 'Conversion', 'Sketch', 'Triple Kick', 'Conversion 2', 'Aeroblast', 'Octazooka',
+			'Sacred Fire', 'Luster Purge', 'Mist Ball', 'Rock Wrecker', 'Chatter', 'Crush Grip', 'Dark Void', 'Seed Flare',
+			'Storm Throw', 'Head Charge', 'Gear Grind', 'Searing Shot', 'Techno Blast', 'Secret Sword', 'Glaciate',
+			'Bolt Strike', 'Blue Flare', 'Freeze Shock', 'Ice Burn', 'Fusion Flare', 'Fusion Bolt', 'Trick-or-Treat',
+			'Topsy-Turvy', 'Electrify', "King's Shield", 'Geomancy', 'Oblivion Wing', 'Thousand Arrows', 'Thousand Waves',
+			"Land's Wrath", "Trick-or-Treat", 'Light of Ruin', 'Sparkling Aria', 'Floral Healing', 'Toxic Thread', 'Anchor Shot',
+			'Purify', 'Core Enforcer', 'Beak Blast', 'Clanging Scales', 'Shell Trap', 'Shadow Bone', 'Prismatic Laser',
+			'Spectral Thief', 'Sunsteel Strike', 'Moongeist Beam', "Nature's Madness", 'Multi-Attack', 'Mind Blown',
+			'Plasma Fists', 'Photon Geyser', 'Double Iron Bash', 'Octolock', 'Bolt Beak', 'Fishious Rend', 'Decorate',
+			'Snap Trap', 'Aura Wheel', 'Strange Steam', 'Obstruct', 'Meteor Assault', 'Take Heart',
+		],
+	},
+>>>>>>> 119ed9bdc (Add Allow Signature Moves rule)
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	obtainable: {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable',
@@ -1060,6 +1085,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	batonpassstatclause: {
 		effectType: 'ValidatorRule',
 		name: 'Baton Pass Stat Clause',
@@ -1095,6 +1125,10 @@ export const Rulesets: {[k: string]: FormatData} = {
 			}
 		},
 	},
+<<<<<<< HEAD
+=======
+>>>>>>> c18a8b1c7 (Fix build)
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	cfzclause: {
 		effectType: 'ValidatorRule',
 		name: 'CFZ Clause',
@@ -1706,6 +1740,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Open Team Sheets',
 		desc: "Allows each player to see the Pok&eacute;mon and all non-stat information about them, before they choose their lead Pok&eacute;mon",
 		onTeamPreview() {
+<<<<<<< HEAD
 			const msg = 'uhtml|otsrequest|<button name="send" value="/acceptopenteamsheets" class="button" style="margin-right: 10px;"><strong>Accept Open Team Sheets</strong></button><button name="send" value="/rejectopenteamsheets" class="button" style="margin-top: 10px"><strong>Deny Open Team Sheets</strong></button>';
 			for (const side of this.sides) {
 				this.addSplit(side.id, [msg]);
@@ -1722,6 +1757,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		name: 'Force Open Team Sheets',
 		desc: "Allows each player to see the Pok&eacute;mon and all non-stat information about them, before they choose their lead Pok&eacute;mon",
 		onTeamPreview() {
+=======
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 			let buf = 'raw|';
 			for (const side of this.sides) {
 				buf += Utils.html`<div class="infobox" style="margin-top:5px"><details><summary>Open Team Sheet for ${side.name}</summary>${Teams.export(side.team, {hideStats: true})}</details></div>`;

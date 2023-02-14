@@ -4935,8 +4935,13 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	ragefist: {
 		name: "Rage Fist",
+<<<<<<< HEAD
 		desc: "Power is equal to 50+(X*50), where X is the total number of times the user has been hit by a damaging attack during the battle, even if the user did not lose HP from the attack. X cannot be greater than 6 and does not reset upon switching out or fainting. Each hit of a multi-hit attack is counted, but confusion damage is not counted.",
 		shortDesc: "+50 power for each time user was hit. Max 6 hits.",
+=======
+		desc: "Power increases by 50 each time the user is hit by a damaging attack. This does not reset upon switching out or fainting.",
+		shortDesc: "Power increases by 50 each time user is hit.",
+>>>>>>> 4c3838feb74b5c78c1cfb3367980924a17049801
 	},
 	ragepowder: {
 		name: "Rage Powder",
