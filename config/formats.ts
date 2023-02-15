@@ -205,6 +205,6 @@ export const Formats: FormatList = [
 		mod: 'draftarena',
 		team: 'randomPaired',
 		desc: `Teams are chosen randomly from a pool of team pairs, so each team always faces off against the same opposing team.`,
-		ruleset: ['Draft'],
+		ruleset: ['Draft', 'Shiny Terastal Clause'],
 	},
 ];
