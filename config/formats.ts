@@ -197,7 +197,7 @@ export const Formats: FormatList = [
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Metagames",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 9] Draft Arena",
