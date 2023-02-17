@@ -16,6 +16,11 @@ package-lock.json
 databases/*.db*
 *.o
 *.o.dSYM
+
+# DL
+!/config/emoticons.json
+package.json
+
 # Typescript build artifacts
 .*-dist/
 tools/set-import/importer.js
