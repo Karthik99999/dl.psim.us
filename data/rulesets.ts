@@ -1293,6 +1293,19 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('rule', 'Terastal Clause: You cannot Terastallize');
 		},
 	},
+	shinyterastalclause: {
+		effectType: 'Rule',
+		name: 'Shiny Terastal Clause',
+		desc: "Prevents non-Shiny Pok&eacute;mon from Terastallizing",
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				if (!pokemon.set.shiny) {
+					pokemon.canTerastallize = null;
+				}
+			}
+			this.add('rule', 'Shiny Terastal Clause: Only Shiny Pokémon can Terastallize');
+		},
+	},
 	arceusevlimit: {
 		effectType: 'ValidatorRule',
 		name: 'Arceus EV Limit',
