@@ -689,7 +689,12 @@ export class CommandContext extends MessageContext {
 			}
 			Chat.sendPM(message, this.user, this.pmTarget);
 		} else if (this.room) {
-			this.room.add(`|c|${this.user.getIdentity(this.room)}|${message}`);
+			const emotes = Chat.plugins['emotes'].parseEmotes(message);
+			if (emotes && !this.room.settings.emotesDisabled) {
+				this.room.add(`|c|${this.user.getIdentity(this.room)}|/html ${emotes}`);
+			} else {
+				this.room.add(`|c|${this.user.getIdentity(this.room)}|${message}`);
+			}
 			if (this.room.game && this.room.game.onLogMessage) {
 				this.room.game.onLogMessage(message, this.user);
 			}
