@@ -1118,8 +1118,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 40,
 		priority: 0,
 		flags: {},
-		onHit(target) {
-			if (!this.canSwitch(target.side)) {
+		onTryHit(target) {
+			if (!this.canSwitch(target.side) || target.volatiles['commanded']) {
 				this.attrLastMove('[still]');
 				this.add('-fail', target);
 				return this.NOT_FAIL;
@@ -13211,7 +13211,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Order Up",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, pulse: 1, mirror: 1},
+		flags: {protect: 1},
 		onUseMoveMessage(source, target, move) {
 			move.orderUpBoost = true;
 		},
