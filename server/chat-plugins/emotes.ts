@@ -22,7 +22,7 @@ export function parseEmotes(str: string) {
 	if (!regex.test(str)) return '';
 	return str.replace(/:(.+?):/g, (match, name) => {
 		if (!emotes[name]) return match;
-		else return `<img src="${emotes[name]}" width="${SIZE}" height="${SIZE}">`;
+		else return `<img src="${emotes[name]}" width="${SIZE}" height="${SIZE}" alt="${name}" title=":${name}:">`;
 	});
 }
 
@@ -121,7 +121,7 @@ export const pages: Chat.PageTable = {
 		for (const name in emotes) {
 			const url = emotes[name];
 			buf += `<tr>`;
-			buf += `<td><img src="${url}" width="${SIZE}" height="${SIZE}"></td>`;
+			buf += `<td><img src="${url}" width="${SIZE}" height="${SIZE}" alt="${name}" title=":${name}:"></td>`;
 			buf += `<td>:${name}:</td>`;
 			if (user.can('lock')) buf += `<td><button class="button" name="send" value="/emotes delete ${name}">Delete</button></td>`;
 			buf += `</tr>`;
