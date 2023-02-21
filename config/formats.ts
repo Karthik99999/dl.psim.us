@@ -191,6 +191,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+		unbanlist: ['Greninja-Ash'],
 	},
 	{
 		name: "[Gen 3] Emerald Open",
