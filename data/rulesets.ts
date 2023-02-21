@@ -989,6 +989,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 				'defensecurl', 'dragondance', 'ganlonberry', 'growth', 'harden', 'howl', 'irondefense', 'liechiberry', 'meditate',
 				'petayaberry', 'salacberry', 'sharpen', 'speedboost', 'starfberry', 'swordsdance', 'tailglow', 'withdraw',
 			];
+			if (this.format.id === 'gen3emeraldopen') boostingEffects.push('ancientpower', 'silverwind');
 			let passers = 0;
 			for (const set of team) {
 				if (!set.moves.includes('Baton Pass')) continue;

@@ -192,6 +192,16 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
 	},
+	{
+		name: "[Gen 3] Emerald Open",
+
+		mod: 'gen3',
+		ruleset: ['[Gen 3] Draft League', 'One Boost Passer Clause', 'Accuracy Moves Clause'],
+		banlist: [
+			'Bright Powder', 'Focus Band', "King's Rock", 'Lax Incense', 'Quick Claw',
+			'Ninjask + Swagger + Baton Pass',
+		],
+	},
 
 	// Metagames
 	///////////////////////////////////////////////////////////////////
