@@ -103,7 +103,7 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] National Dex Unrestricted', '!Sleep Clause Mod'],
 	},
 	{
-		name: "[Gen 9] National Dex VGC",
+		name: "[Gen 9] National Dex 4v4",
 
 		mod: 'gen9',
 		gameType: 'doubles',
