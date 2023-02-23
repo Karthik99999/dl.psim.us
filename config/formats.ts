@@ -197,9 +197,9 @@ export const Formats: FormatList = [
 		name: "[Gen 3] Emerald Open",
 
 		mod: 'gen3',
-		ruleset: ['[Gen 3] Draft League', 'One Boost Passer Clause', 'Accuracy Moves Clause'],
+		ruleset: ['[Gen 3] Draft League', 'One Boost Passer Clause', '!Evasion Moves Clause', 'Evasion Clause', 'Accuracy Moves Clause'],
 		banlist: [
-			'Bright Powder', 'Focus Band', "King's Rock", 'Lax Incense', 'Quick Claw',
+			'Focus Band', "King's Rock", 'Quick Claw',
 			'Ninjask + Swagger + Baton Pass',
 		],
 	},
