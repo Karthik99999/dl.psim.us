@@ -216,9 +216,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable Moves',
 		desc: "Makes sure moves are learnable by the species.",
-		banlist: [
-			'Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell',
-		],
+		banlist: [],
 		// Hardcoded in team-validator.ts
 	},
 	obtainableabilities: {
