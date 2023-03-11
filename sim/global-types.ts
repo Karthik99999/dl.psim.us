@@ -296,9 +296,9 @@ interface ModdedBattleActions {
 	) => void;
 
 	// oms
-	doGetMixedSpecies?: (this: BattleActions, species: Species, deltas: AnyObject) => Species;
-	getMegaDeltas?: (this: BattleActions, megaSpecies: Species) => AnyObject;
-	getMixedSpecies?: (this: BattleActions, originalName: string, megaName: string) => Species;
+	mutateOriginalSpecies?: (this: BattleActions, species: Species, deltas: AnyObject) => Species;
+	getFormeChangeDeltas?: (this: BattleActions, formeChangeSpecies: Species, pokemon?: Pokemon) => AnyObject;
+	getMixedSpecies?: (this: BattleActions, originalName: string, megaName: string, pokemon?: Pokemon) => Species;
 }
 
 interface ModdedBattleSide {
@@ -328,9 +328,14 @@ interface ModdedBattlePokemon {
 		maybeDisabled?: boolean, trapped?: boolean, maybeTrapped?: boolean,
 		canMegaEvo?: boolean, canUltraBurst?: boolean, canZMove?: ZMoveOptions,
 	};
+	getMoves?: (this: Pokemon, lockedMove?: string | null, restrictData?: boolean) => {
+		move: string, id: string, disabled?: string | boolean, disabledSource?: string,
+		target?: string, pp?: number, maxpp?: number,
+	}[];
 	getStat?: (
 		this: Pokemon, statName: StatIDExceptHP, unboosted?: boolean, unmodified?: boolean, fastReturn?: boolean
 	) => number;
+	getTypes?: (this: Pokemon, excludeAdded?: boolean, preterastallized?: boolean) => string[];
 	getWeight?: (this: Pokemon) => number;
 	hasAbility?: (this: Pokemon, ability: string | string[]) => boolean;
 	hasItem?: (this: Pokemon, item: string | string[]) => boolean;
@@ -380,10 +385,14 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	debug?: (this: Battle, activity: string) => void;
 	getActionSpeed?: (this: Battle, action: AnyObject) => void;
 	init?: (this: ModdedDex) => void;
+	maybeTriggerEndlessBattleClause?: (
+		this: Battle, trappedBySide: boolean[], stalenessBySide: ('internal' | 'external' | undefined)[]
+	) => boolean | undefined;
 	natureModify?: (this: Battle, stats: StatsTable, set: PokemonSet) => StatsTable;
 	nextTurn?: (this: Battle) => void;
 	runAction?: (this: Battle, action: Action) => void;
 	spreadModify?: (this: Battle, baseStats: StatsTable, set: PokemonSet) => StatsTable;
+	start?: (this: Battle) => void;
 	suppressingWeather?: (this: Battle) => boolean;
 	trunc?: (n: number) => number;
 	win?: (this: Battle, side?: SideID | '' | Side | null) => boolean;
