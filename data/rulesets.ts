@@ -2456,4 +2456,22 @@ export const Rulesets: {[k: string]: FormatData} = {
 			return this.checkCanLearn(move, species, setSources, set);
 		},
 	},
+	pre120basestatsmod: {
+		effectType: 'Rule',
+		name: "Pre-1.2.0 Base Stats Mod",
+		desc: `Changes Base Stats of certain Pokemon to be what they were prior to v1.2.0 of Scarlet and Violet.`,
+		onBegin() {
+			this.add('rule', 'Pre-1.2.0 Base Stats Mod: Pokemon have their Base Stats changed to what they had prior to v1.2.0 of SV.');
+		},
+		onModifySpecies(species) {
+			const oldBaseStats: {[k: string]: StatsTable} = {
+				'Kleavor': {hp: 70, atk: 130, def: 95, spa: 45, spd: 75, spe: 85},
+				'Zoroark-Hisui': {hp: 60, atk: 105, def: 60, spa: 120, spd: 60, spe: 105},
+			}
+			if (!oldBaseStats[species.name]) return;
+			const newSpecies = this.dex.deepClone(species);
+			newSpecies.baseStats = oldBaseStats[species.name];
+			return newSpecies;
+		},
+	}
 };
