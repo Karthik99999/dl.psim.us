@@ -196,6 +196,23 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
 	},
 	{
+		name: "[Gen 9] BBL Draft",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Legacy'],
+		banlist: ['Necrozma-Dusk-Mane', 'Moody', 'Hidden Power'],
+		// Z-Move Clause is hardcoded to allow Ultranecrozium Z
+		onValidateSet(set) {
+			const item = this.dex.items.get(set.item);
+			if (item.zMove && item.id !== 'ultranecroziumz') {
+				return [`${set.name || set.species}'s item ${item.name} is banned by Z-Move Clause.`];
+			}
+		},
+		onBegin() {
+			this.add('rule', 'Z-Move Clause: Z-Moves are banned');
+		},
+	},
+	{
 		name: "[Gen 3] Emerald Open",
 
 		mod: 'gen3',
