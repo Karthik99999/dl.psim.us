@@ -196,6 +196,14 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
 	},
 	{
+		name: "[Gen 9] BBL Draft",
+
+		mod: 'gen9',
+		ruleset: ['Draft', '+Past', '+Legacy','Z-Move Clause'],
+		banlist: ['Hidden Power', 'Moody', 'Necrozma-Dusk-Mane'],
+		unbanlist: ['Ultranecrozium Z'],
+	},
+	{
 		name: "[Gen 3] Emerald Open",
 
 		mod: 'gen3',
