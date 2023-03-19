@@ -459,13 +459,21 @@ export const Rulesets: {[k: string]: FormatData} = {
 		desc: `Forces all teams to have the same type. Usage: Force Monotype = [Type], e.g. "Force Monotype = Water"`,
 		hasValue: true,
 		onValidateRule(value) {
-			if (!this.dex.types.get(value).exists) throw new Error(`Misspelled type "${value}"`);
+			const type = this.dex.types.get(value);
+			if (!type.exists) throw new Error(`Misspelled type "${value}"`);
+			// Temporary hardcode until types support generations
+			if (
+				(['Dark', 'Steel'].includes(type.name) && this.dex.gen < 2) ||
+				(type.name === 'Fairy' && this.dex.gen < 6)
+			) {
+				throw new Error(`Invalid type "${type.name}" in Generation ${this.dex.gen}`);
+			}
 		},
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
 			const type = this.dex.types.get(this.ruleTable.valueRules.get('forcemonotype')!);
 			if (!species.types.map(this.toID).includes(type.id)) {
-				return [`${set.species} must have type ${type.name}`];
+				return [`${set.species} must have ${type.name} type.`];
 			}
 		},
 	},
@@ -1258,7 +1266,11 @@ export const Rulesets: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Mega Rayquaza Clause: You cannot mega evolve Rayquaza');
 			for (const pokemon of this.getAllPokemon()) {
-				if (pokemon.species.id === 'rayquaza') pokemon.canMegaEvo = null;
+				if (pokemon.species.id === 'rayquaza') {
+					pokemon.canMegaEvo = null;
+					// ability to terastal was determined before the clause activated, causing incorrect behavior
+					pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
+				}
 			}
 		},
 	},
@@ -2289,9 +2301,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 							basePower: 140,
 							category: "Physical",
 							priority: 0,
-							flags: {},
+							flags: {futuremove: 1},
 							effectType: 'Move',
-							isFutureMove: true,
 							type: 'Steel',
 						},
 					});
@@ -2314,10 +2325,9 @@ export const Rulesets: {[k: string]: FormatData} = {
 							basePower: 120,
 							category: "Physical",
 							priority: 0,
-							flags: {},
+							flags: {futuremove: 1},
 							ignoreImmunity: false,
 							effectType: 'Move',
-							isFutureMove: true,
 							type: 'Psychic',
 						},
 					});
@@ -2432,7 +2442,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 			const obtainableAbilityPool = new Set<string>();
 			const matchingSpecies = this.dex.species.all()
 				.filter(species => (
-					!species.isNonstandard && species.types.every(type => curSpecies.types.includes(type)) &&
+					(!species.isNonstandard || this.ruleTable.has(`+pokemontag:${this.toID(species.isNonstandard)}`)) &&
+					species.types.every(type => curSpecies.types.includes(type)) &&
 					species.types.length === curSpecies.types.length && !this.ruleTable.isBannedSpecies(species)
 				));
 			for (const species of matchingSpecies) {
@@ -2448,7 +2459,8 @@ export const Rulesets: {[k: string]: FormatData} = {
 		checkCanLearn(move, species, setSources, set) {
 			const matchingSpecies = this.dex.species.all()
 				.filter(s => (
-					!s.isNonstandard && s.types.every(type => species.types.includes(type)) &&
+					(!s.isNonstandard || this.ruleTable.has(`+pokemontag:${this.toID(s.isNonstandard)}`)) &&
+					s.types.every(type => species.types.includes(type)) &&
 					s.types.length === species.types.length && !this.ruleTable.isBannedSpecies(s)
 				));
 			const someCanLearn = matchingSpecies.some(s => this.checkCanLearn(move, s, setSources, set) === null);
