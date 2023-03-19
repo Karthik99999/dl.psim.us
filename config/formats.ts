@@ -196,7 +196,7 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9] BBL Draft",
+		name: "[Gen 9] BBL National Dex Draft",
 
 		mod: 'gen9',
 		ruleset: ['[Gen 9] National Dex Legacy'],
