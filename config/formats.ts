@@ -219,7 +219,7 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 3] Draft League', 'One Boost Passer Clause', '!Evasion Moves Clause', 'Evasion Clause', 'Accuracy Moves Clause'],
 		banlist: [
 			'Focus Band', "King's Rock", 'Quick Claw',
-			'Ninjask + Swagger + Baton Pass',
+			'Ninjask + Swagger + Baton Pass', 'Spider Web + Baton Pass', 'Mean Look + Baton Pass',
 		],
 	},
 
