@@ -133,7 +133,7 @@ export class RandomGen1Teams extends RandomGen2Teams {
 
 		// Now let's store what we are getting.
 		const typeCount: {[k: string]: number} = {};
-		const weaknessCount: {[k: string]: number} = {Electric: 0, Psychic: 0, Water: 0, Ice: 0, Ground: 0};
+		const weaknessCount: {[k: string]: number} = {Electric: 0, Psychic: 0, Water: 0, Ice: 0, Ground: 0, Fire: 0};
 		let uberCount = 0;
 		let nuCount = 0;
 
@@ -337,19 +337,7 @@ export class RandomGen1Teams extends RandomGen2Teams {
 			} // End of the check for more than 4 moves on moveset.
 		}
 
-		const levelScale: {[k: string]: number} = {
-			LC: 88,
-			NFE: 80,
-			PU: 77,
-			NU: 77,
-			NUBL: 76,
-			UU: 74,
-			UUBL: 71,
-			OU: 68,
-			Uber: 65,
-		};
-
-		const level = this.adjustLevel || data.level || levelScale[species.tier] || 80;
+		const level = this.adjustLevel || data.level || 80;
 
 		const evs = {hp: 255, atk: 255, def: 255, spa: 255, spd: 255, spe: 255};
 		const ivs = {hp: 30, atk: 30, def: 30, spa: 30, spd: 30, spe: 30};
@@ -361,6 +349,18 @@ export class RandomGen1Teams extends RandomGen2Teams {
 				if (hp % 4 !== 0) break;
 				evs.hp -= 4;
 			}
+		}
+
+		// Minimize confusion damage
+		const noAttackStatMoves = [...moves].every(m => {
+			const move = this.dex.moves.get(m);
+			if (move.damageCallback || move.damage) return true;
+			return move.category !== 'Physical';
+		});
+		if (noAttackStatMoves && !moves.has('mimic') && !moves.has('transform')) {
+			evs.atk = 0;
+			// We don't want to lower the HP DV/IV
+			ivs.atk = 2;
 		}
 
 		return {
