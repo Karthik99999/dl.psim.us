@@ -1755,6 +1755,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Psychic Surge", 1: "Infiltrator", H: "Prankster"},
 	},
+	meowsticf: {
+		inherit: true,
+		abilities: {0: "Psychic Surge", 1: "Infiltrator", H: "Competitive"},
+	},
 	spritzee: {
 		inherit: true,
 		abilities: {0: "Healer", 1: "Fairy Aura", H: "Aroma Veil"},
@@ -2166,6 +2170,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	squawkabilly: {
 		inherit: true,
 		abilities: {0: "Intimidate", 1: "Adaptability", H: "Guts"},
+	},
+	squawkabillyblue: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Adaptability", H: "Guts"},
+	},
+	squawkabillyyellow: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Adaptability", H: "Sheer Force"},
+	},
+	squawkabillywhite: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Adaptability", H: "Sheer Force"},
 	},
 	charcadet: {
 		inherit: true,
