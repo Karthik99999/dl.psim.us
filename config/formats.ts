@@ -40,6 +40,12 @@ export const Formats: FormatList = [
 		unbanlist: ['Greninja-Ash'],
 	},
 	{
+		name: "[Gen 9] Paldea Tera Reveal",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+	},
+	{
 		name: "[Gen 9] Paldea Dex Doubles",
 	
 		mod: 'gen9',
