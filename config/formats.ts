@@ -65,8 +65,7 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9', 'Tera Type Preview'],
-		banlist: ['Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell'],
+		ruleset: ['[Gen 9] Paldea Dex VGC', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] LC Paldea Dex Draft",
