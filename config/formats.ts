@@ -40,7 +40,7 @@ export const Formats: FormatList = [
 		unbanlist: ['Greninja-Ash'],
 	},
 	{
-		name: "[Gen 9] Paldea Tera Reveal",
+		name: "[Gen 9] Paldea Dex Tera Preview",
 
 		mod: 'gen9',
 		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
@@ -58,6 +58,14 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
+		banlist: ['Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell'],
+	},
+	{
+		name: "[Gen 9] Paldea Dex VGC Tera Preview",
+	
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9', 'Tera Type Preview'],
 		banlist: ['Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell'],
 	},
 	{
