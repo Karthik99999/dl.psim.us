@@ -1687,6 +1687,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Justified", H: "Sharpness"},
 	},
+	keldeoresolute: {
+		inherit: true,
+		abilities: {0: "Justified", H: "Sharpness"},
+	},
 	chespin: {
 		inherit: true,
 		abilities: {0: "Overgrow", 1: "Iron Barbs", H: "Bulletproof"},

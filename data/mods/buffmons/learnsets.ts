@@ -83293,9 +83293,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 		inherit: true,
 		learnset: {
 			behemothblade: ["9R", "8R"],
-			frustration: ["9M"],
-			return: ["9M"],
-			toxic: ["9M"],
 		},
 	},
 	zamazenta: {
@@ -83330,6 +83327,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			irondefense: ["9M", "9L22", "8M", "8L22", "8S0", "8S1"],
 			ironhead: ["9M", "9L33", "8M", "8L33", "8S0", "8S1"],
 			irontail: ["8M"],
+			kingsshield: ["9L1"],
 			laserfocus: ["8L44"],
 			lightscreen: ["9M", "8M"],
 			metalburst: ["9L44", "8L1"],
@@ -83377,10 +83375,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 		inherit: true,
 		learnset: {
 			behemothbash: ["9R", "8R"],
-			frustration: ["9M"],
-			kingsshield: ["9L1"],
-			return: ["9M"],
-			toxic: ["9M"],
 		},
 	},
 	eternatus: {

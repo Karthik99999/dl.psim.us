@@ -226,11 +226,11 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 9] Buffmons",
+		name: "[Gen 9] National Dex Buffmons",
 
 		mod: 'buffmons',
 		ruleset: ['[Gen 9] National Dex Legacy'],
-		banlist: ['Assist', 'Hidden Power', 'Pursuit', 'Tera Blast'],
+		banlist: ['Assist', 'Hidden Power', 'Pursuit', 'Tera Blast', "Zamazenta-Base + King's Shield"],
 	},
 	{
 		name: "[Gen 3] Emerald Open",
