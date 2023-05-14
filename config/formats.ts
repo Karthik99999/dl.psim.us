@@ -233,6 +233,20 @@ export const Formats: FormatList = [
 		banlist: ['Assist', 'Hidden Power', 'Pursuit', 'Tera Blast', "Zamazenta-Base + King's Shield"],
 	},
 	{
+		name: "[Gen 9] WPF Natdex STABmons",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Legacy', 'STABmons Move Legality', 'Sleep Moves Clause'],
+		banlist: ['Silvally', 'Rotom'],
+		restricted: [
+			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dire Claw',
+			'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
+			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Hidden Power', 'Last Respects', 'No Retreat', 'Oblivion Wing',
+			'Precipice Blades', 'Pursuit', 'Revival Blessing', 'Shed Tail', 'Shell Smash', 'Shift Gear', 'Thousand Arrows',
+			'Thunderous Kick', 'V-create', 'Victory Dance', 'Wicked Blow',
+		],
+	},
+	{
 		name: "[Gen 3] Emerald Open",
 
 		mod: 'gen3',
