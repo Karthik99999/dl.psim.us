@@ -236,14 +236,15 @@ export const Formats: FormatList = [
 		name: "[Gen 9] WPF Natdex STABmons",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Legacy', 'STABmons Move Legality', 'Sleep Moves Clause'],
+		ruleset: ['[Gen 9] National Dex Legacy', 'STABmons Move Legality'],
 		banlist: ['Silvally', 'Rotom'],
 		restricted: [
-			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dire Claw',
-			'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
-			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Hidden Power', 'Last Respects', 'No Retreat', 'Oblivion Wing',
-			'Precipice Blades', 'Pursuit', 'Revival Blessing', 'Shed Tail', 'Shell Smash', 'Shift Gear', 'Thousand Arrows',
-			'Thunderous Kick', 'V-create', 'Victory Dance', 'Wicked Blow',
+			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dark Void',
+			'Dire Claw', 'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
+			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Grass Whistle', 'Hidden Power', 'Hypnosis', 'Last Respects',
+			'Lovely Kiss', 'Lovely Kiss', 'No Retreat', 'Oblivion Wing', 'Precipice Blades', 'Pursuit', 'Revival Blessing',
+			'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Thousand Arrows', 'Thunderous Kick',
+			'V-create', 'Victory Dance', 'Wicked Blow',
 		],
 	},
 	{
