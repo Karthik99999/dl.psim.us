@@ -242,7 +242,7 @@ export const Formats: FormatList = [
 			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dark Void',
 			'Dire Claw', 'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
 			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Grass Whistle', 'Hidden Power', 'Hypnosis', 'Last Respects',
-			'Lovely Kiss', 'Lovely Kiss', 'No Retreat', 'Oblivion Wing', 'Precipice Blades', 'Pursuit', 'Revival Blessing',
+			'Lovely Kiss', 'No Retreat', 'Oblivion Wing', 'Precipice Blades', 'Pursuit', 'Revival Blessing',
 			'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Thousand Arrows', 'V-create',
 			'Victory Dance', 'Wicked Blow',
 		],
