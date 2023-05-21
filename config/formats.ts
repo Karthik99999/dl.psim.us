@@ -241,10 +241,10 @@ export const Formats: FormatList = [
 		restricted: [
 			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dark Void',
 			'Dire Claw', 'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
-			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Grass Whistle', 'Hidden Power', 'Hypnosis', 'Last Respects',
-			'Lovely Kiss', 'No Retreat', 'Oblivion Wing', 'Precipice Blades', 'Pursuit', 'Revival Blessing',
-			'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Thousand Arrows', 'V-create',
-			'Victory Dance', 'Wicked Blow',
+			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Grass Whistle', 'Hidden Power', 'Hypnosis', 'Judgment',
+			'Last Respects', 'Lovely Kiss', 'Multi-Attack', 'No Retreat', 'Oblivion Wing', 'Octolock', 'Pursuit',
+			'Revival Blessing', 'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Techno Blast',
+			'Thousand Arrows', 'V-create', 'Victory Dance', 'Wicked Blow',
 		],
 	},
 	{
