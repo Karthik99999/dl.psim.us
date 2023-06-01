@@ -29,11 +29,16 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex Pre-Home Draft",
 	
 		mod: 'gen9',
-		ruleset: ['Draft', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
-		banlist: ['Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell'],
+		ruleset: ['Draft', 'Min Source Gen = 9'],
+		banlist: [
+			'Draco Plate', 'Dread Plate', 'Earth Plate', 'Fist Plate', 'Flame Plate', 'Icicle Plate', 'Insect Plate',
+			'Iron Plate', 'Meadow Plate', 'Mind Plate', 'Pixie Plate', 'Sky Plate', 'Splash Plate', 'Spooky Plate',
+			'Stone Plate', 'Toxic Plate', 'Zap Plate',
+			'Barb Barrage', 'Cosmic Power', 'Heal Bell', 'Psyshield Bash', 'Raging Fury', 'Simple Beam',
+		],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Post-Home Draft",
+		name: "[Gen 9] Paldea Dex Draft",
 	
 		mod: 'gen9',
 		ruleset: ['Draft', 'Min Source Gen = 9'],
@@ -43,22 +48,35 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex Tera Preview",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+		ruleset: ['[Gen 9] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Doubles",
+		name: "[Gen 9] Paldea Dex Pre-Home Doubles",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft'],
 	},
 	{
+		name: "[Gen 9] Paldea Dex Doubles",
+	
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] Paldea Dex Draft'],
+	},
+	{
+		name: "[Gen 9] Paldea Dex Pre-Home VGC",
+	
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', '!Draft', 'Draft VGC'],
+	},
+	{
 		name: "[Gen 9] Paldea Dex VGC",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
-		ruleset: ['Draft VGC', '-Unreleased', '-Unobtainable', 'Min Source Gen = 9'],
-		banlist: ['Blissey + Heal Bell', 'Chansey + Heal Bell', 'Happiny + Heal Bell'],
+		ruleset: ['[Gen 9] Paldea Dex Draft', '!Draft', 'Draft VGC'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex VGC Tera Preview",
@@ -68,10 +86,16 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] Paldea Dex VGC', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9] LC Paldea Dex Draft",
+		name: "[Gen 9] LC Paldea Dex Pre-Home Draft",
 	
 		mod: 'gen9',
 		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
+	},
+	{
+		name: "[Gen 9] LC Paldea Dex Draft",
+	
+		mod: 'gen9',
+		ruleset: ['[Gen 9] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
 	},
 
 	// National Draft Tiers
@@ -206,7 +230,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] DPL S7",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] Paldea Dex Post-Home Draft', 'Tera Type Preview'],
+		ruleset: ['[Gen 9] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] BBL National Dex Draft",
