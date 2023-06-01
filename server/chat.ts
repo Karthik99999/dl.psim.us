@@ -74,6 +74,7 @@ interface Handlers {
 	onBattleStart: (user: User, room: GameRoom) => void;
 	onBattleLeave: (user: User, room: GameRoom) => void;
 	onRoomJoin: (room: BasicRoom, user: User, connection: Connection) => void;
+	onBeforeRoomJoin: (room: BasicRoom, user: User, connection: Connection) => void;
 	onDisconnect: (user: User) => void;
 	onRoomDestroy: (roomid: RoomID) => void;
 	onBattleEnd: (battle: RoomBattle, winner: ID, players: ID[]) => void;
@@ -1001,7 +1002,7 @@ export class CommandContext extends MessageContext {
 	checkCan(permission: RoomPermission, target: User | ID | null, room: Room): undefined;
 	checkCan(permission: GlobalPermission, target?: User | ID | null): undefined;
 	checkCan(permission: string, target: User | ID | null = null, room: Room | null = null) {
-		if (!Users.Auth.hasPermission(this.user, permission, target, room, this.fullCmd)) {
+		if (!Users.Auth.hasPermission(this.user, permission, target, room, this.fullCmd, this.cmdToken)) {
 			throw new Chat.ErrorMessage(`${this.cmdToken}${this.fullCmd} - Access denied.`);
 		}
 	}
@@ -1009,7 +1010,7 @@ export class CommandContext extends MessageContext {
 	privatelyCheckCan(permission: GlobalPermission, target?: User | ID | null): boolean;
 	privatelyCheckCan(permission: string, target: User | ID | null = null, room: Room | null = null) {
 		this.handler!.isPrivate = true;
-		if (Users.Auth.hasPermission(this.user, permission, target, room, this.fullCmd)) {
+		if (Users.Auth.hasPermission(this.user, permission, target, room, this.fullCmd, this.cmdToken)) {
 			return true;
 		}
 		this.commandDoesNotExist();

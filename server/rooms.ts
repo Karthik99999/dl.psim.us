@@ -722,14 +722,14 @@ export abstract class BasicRoom {
 	}
 	getStaffIntroMessage(user: User) {
 		if (!user.can('mute', null, this)) return ``;
-		let message = ``;
+		const messages = [];
 		if (this.settings.staffMessage) {
-			message += `\n|raw|<div class="infobox">(Staff intro:)<br /><div>` +
+			messages.push(`|raw|<div class="infobox">(Staff intro:)<br /><div>` +
 				this.settings.staffMessage.replace(/\n/g, '') +
-				`</div>`;
+				`</div>`);
 		}
 		if (this.pendingApprovals?.size) {
-			message += `\n|raw|<div class="infobox">`;
+			let message = `|raw|<div class="infobox">`;
 			message += `<details open><summary>(Pending media requests: ${this.pendingApprovals.size})</summary>`;
 			for (const [userid, entry] of this.pendingApprovals) {
 				message += `<div class="infobox">`;
@@ -747,8 +747,13 @@ export abstract class BasicRoom {
 				message += `<hr />`;
 			}
 			message += `</details></div>`;
+			messages.push(message);
 		}
-		return message ? `|raw|${message}` : ``;
+		if (!this.settings.isPrivate && !this.settings.isPersonal &&
+				this.settings.modchat && this.settings.modchat !== 'autoconfirmed') {
+			messages.push(`|raw|<div class="broadcast-red">Modchat currently set to ${this.settings.modchat}</div>`);
+		}
+		return messages.join('\n');
 	}
 	getSubRooms(includeSecret = false) {
 		if (!this.subRooms) return [];
@@ -756,7 +761,7 @@ export abstract class BasicRoom {
 			room => includeSecret ? true : !room.settings.isPrivate && !room.settings.isPersonal
 		);
 	}
-	validateTitle(newTitle: string, newID?: string) {
+	validateTitle(newTitle: string, newID?: string, oldID?: string) {
 		if (!newID) newID = toID(newTitle);
 		// `,` is a delimiter used by a lot of /commands
 		// `|` and `[` are delimiters used by the protocol
@@ -768,7 +773,7 @@ export abstract class BasicRoom {
 			throw new Chat.ErrorMessage(`Room title "${newTitle}" can't contain -`);
 		}
 		if (newID.length > MAX_CHATROOM_ID_LENGTH) throw new Chat.ErrorMessage("The given room title is too long.");
-		if (Rooms.search(newTitle)) throw new Chat.ErrorMessage(`The room '${newTitle}' already exists.`);
+		if (newID !== oldID && Rooms.search(newTitle)) throw new Chat.ErrorMessage(`The room '${newTitle}' already exists.`);
 	}
 	setParent(room: Room | null) {
 		if (this.parent === room) return;
@@ -886,13 +891,21 @@ export abstract class BasicRoom {
 	 */
 	rename(newTitle: string, newID?: RoomID, noAlias?: boolean) {
 		if (!newID) newID = toID(newTitle) as RoomID;
-		this.validateTitle(newTitle, newID);
+		const oldID = this.roomid;
+		this.validateTitle(newTitle, newID, oldID);
 		if (this.type === 'chat' && this.game) {
 			throw new Chat.ErrorMessage(`Please finish your game (${this.game.title}) before renaming ${this.roomid}.`);
 		}
-		const oldID = this.roomid;
 		(this as any).roomid = newID;
-		this.title = newTitle;
+		this.title = this.settings.title = newTitle;
+		this.saveSettings();
+		if (newID === oldID) {
+			for (const user of Object.values(this.users)) {
+				user.sendTo(this, `|title|${newTitle}`);
+			}
+			return;
+		}
+
 		Rooms.rooms.delete(oldID);
 		Rooms.rooms.set(newID, this as Room);
 		if (this.battle && oldID) {
@@ -934,8 +947,6 @@ export abstract class BasicRoom {
 
 		this.game?.renameRoom(newID);
 
-		this.saveSettings();
-
 		for (const user of Object.values(this.users)) {
 			user.moveConnections(oldID, newID);
 			user.send(`>${oldID}\n|noinit|rename|${newID}|${newTitle}`);
@@ -952,7 +963,6 @@ export abstract class BasicRoom {
 			}
 		}
 
-		this.settings.title = newTitle;
 		this.saveSettings();
 
 		Punishments.renameRoom(oldID, newID);
@@ -973,6 +983,7 @@ export abstract class BasicRoom {
 		if (!user) return false; // ???
 		if (this.users[user.id]) return false;
 
+		Chat.runHandlers('onBeforeRoomJoin', this, user, connection);
 		if (user.named) {
 			this.reportJoin('j', user.getIdentityWithStatus(this), user);
 		}
@@ -1632,12 +1643,19 @@ export class GlobalRoomState {
 			}
 		}
 		if (Config.reportbattles) {
-			const reportRoom = Rooms.get(Config.reportbattles === true ? 'lobby' : Config.reportbattles);
-			if (reportRoom) {
-				const reportPlayers = players.map(p => p.getIdentity()).join('|');
-				reportRoom
-					.add(`|b|${room.roomid}|${reportPlayers}`)
-					.update();
+			if (typeof Config.reportbattles === 'string') {
+				Config.reportbattles = [Config.reportbattles];
+			} else if (Config.reportbattles === true) {
+				Config.reportbattles = ['lobby'];
+			}
+			for (const roomid of Config.reportbattles) {
+				const reportRoom = Rooms.get(roomid);
+				if (reportRoom) {
+					const reportPlayers = players.map(p => p.getIdentity()).join('|');
+					reportRoom
+						.add(`|b|${room.roomid}|${reportPlayers}`)
+						.update();
+				}
 			}
 		}
 		if (Config.logladderip && options.rated) {
@@ -1995,6 +2013,7 @@ export class GameRoom extends BasicRoom {
 		if (!user) return false; // ???
 		if (this.users[user.id]) return false;
 
+		Chat.runHandlers('onBeforeRoomJoin', this, user, connection);
 		if (user.named) {
 			this.reportJoin('j', user.getIdentityWithStatus(this), user);
 		}

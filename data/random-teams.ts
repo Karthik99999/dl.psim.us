@@ -356,8 +356,8 @@ export class RandomTeams {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit[1] === 5) counter.add('skilllink');
 			if (move.recoil || move.hasCrashDamage) counter.add('recoil');
 			if (move.drain) counter.add('drain');
-			// Moves which have a base power, but aren't super-weak:
-			if (move.category !== 'Status') {
+			// Moves which have a base power:
+			if (move.basePower || move.basePowerCallback) {
 				if (!this.noStab.includes(moveid) || priorityPokemon.includes(species.id) && move.priority > 0) {
 					counter.add(moveType);
 					if (types.includes(moveType)) counter.stabCounter++;
@@ -679,7 +679,7 @@ export class RandomTeams {
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
 				const moveType = this.getMoveType(move, species, abilities, teraType);
-				if (types.includes(moveType) && move.priority > 0 && move.category !== 'Status') {
+				if (types.includes(moveType) && move.priority > 0 && (move.basePower || move.basePowerCallback)) {
 					priorityMoves.push(moveid);
 				}
 			}
@@ -697,7 +697,7 @@ export class RandomTeams {
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
 				const moveType = this.getMoveType(move, species, abilities, teraType);
-				if (type === moveType && move.category !== 'Status' && !this.noStab.includes(moveid)) {
+				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback) && type === moveType) {
 					stabMoves.push(moveid);
 				}
 			}
@@ -715,7 +715,7 @@ export class RandomTeams {
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
 				const moveType = this.getMoveType(move, species, abilities, teraType);
-				if (!this.noStab.includes(moveid) && move.category !== 'Status' && types.includes(moveType)) {
+				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback) && types.includes(moveType)) {
 					stabMoves.push(moveid);
 				}
 			}
@@ -732,7 +732,7 @@ export class RandomTeams {
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
 				const moveType = this.getMoveType(move, species, abilities, teraType);
-				if (!this.noStab.includes(moveid) && move.category !== 'Status' && teraType === moveType) {
+				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback) && teraType === moveType) {
 					stabMoves.push(moveid);
 				}
 			}
@@ -782,7 +782,7 @@ export class RandomTeams {
 				for (const moveid of movePool) {
 					const move = this.dex.moves.get(moveid);
 					const moveType = this.getMoveType(move, species, abilities, teraType);
-					if (!this.noStab.includes(moveid) && move.category !== 'Status') {
+					if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback)) {
 						if (currentAttackType !== moveType) coverageMoves.push(moveid);
 					}
 				}
@@ -800,7 +800,7 @@ export class RandomTeams {
 			const attackingMoves = [];
 			for (const moveid of movePool) {
 				const move = this.dex.moves.get(moveid);
-				if (!this.noStab.includes(moveid) && move.category !== 'Status') attackingMoves.push(moveid);
+				if (!this.noStab.includes(moveid) && (move.basePower || move.basePowerCallback)) attackingMoves.push(moveid);
 			}
 			if (attackingMoves.length) {
 				const moveid = this.sample(attackingMoves);
@@ -1480,7 +1480,6 @@ export class RandomTeams {
 
 		const baseFormes: {[k: string]: number} = {};
 
-		const tierCount: {[k: string]: number} = {};
 		const typeCount: {[k: string]: number} = {};
 		const typeComboCount: {[k: string]: number} = {};
 		const typeWeaknesses: {[k: string]: number} = {};
@@ -1514,27 +1513,16 @@ export class RandomTeams {
 			if (
 				pokemon.some(pkmn => pkmn.species === 'Zoroark-Hisui') &&
 				pokemon.length >= (this.maxTeamSize - 1) &&
-				(this.getLevel(species, isDoubles) < 72 || this.getLevel(species, isDoubles) > 86) &&
+				(this.getLevel(species, isDoubles) < 72 || this.getLevel(species, isDoubles) > 84) &&
 				!this.adjustLevel
 			) {
 				continue;
 			}
 
-			const tier = species.tier;
 			const types = species.types;
 			const typeCombo = types.slice().sort().join();
 			// Dynamically scale limits for different team sizes. The default and minimum value is 1.
 			const limitFactor = Math.round(this.maxTeamSize / 6) || 1;
-
-			// Limit one Pokemon per tier, two for Monotype
-			// Disable this for now, since it is still a new gen
-			// Unless you want to have a lot of Ubers!
-			// if (
-			// 	(tierCount[tier] >= (this.forceMonotype || isMonotype ? 2 : 1) * limitFactor) &&
-			// 	!this.randomChance(1, Math.pow(5, tierCount[tier]))
-			// ) {
-			// 	continue;
-			// }
 
 			if (!isMonotype && !this.forceMonotype) {
 				let skip = false;
@@ -1597,13 +1585,6 @@ export class RandomTeams {
 
 			// Now that our Pokemon has passed all checks, we can increment our counters
 			baseFormes[species.baseSpecies] = 1;
-
-			// Increment tier counter
-			if (tierCount[tier]) {
-				tierCount[tier]++;
-			} else {
-				tierCount[tier] = 1;
-			}
 
 			// Increment type counters
 			for (const typeName of types) {
