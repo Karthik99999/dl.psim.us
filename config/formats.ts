@@ -33,7 +33,7 @@ export const Formats: FormatList = [
 		banlist: [
 			'Raichu-Alola', 'Diglett-Alola', 'Dugtrio-Alola', 'Meowth-Alola', 'Persian-Alola', 'Growlithe-Hisui',
 			'Arcanine-Hisui', 'Slowpoke-Galar', 'Slowbro-Galar', 'Grimer-Alola', 'Muk-Alola', 'Voltorb-Hisui',
-			'Electrode-Hisui', 'Tauros', 'Articuno', 'Zapdos', 'Moltres', 'Mewtwo', 'Mew', 'Typhlosion-Hisui',
+			'Electrode-Hisui', 'Tauros-Base', 'Articuno', 'Zapdos', 'Moltres', 'Mewtwo', 'Mew', 'Typhlosion-Hisui',
 			'Slowking-Galar', 'Qwilfish-Hisui', 'Sneasel-Hisui', 'Kyogre', 'Groudon', 'Rayquaza', 'Uxie', 'Mesprit',
 			'Azelf', 'Dialga', 'Palkia', 'Heatran', 'Giratina', 'Cresselia', 'Arceus', 'Samurott-Hisui',
 			'Lilligant-Hisui', 'Basculin-White-Striped', 'Braviary-Hisui', 'Tornadus', 'Thundurus', 'Landorus',
