@@ -147,6 +147,13 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] National Dex Draft'],
 	},
 	{
+		name: "[Gen 9] National Dex Doubles Legacy",
+
+		mod: 'gen9',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] National Dex Legacy'],
+	},
+	{
 		name: "[Gen 9] National Dex Doubles Unrestricted",
 
 		mod: 'gen9',
