@@ -278,7 +278,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] WPF Natdex STABmons",
 
 		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Legacy', 'STABmons Move Legality'],
+		ruleset: ['[Gen 9] National Dex Legacy', 'OM Unobtainable Moves'],
 		banlist: ['Silvally', 'Rotom'],
 		restricted: [
 			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dark Void',
@@ -288,6 +288,46 @@ export const Formats: FormatList = [
 			'Revival Blessing', 'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Techno Blast',
 			'Thousand Arrows', 'V-create', 'Victory Dance', 'Wicked Blow',
 		],
+		checkCanLearn(move, species, setSources, set) {
+			if (!move.isZ && !move.isMax && !this.ruleTable.isRestricted(`move:${move.id}`)) {
+				const speciesTypes: string[] = [];
+				const moveTypes: string[] = [];
+				for (let i = this.dex.gen; i >= species.gen && i >= move.gen; i--) {
+					const dex = this.dex.forGen(i);
+					moveTypes.push(dex.moves.get(move.name).type);
+
+					const pokemon = dex.species.get(species.name);
+					if (pokemon.forme || pokemon.otherFormes) {
+						const baseSpecies = dex.species.get(pokemon.baseSpecies);
+						const originalForme = dex.species.get(pokemon.changesFrom || pokemon.name);
+						speciesTypes.push(...originalForme.types);
+						if (baseSpecies.otherFormes) {
+							for (const formeName of baseSpecies.otherFormes) {
+								if (baseSpecies.prevo) {
+									const prevo = dex.species.get(baseSpecies.prevo);
+									if (prevo.evos.includes(formeName)) continue;
+								}
+								const forme = dex.species.get(formeName);
+								if (forme.changesFrom === originalForme.name && !forme.battleOnly) {
+									speciesTypes.push(...forme.types);
+								}
+							}
+						}
+					} else {
+						speciesTypes.push(...pokemon.types);
+					}
+
+					let prevo = pokemon.prevo;
+					while (prevo) {
+						const prevoSpecies = dex.species.get(prevo);
+						speciesTypes.push(...prevoSpecies.types);
+						prevo = prevoSpecies.prevo;
+					}
+				}
+				if (moveTypes.some(m => speciesTypes.includes(m))) return null;
+			}
+			return this.checkCanLearn(move, species, setSources, set);
+		},
 	},
 	{
 		name: "[Gen 3] Emerald Open",
