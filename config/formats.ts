@@ -122,10 +122,22 @@ export const Formats: FormatList = [
 		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
+		name: "[Gen 9] National Dex Draft Tera Preview",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Draft', 'Tera Type Preview'],
+	},
+	{
 		name: "[Gen 9] National Dex Legacy",
 
 		mod: 'gen9',
 		ruleset: ['Draft', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex Legacy Tera Preview",
+
+		mod: 'gen9',
+		ruleset: ['[Gen 9] National Dex Legacy', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] National Dex Unrestricted",
