@@ -39,14 +39,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Compound Eyes", 1: "Magic Guard", H: "Tinted Lens"},
 	},
-	weedle: {
-		inherit: true,
-		abilities: {0: "Weak Armor", 1: "Technician", H: "Sniper"},
-	},
-	kakuna: {
-		inherit: true,
-		abilities: {0: "Weak Armor", 1: "Technician", H: "Sniper"},
-	},
 	beedrill: {
 		inherit: true,
 		abilities: {0: "Weak Armor", 1: "Technician", H: "Sniper"},
@@ -139,14 +131,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Sheer Force", 1: "Pixilate", H: "Frisk"},
 	},
-	oddish: {
-		inherit: true,
-		abilities: {0: "Chlorophyll", 1: "Thick Fat", H: "Effect Spore"},
-	},
-	gloom: {
-		inherit: true,
-		abilities: {0: "Chlorophyll", 1: "Thick Fat", H: "Effect Spore"},
-	},
 	vileplume: {
 		inherit: true,
 		abilities: {0: "Chlorophyll", 1: "Thick Fat", H: "Effect Spore"},
@@ -182,14 +166,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	arcanine: {
 		inherit: true,
 		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Rock Head"},
-	},
-	poliwag: {
-		inherit: true,
-		abilities: {0: "Water Absorb", 1: "Iron Fist", H: "Swift Swim"},
-	},
-	poliwhirl: {
-		inherit: true,
-		abilities: {0: "Water Absorb", 1: "Iron Fist", H: "Swift Swim"},
 	},
 	poliwrath: {
 		inherit: true,
@@ -299,10 +275,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Soundproof", 1: "Static", H: "Transistor"},
 	},
-	exeggcute: {
-		inherit: true,
-		abilities: {0: "Chlorophyll", 1: "Regenerator", H: "Harvest"},
-	},
 	exeggutor: {
 		inherit: true,
 		abilities: {0: "Chlorophyll", 1: "Regenerator", H: "Harvest"},
@@ -366,10 +338,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	taurospaldeacombat: {
 		inherit: true,
 		abilities: {0: "Intimidate", 1: "Reckless", H: "Sheer Force"},
-	},
-	magikarp: {
-		inherit: true,
-		abilities: {0: "Intimidate", 1: "Mold Breaker", H: "Moxie"},
 	},
 	gyarados: {
 		inherit: true,
@@ -787,10 +755,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Truant", H: "Stall"},
 	},
-	nincada: {
-		inherit: true,
-		abilities: {0: "Speed Boost", 1: "Tinted Lens", H: "Infiltrator"},
-	},
 	ninjask: {
 		inherit: true,
 		abilities: {0: "Speed Boost", 1: "Tinted Lens", H: "Infiltrator"},
@@ -1014,10 +978,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	walrein: {
 		inherit: true,
 		abilities: {0: "Thick Fat", 1: "Ice Body", H: "Fluffy"},
-	},
-	clamperl: {
-		inherit: true,
-		abilities: {0: "Swift Swim", 1: "Intimidate", H: "Water Veil"},
 	},
 	huntail: {
 		inherit: true,
