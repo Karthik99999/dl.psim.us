@@ -556,7 +556,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			this.add('clearpoke');
 			for (const pokemon of this.getAllPokemon()) {
 				const details = pokemon.details.replace(', shiny', '')
-					.replace(/(Arceus|Gourgeist|Pumpkaboo|Xerneas|Silvally|Urshifu|Dudunsparce)(-[a-zA-Z?-]+)?/g, '$1-*')
+					.replace(/(Greninja|Gourgeist|Pumpkaboo|Xerneas|Silvally|Urshifu|Dudunsparce)(-[a-zA-Z?-]+)?/g, '$1-*')
 					.replace(/(Zacian|Zamazenta)(?!-Crowned)/g, '$1-*'); // Hacked-in Crowned formes will be revealed
 				this.add('poke', pokemon.side.id, details, '');
 			}
@@ -1673,7 +1673,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 			for (const side of this.sides) {
 				for (const pokemon of side.pokemon) {
 					const details = pokemon.details.replace(', shiny', '')
-						.replace(/(Arceus|Gourgeist|Pumpkaboo|Silvally|Urshifu)(-[a-zA-Z?-]+)?/g, '$1-*');
+						.replace(/(Arceus|Greninja|Gourgeist|Pumpkaboo|Silvally|Urshifu)(-[a-zA-Z?-]+)?/g, '$1-*');
 					this.add('poke', pokemon.side.id, details, '');
 				}
 				let buf = 'raw|';
@@ -2379,6 +2379,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 			for (const set of team) {
 				let species = this.dex.species.get(set.species);
 				if (typeof species.battleOnly === 'string') species = this.dex.species.get(species.battleOnly);
+				if (
+					(species.baseSpecies === 'Zamazenta' && this.toID(set.item) === 'rustedshield') ||
+					(species.baseSpecies === 'Zacian' && this.toID(set.item) === 'rustedshield')
+				) {
+					species = this.dex.species.get(`${species.baseSpecies}-Crowned`);
+				}
 				if (set.item && this.dex.items.get(set.item).megaStone) {
 					const item = this.dex.items.get(set.item);
 					if (item.megaEvolves === species.baseSpecies) {

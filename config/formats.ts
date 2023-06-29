@@ -53,7 +53,6 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		ruleset: ['Draft', 'Min Source Gen = 9'],
-		unbanlist: ['Greninja-Ash'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Tera Preview",

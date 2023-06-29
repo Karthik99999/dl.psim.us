@@ -338,9 +338,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect?.effectType !== 'Move') return;
 			if (source.abilityState.battleBondTriggered) return;
-			if (source.species.id === 'greninja' && source.hp && !source.transformed && source.side.foePokemonLeft()) {
-				this.add('-activate', source, 'ability: Battle Bond');
+			if (source.species.id === 'greninjabond' && source.hp && !source.transformed && source.side.foePokemonLeft()) {
 				this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.effect);
+				this.add('-activate', source, 'ability: Battle Bond');
 				source.abilityState.battleBondTriggered = true;
 			}
 		},
@@ -800,9 +800,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	dauntlessshield: {
 		onStart(pokemon) {
 			if (this.effectState.shieldBoost) return;
-			if (this.boost({def: 1}, pokemon)) {
-				this.effectState.shieldBoost = true;
-			}
+			this.effectState.shieldBoost = true;
+			this.boost({def: 1}, pokemon);
 		},
 		name: "Dauntless Shield",
 		rating: 3.5,
@@ -1981,9 +1980,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	intrepidsword: {
 		onStart(pokemon) {
 			if (this.effectState.swordBoost) return;
-			if (this.boost({atk: 1}, pokemon)) {
-				this.effectState.swordBoost = true;
-			}
+			this.effectState.swordBoost = true;
+			this.boost({atk: 1}, pokemon);
 		},
 		name: "Intrepid Sword",
 		rating: 4,
