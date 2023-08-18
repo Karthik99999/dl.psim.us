@@ -41,7 +41,7 @@ export const commands: Chat.ChatCommands = {
 			emotes[name] = url;
 			saveEmotes();
 
-			this.modlog('EMOTES ADDEMOTE', null, `added an emote with the name :${name}:`);
+			this.modlog('EMOTES ADDEMOTE', user, `added an emote with the name :${name}:`);
 			this.sendReply(`Added the emote :${name}:`);
 			this.refreshPage('emotes');
 		},
@@ -57,7 +57,7 @@ export const commands: Chat.ChatCommands = {
 			delete emotes[name];
 			saveEmotes();
 
-			this.modlog('EMOTES DELETEEMOTE', null, `deleted emote with the name :${name}:`);
+			this.modlog('EMOTES DELETEEMOTE', user, `deleted emote with the name :${name}:`);
 			this.sendReply(`Deleted the emote :${name}:`);
 			this.refreshPage('emotes');
 		},
