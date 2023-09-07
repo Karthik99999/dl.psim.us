@@ -938,6 +938,9 @@ export class Pokemon {
 				if (!this.hasType('Ghost')) {
 					target = this.battle.dex.moves.get('curse').nonGhostTarget || moveSlot.target;
 				}
+			// Heal Block only prevents Pollen Puff from targeting an ally when the user has Heal Block
+			} else if (moveSlot.id === 'pollenpuff' && this.volatiles['healblock']) {
+				target = 'adjacentFoe';
 			}
 			let disabled = moveSlot.disabled;
 			if (this.volatiles['dynamax']) {
@@ -1794,8 +1797,10 @@ export class Pokemon {
 		if (!isFromFormeChange) {
 			if (ability.isPermanent || this.getAbility().isPermanent) return false;
 		}
-		const setAbilityEvent: boolean | null = this.battle.runEvent('SetAbility', this, source, this.battle.effect, ability);
-		if (!setAbilityEvent) return setAbilityEvent;
+		if (!isTransform) {
+			const setAbilityEvent: boolean | null = this.battle.runEvent('SetAbility', this, source, this.battle.effect, ability);
+			if (!setAbilityEvent) return setAbilityEvent;
+		}
 		this.battle.singleEvent('End', this.battle.dex.abilities.get(oldAbility), this.abilityState, this, source);
 		if (this.battle.effect && this.battle.effect.effectType === 'Move' && !isFromFormeChange) {
 			this.battle.add('-endability', this, this.battle.dex.abilities.get(oldAbility), '[from] move: ' +

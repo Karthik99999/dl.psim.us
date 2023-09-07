@@ -260,7 +260,7 @@
         ]
     },
     "electrodehisui": {
-        "level": 88,
+        "level": 87,
         "sets": [
             {
                 "role": "Fast Attacker",
@@ -410,7 +410,7 @@
         ]
     },
     "articuno": {
-        "level": 87,
+        "level": 86,
         "sets": [
             {
                 "role": "Bulky Support",
@@ -554,7 +554,12 @@
         "sets": [
             {
                 "role": "Bulky Attacker",
-                "movepool": ["Aqua Jet", "Belly Drum", "Ice Spinner", "Liquidation", "Play Rough", "Superpower"],
+                "movepool": ["Aqua Jet", "Ice Spinner", "Liquidation", "Play Rough", "Superpower"],
+                "teraTypes": ["Water"]
+            },
+            {
+                "role": "Bulky Setup",
+                "movepool": ["Aqua Jet", "Belly Drum", "Liquidation", "Play Rough"],
                 "teraTypes": ["Water"]
             }
         ]
@@ -980,7 +985,7 @@
         ]
     },
     "torkoal": {
-        "level": 87,
+        "level": 88,
         "sets": [
             {
                 "role": "Bulky Attacker",
@@ -1170,7 +1175,7 @@
         ]
     },
     "kricketune": {
-        "level": 98,
+        "level": 99,
         "sets": [
             {
                 "role": "Fast Support",
@@ -1610,7 +1615,7 @@
         ]
     },
     "giratina": {
-        "level": 75,
+        "level": 74,
         "sets": [
             {
                 "role": "Fast Support",
@@ -1640,7 +1645,7 @@
         ]
     },
     "cresselia": {
-        "level": 80,
+        "level": 79,
         "sets": [
             {
                 "role": "Bulky Setup",
@@ -1830,7 +1835,7 @@
         ]
     },
     "arceusrock": {
-        "level": 72,
+        "level": 73,
         "sets": [
             {
                 "role": "Bulky Setup",
@@ -2388,7 +2393,7 @@
         ]
     },
     "goodra": {
-        "level": 86,
+        "level": 85,
         "sets": [
             {
                 "role": "Bulky Attacker",
@@ -2663,7 +2668,7 @@
         ]
     },
     "tsareena": {
-        "level": 86,
+        "level": 87,
         "sets": [
             {
                 "role": "Fast Support",
@@ -2713,7 +2718,7 @@
             {
                 "role": "Bulky Attacker",
                 "movepool": ["Body Slam", "Earthquake", "Gunk Shot", "Play Rough", "Rapid Spin", "Sucker Punch", "Superpower", "U-turn", "Wood Hammer"],
-                "teraTypes": ["Fairy", "Fighting", "Grass", "Ground", "Normal", "Poison"]
+                "teraTypes": ["Fairy", "Fighting", "Grass", "Ground", "Poison"]
             }
         ]
     },
@@ -2958,7 +2963,7 @@
         ]
     },
     "pincurchin": {
-        "level": 96,
+        "level": 97,
         "sets": [
             {
                 "role": "Bulky Attacker",
@@ -3053,7 +3058,7 @@
         ]
     },
     "zacian": {
-        "level": 70,
+        "level": 69,
         "sets": [
             {
                 "role": "Fast Attacker",
@@ -3063,7 +3068,7 @@
         ]
     },
     "zaciancrowned": {
-        "level": 65,
+        "level": 64,
         "sets": [
             {
                 "role": "Setup Sweeper",
@@ -3123,7 +3128,7 @@
         ]
     },
     "urshifurapidstrike": {
-        "level": 76,
+        "level": 75,
         "sets": [
             {
                 "role": "Fast Attacker",
@@ -3868,7 +3873,7 @@
             {
                 "role": "Bulky Setup",
                 "movepool": ["Bulk Up", "Close Combat", "Earthquake", "Ice Spinner", "Rapid Spin"],
-                "teraTypes": ["Fighting", "Ground"]
+                "teraTypes": ["Ground", "Steel"]
             },
             {
                 "role": "Bulky Attacker",
@@ -4003,7 +4008,7 @@
         ]
     },
     "ironjugulis": {
-        "level": 79,
+        "level": 78,
         "sets": [
             {
                 "role": "Fast Attacker",
@@ -4013,7 +4018,7 @@
         ]
     },
     "ironthorns": {
-        "level": 84,
+        "level": 83,
         "sets": [
             {
                 "role": "Fast Support",

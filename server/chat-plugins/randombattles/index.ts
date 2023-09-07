@@ -182,10 +182,6 @@ function getRBYMoves(species: string | Species) {
 	const data = getData(species, 'gen1randombattle');
 	if (!data) return false;
 	let buf = ``;
-	if (data.moves) {
-		buf += `<br/><b>Randomized moves</b>: `;
-		buf += data.moves.map(formatMove).sort().join(", ");
-	}
 	if (data.comboMoves) {
 		buf += `<br/><b>Combo moves</b>: `;
 		buf += data.comboMoves.map(formatMove).sort().join(", ");
@@ -194,9 +190,13 @@ function getRBYMoves(species: string | Species) {
 		buf += `<br/><b>Exclusive moves</b>: `;
 		buf += data.exclusiveMoves.map(formatMove).sort().join(", ");
 	}
-	if (data.essentialMove) {
-		buf += `<br/><b>Essential move</b>: `;
-		buf += formatMove(data.essentialMove);
+	if (data.essentialMoves) {
+		buf += `<br/><b>Essential move${Chat.plural(data.essentialMoves)}</b>: `;
+		buf += data.essentialMoves.map(formatMove).sort().join(", ");
+	}
+	if (data.moves) {
+		buf += `<br/><b>Randomized moves</b>: `;
+		buf += data.moves.map(formatMove).sort().join(", ");
 	}
 	if (
 		!data.moves && !data.comboMoves &&
@@ -791,7 +791,7 @@ export const commands: Chat.ChatCommands = {
 			const setsToCheck = [species];
 			if (dex.gen >= 8 && !isNoDMax) setsToCheck.push(dex.species.get(`${args[0]}gmax`));
 			if (species.otherFormes) setsToCheck.push(...species.otherFormes.map(pkmn => dex.species.get(pkmn)));
-			if (dex.gen >= 9 || (dex.gen === 7 && !isDoubles)) {
+			if (dex.gen >= 9 || (dex.gen === 7 && !isDoubles) || dex.gen === 6) {
 				for (const pokemon of setsToCheck) {
 					const sets = getSets(pokemon, format.id);
 					if (!sets) continue;
@@ -800,7 +800,7 @@ export const commands: Chat.ChatCommands = {
 						buf += `<details><summary>${set.role}</summary>`;
 						if (dex.gen === 9) {
 							buf += `<b>Tera Type${Chat.plural(set.teraTypes)}</b>: ${set.teraTypes.join(', ')}<br/>`;
-						} else if (dex.gen === 7 && set.preferredTypes) {
+						} else if ((dex.gen === 7 || dex.gen === 6) && set.preferredTypes) {
 							buf += `<b>Preferred Type${Chat.plural(set.preferredTypes)}</b>: ${set.preferredTypes.join(', ')}<br/>`;
 						}
 						buf += `<b>Moves</b>: ${set.movepool.sort().map(formatMove).join(', ')}</details>`;
@@ -987,7 +987,7 @@ export const commands: Chat.ChatCommands = {
 		}
 
 		let setExists: boolean;
-		if (dex.gen >= 9 || dex.gen === 7 && format.gameType !== 'doubles') {
+		if (dex.gen >= 9 || dex.gen === 7 && format.gameType !== 'doubles' || dex.gen === 6) {
 			setExists = !!getSets(species, format);
 		} else if (dex.gen === 7 && format.gameType === 'doubles') {
 			setExists = !!getData(species, format);

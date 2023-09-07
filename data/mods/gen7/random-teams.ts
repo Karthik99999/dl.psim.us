@@ -17,7 +17,7 @@ interface BattleFactorySet {
 	ivs?: Partial<StatsTable>;
 }
 
-const ZeroAttackHPIVs: {[k: string]: SparseStatsTable} = {
+export const ZeroAttackHPIVs: {[k: string]: SparseStatsTable} = {
 	grass: {hp: 30, spa: 30},
 	fire: {spa: 30, spe: 30},
 	ice: {def: 30},
@@ -118,7 +118,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			Fighting: (movePool, moves, abilities, types, counter) => !counter.get('Fighting'),
 			Fire: (movePool, moves, abilities, types, counter) => !counter.get('Fire'),
 			Flying: (movePool, moves, abilities, types, counter, species) => (
-				!counter.get('Flying') && ['aerodactylmega', 'charizardmega', 'mantine'].every(m => species.id !== m) &&
+				!counter.get('Flying') && !['aerodactylmega', 'charizardmegay', 'mantine'].includes(species.id) &&
 				!movePool.includes('hiddenpowerflying')
 			),
 			Ghost: (movePool, moves, abilities, types, counter) => !counter.get('Ghost'),
@@ -359,15 +359,13 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			['destinybond', 'whirlwind'],
 			// Liepard
 			['copycat', 'uturn'],
-			// Seviper
-			['switcheroo', 'suckerpunch'],
+			// Spinda and Seviper
+			[['feintattack', 'switcheroo'], 'suckerpunch'],
+			// Jirachi
+			['bodyslam', 'healingwish'],
 		];
 
 		for (const pair of incompatiblePairs) this.incompatibleMoves(moves, movePool, pair[0], pair[1]);
-
-		if (!types.includes('Normal')) {
-			this.incompatibleMoves(moves, movePool, SETUP, 'Explosion');
-		}
 
 		if (!types.includes('Dark') && preferredType !== 'Dark') {
 			this.incompatibleMoves(moves, movePool, 'knockoff', ['pursuit', 'suckerpunch']);
@@ -716,8 +714,8 @@ export class RandomGen7Teams extends RandomGen8Teams {
 	): boolean {
 		switch (ability) {
 		case 'Battle Bond': case 'Dazzling': case 'Flare Boost': case 'Gluttony': case 'Harvest': case 'Hyper Cutter':
-		case 'Ice Body': case 'Innards Out': case 'Liquid Voice': case 'Magician': case 'Moody': case 'Sand Veil':
-		case 'Snow Cloak': case 'Steadfast': case 'Weak Armor':
+		case 'Ice Body': case 'Innards Out': case 'Liquid Voice': case 'Magician': case 'Moody': case 'Pressure':
+		case 'Sand Veil': case 'Snow Cloak': case 'Steadfast': case 'Weak Armor':
 			return true;
 		case 'Aerilate': case 'Galvanize': case 'Pixilate': case 'Refrigerate':
 			return ['doubleedge', 'hypervoice', 'return'].every(m => !moves.has(m));
@@ -768,7 +766,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			return !counter.get('Grass');
 		case 'Power Construct':
 			return species.forme === '10%';
-		case 'Pressure': case 'Synchronize':
+		case 'Synchronize':
 			return (counter.get('Status') < 2 || !!counter.get('recoil') || !!species.isMega);
 		case 'Regenerator':
 			return species.id === 'mienshao' || species.id === 'reuniclus';
@@ -779,7 +777,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		case 'Scrappy':
 			return !types.has('Normal');
 		case 'Serene Grace':
-			return (!counter.get('serenegrace') || species.name === 'Blissey');
+			return !counter.get('serenegrace');
 		case 'Sheer Force':
 			return (
 				!counter.get('sheerforce') ||
@@ -796,7 +794,8 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		case 'Solar Power':
 			return (!counter.get('Special') || !teamDetails.sun || !!species.isMega);
 		case 'Sturdy':
-			return (!!counter.get('recoil') && !counter.get('recovery') || species.id === 'steelix');
+			return (!!counter.get('recoil') && !counter.get('recovery') ||
+				(species.id === 'steelix' && role === 'Wallbreaker'));
 		case 'Swarm':
 			return (!counter.get('Bug') || !!species.isMega);
 		case 'Technician':
@@ -850,10 +849,14 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		if (species.id === 'golemalola' && moves.has('return')) return 'Galvanize';
 		if (species.id === 'raticatealola') return 'Hustle';
 		if (species.id === 'ninjask' || species.id === 'seviper') return 'Infiltrator';
+		if (species.id === 'arcanine') return 'Intimidate';
 		if (species.id === 'rampardos' && role === 'Bulky Attacker') return 'Mold Breaker';
 		if (species.baseSpecies === 'Altaria') return 'Natural Cure';
 		// If Ambipom doesn't qualify for Technician, Skill Link is useless on it
 		if (species.id === 'ambipom' && !counter.get('technician')) return 'Pickup';
+		if (
+			['dusknoir', 'raikou', 'suicune', 'vespiquen', 'wailord'].includes(species.id)
+		) return 'Pressure';
 		if (species.id === 'tsareena') return 'Queenly Majesty';
 		if (species.id === 'druddigon' && role === 'Bulky Support') return 'Rough Skin';
 		if (species.id === 'kommoo' && role === 'Z-Move user') return 'Soundproof';
@@ -1056,10 +1059,10 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			(ability === 'Rough Skin') || (species.id !== 'hooh' &&
 			ability === 'Regenerator' && species.baseStats.hp + species.baseStats.def >= 180 && this.randomChance(1, 2))
 		) return 'Rocky Helmet';
-		if (['protect', 'spikyshield', 'substitute'].some(m => moves.has(m))) return 'Leftovers';
+		if (['kingsshield', 'protect', 'spikyshield', 'substitute'].some(m => moves.has(m))) return 'Leftovers';
 		if (
 			this.dex.getEffectiveness('Ground', species) >= 2 &&
-			ability !== 'Levitate'
+			ability !== 'Levitate' && species.id !== 'golemalola'
 		) {
 			return 'Air Balloon';
 		}
@@ -1203,7 +1206,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 				if (hp % 2 === 0) break;
 			} else {
 				// Maximize number of Stealth Rock switch-ins
-				if (srWeakness <= 0 || ability === 'Regenerator' || ['Leftovers', 'Life Orb'].includes(item)) break;
+				if (srWeakness <= 0 || ability === 'Regenerator' || ['Black Sludge', 'Leftovers', 'Life Orb'].includes(item)) break;
 				if (item !== 'Sitrus Berry' && hp % (4 / srWeakness) > 0) break;
 				// Minimise number of Stealth Rock switch-ins to activate Sitrus Berry
 				if (item === 'Sitrus Berry' && hp % (4 / srWeakness) === 0) break;
@@ -1277,7 +1280,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		for (const restrict of [true, false]) {
 			if (pokemon.length >= this.maxTeamSize) break;
 
-			const pokemonList = (this.gen === 7) ? Object.keys(this.randomSets) : Object.keys(this.randomData);
+			const pokemonList = Object.keys(this.randomSets);
 			const [pokemonPool, baseSpeciesPool] = this.getPokemonPool(type, pokemon, isMonotype, pokemonList);
 			while (baseSpeciesPool.length && pokemon.length < this.maxTeamSize) {
 				const baseSpecies = this.sampleNoReplace(baseSpeciesPool);
@@ -1300,18 +1303,13 @@ export class RandomGen7Teams extends RandomGen8Teams {
 				}
 				const species = this.sample(currentSpeciesPool);
 
-				// Check if the forme has moves for random battle
-				// Gen 7 is using the new set format, while Gen 6 is still using the old format
 				if (this.gen === 7) {
-					if (!this.randomSets[species.id]) continue;
 					// If the team has a Z-Move user, reject Pokemon that only have the Z-Move user role
 					if (
 						this.randomSets[species.id]["sets"].length === 1 &&
 						this.randomSets[species.id]["sets"][0]["role"] === 'Z-Move user' &&
 						teamDetails.zMove
 					) continue;
-				} else {
-					if (!this.randomData[species.id]?.moves) continue;
 				}
 				if (!species.exists) continue;
 

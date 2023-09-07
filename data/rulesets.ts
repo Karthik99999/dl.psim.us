@@ -2599,6 +2599,12 @@ export const Rulesets: {[k: string]: FormatData} = {
 			for (const set of team) {
 				const species = this.dex.species.get(set.species);
 				const fusion = this.dex.species.get(set.name);
+				if (fusion.exists) {
+					set.name = fusion.name;
+				} else {
+					set.name = species.baseSpecies;
+					if (species.baseSpecies === 'Unown') set.species = 'Unown';
+				}
 				if (fusion.name === species.name) continue;
 				donors.add(fusion.name);
 			}
@@ -2606,8 +2612,15 @@ export const Rulesets: {[k: string]: FormatData} = {
 				if (number > 1) {
 					return [`You can only fuse with any Pok\u00e9 once.`, `(You have ${number} Pok\u00e9mon fused with ${fusionName}.)`];
 				}
-				if (this.ruleTable.isBannedSpecies(this.dex.species.get(fusionName))) {
+				const fusion = this.dex.species.get(fusionName);
+				if (this.ruleTable.isBannedSpecies(fusion) || fusion.battleOnly) {
 					return [`Pok\u00e9mon can't fuse with banned Pok\u00e9mon.`, `(${fusionName} is banned.)`];
+				}
+				if (fusion.isNonstandard &&
+					!(this.ruleTable.has(`+pokemontag:${this.toID(fusion.isNonstandard)}`) ||
+						this.ruleTable.has(`+pokemon:${fusion.id}`) ||
+						this.ruleTable.has(`+basepokemon:${this.toID(fusion.baseSpecies)}`))) {
+					return [`${fusion.name} is marked as ${fusion.isNonstandard}, which is banned.`];
 				}
 			}
 		},
@@ -2625,6 +2638,20 @@ export const Rulesets: {[k: string]: FormatData} = {
 				newSpecies.bst += newSpecies.baseStats[stat];
 			}
 			return newSpecies;
+		},
+	},
+	proteanpalacemod: {
+		effectType: 'Rule',
+		name: "Protean Palace Mod",
+		desc: `Each Pok&eacute;mon innately has Protean.`,
+		onBegin() {
+			this.add('rule', 'Protean Palace Mod: Every Pok\u00e9mon innately has Protean.');
+		},
+		onSwitchIn(pokemon) {
+			if (!pokemon.hasAbility(['libero', 'protean'])) {
+				const effect = 'ability:protean';
+				pokemon.addVolatile(effect);
+			}
 		},
 	},
 };
