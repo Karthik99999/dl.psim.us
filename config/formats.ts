@@ -26,29 +26,6 @@ export const Formats: FormatList = [
 		section: "Paldea Draft Tiers",
 	},
 	{
-		name: "[Gen 9] Paldea Dex Pre-Home Draft",
-	
-		mod: 'gen9',
-		ruleset: ['Draft', 'Min Source Gen = 9'],
-		banlist: [
-			'Raichu-Alola', 'Diglett-Alola', 'Dugtrio-Alola', 'Meowth-Alola', 'Persian-Alola', 'Growlithe-Hisui',
-			'Arcanine-Hisui', 'Slowpoke-Galar', 'Slowbro-Galar', 'Grimer-Alola', 'Muk-Alola', 'Voltorb-Hisui',
-			'Electrode-Hisui', 'Tauros-Base', 'Articuno', 'Zapdos', 'Moltres', 'Mewtwo', 'Mew', 'Typhlosion-Hisui',
-			'Slowking-Galar', 'Qwilfish-Hisui', 'Sneasel-Hisui', 'Kyogre', 'Groudon', 'Rayquaza', 'Uxie', 'Mesprit',
-			'Azelf', 'Dialga', 'Palkia', 'Heatran', 'Giratina', 'Cresselia', 'Arceus', 'Samurott-Hisui',
-			'Lilligant-Hisui', 'Basculin-White-Striped', 'Braviary-Hisui', 'Tornadus', 'Thundurus', 'Landorus',
-			'Meloetta', 'Fennekin', 'Braixen', 'Delphox', 'Vivillon-Pokeball', 'Carbink', 'Sliggoo-Hisui',
-			'Goodra-Hisui', 'Avalugg-Hisui', 'Diancie', 'Hoopa', 'Volcanion', 'Decidueye-Hisui', 'Magearna',
-			'Grookey', 'Thwackey', 'Rillaboom', 'Zacian', 'Zamazenta', 'Eternatus', 'Kubfu', 'Urshifu', 'Zarude',
-			'Regieleki', 'Regidrago', 'Glastrier', 'Spectrier', 'Calyrex', 'Wyrdeer', 'Kleavor', 'Ursaluna',
-			'Basculegion', 'Sneasler', 'Overqwil', 'Enamorus', 'Gimmighoul-Roaming',
-			'Draco Plate', 'Dread Plate', 'Earth Plate', 'Fist Plate', 'Flame Plate', 'Icicle Plate', 'Insect Plate',
-			'Iron Plate', 'Meadow Plate', 'Mind Plate', 'Pixie Plate', 'Sky Plate', 'Splash Plate', 'Spooky Plate',
-			'Stone Plate', 'Toxic Plate', 'Zap Plate',
-			'Barb Barrage', 'Cosmic Power', 'Heal Bell', 'Psyshield Bash', 'Raging Fury', 'Simple Beam',
-		],
-	},
-	{
 		name: "[Gen 9] Paldea Dex Draft",
 	
 		mod: 'gen9',
@@ -61,25 +38,11 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9] Paldea Dex Pre-Home Doubles",
-	
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft'],
-	},
-	{
 		name: "[Gen 9] Paldea Dex Doubles",
 	
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Draft'],
-	},
-	{
-		name: "[Gen 9] Paldea Dex Pre-Home VGC",
-	
-		mod: 'gen9',
-		gameType: 'doubles',
-		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', '!Draft', 'Draft VGC'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex VGC",
@@ -94,12 +57,6 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex VGC', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9] LC Paldea Dex Pre-Home Draft",
-	
-		mod: 'gen9',
-		ruleset: ['[Gen 9] Paldea Dex Pre-Home Draft', 'Double Item Clause', 'Little Cup'],
 	},
 	{
 		name: "[Gen 9] LC Paldea Dex Draft",
@@ -205,12 +162,151 @@ export const Formats: FormatList = [
 		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
+	// Paldea Pre-DLC Draft Tiers
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Paldea Pre-DLC Draft Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 9 Pre-DLC] Paldea Dex Draft",
+	
+		mod: 'gen9predlc',
+		ruleset: ['Draft', 'Min Source Gen = 9'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] Paldea Dex Tera Preview",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Tera Type Preview'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] Paldea Dex Doubles",
+	
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] Paldea Dex VGC",
+	
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', '!Draft', 'Draft VGC'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] Paldea Dex VGC Tera Preview",
+	
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex VGC', 'Tera Type Preview'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] LC Paldea Dex Draft",
+	
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
+	},
+
+	// National Draft Tiers
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "National Dex Pre-DLC Draft Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Draft",
+
+		mod: 'gen9predlc',
+		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Draft Tera Preview",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Tera Type Preview'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Legacy",
+
+		mod: 'gen9predlc',
+		ruleset: ['Draft', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Legacy Tera Preview",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Tera Type Preview'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Unrestricted",
+
+		mod: 'gen9predlc',
+		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex WiFi",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Adjust Level = 50'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Doubles",
+
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Doubles Legacy",
+
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex Doubles Unrestricted",
+
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Unrestricted', '!Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex 4v4",
+
+		mod: 'gen9predlc',
+		gameType: 'doubles',
+		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] LC National Dex Draft",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] LC National Dex Legacy",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 9 Pre-DLC] National Dex CAP",
+
+		mod: 'gen9predlc',
+		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', '+CAP'],
+	},
+
 	// Past Gens Draft
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Past Gen Draft Tiers",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Draft League",
@@ -251,111 +347,18 @@ export const Formats: FormatList = [
 
 	// Custom Partner Formats
 	///////////////////////////////////////////////////////////////////
+	/*
 	{
 		section: "Custom Partner Formats",
-		column: 2,
+		column: 3,
 	},
-	{
-		name: "[Gen 9] DPL S7",
-
-		mod: 'gen9',
-		ruleset: ['[Gen 9] Paldea Dex Draft', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9] BBL National Dex Draft",
-
-		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Legacy'],
-		banlist: ['Necrozma-Dusk-Mane', 'Moody', 'Hidden Power'],
-		// Z-Move Clause is hardcoded to allow Ultranecrozium Z
-		onValidateSet(set) {
-			const item = this.dex.items.get(set.item);
-			if (item.zMove && item.id !== 'ultranecroziumz') {
-				return [`${set.name || set.species}'s item ${item.name} is banned by Z-Move Clause.`];
-			}
-		},
-		onBegin() {
-			this.add('rule', 'Z-Move Clause: Z-Moves are banned');
-		},
-	},
-	{
-		name: "[Gen 9] National Dex Buffmons",
-
-		mod: 'buffmons',
-		ruleset: ['[Gen 9] National Dex Legacy'],
-		banlist: ['Assist', 'Hidden Power', 'Pursuit', 'Tera Blast', "Zamazenta-Base + King's Shield"],
-	},
-	{
-		name: "[Gen 9] WPF Natdex STABmons",
-
-		mod: 'gen9',
-		ruleset: ['[Gen 9] National Dex Legacy', 'OM Unobtainable Moves'],
-		banlist: ['Silvally', 'Rotom'],
-		restricted: [
-			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Chatter', 'Clangorous Soul', 'Dark Void',
-			'Dire Claw', 'Double Iron Bash', 'Dragon Ascent', 'Electrify', 'Extreme Speed', 'Fillet Away', 'Final Gambit',
-			'Fishious Rend', 'Geomancy', 'Gigaton Hammer', 'Grass Whistle', 'Hidden Power', 'Hypnosis', 'Judgment',
-			'Last Respects', 'Lovely Kiss', 'Multi-Attack', 'No Retreat', 'Oblivion Wing', 'Octolock', 'Pursuit',
-			'Revival Blessing', 'Shed Tail', 'Shell Smash', 'Shift Gear', 'Sing', 'Sleep Powder', 'Spore', 'Techno Blast',
-			'Thousand Arrows', 'V-create', 'Victory Dance', 'Wicked Blow',
-		],
-		checkCanLearn(move, species, setSources, set) {
-			if (!move.isZ && !move.isMax && !this.ruleTable.isRestricted(`move:${move.id}`)) {
-				const speciesTypes: string[] = [];
-				const moveTypes: string[] = [];
-				for (let i = this.dex.gen; i >= species.gen && i >= move.gen; i--) {
-					const dex = this.dex.forGen(i);
-					moveTypes.push(dex.moves.get(move.name).type);
-
-					const pokemon = dex.species.get(species.name);
-					if (pokemon.forme || pokemon.otherFormes) {
-						const baseSpecies = dex.species.get(pokemon.baseSpecies);
-						const originalForme = dex.species.get(pokemon.changesFrom || pokemon.name);
-						speciesTypes.push(...originalForme.types);
-						if (baseSpecies.otherFormes) {
-							for (const formeName of baseSpecies.otherFormes) {
-								if (baseSpecies.prevo) {
-									const prevo = dex.species.get(baseSpecies.prevo);
-									if (prevo.evos.includes(formeName)) continue;
-								}
-								const forme = dex.species.get(formeName);
-								if (forme.changesFrom === originalForme.name && !forme.battleOnly) {
-									speciesTypes.push(...forme.types);
-								}
-							}
-						}
-					} else {
-						speciesTypes.push(...pokemon.types);
-					}
-
-					let prevo = pokemon.prevo;
-					while (prevo) {
-						const prevoSpecies = dex.species.get(prevo);
-						speciesTypes.push(...prevoSpecies.types);
-						prevo = prevoSpecies.prevo;
-					}
-				}
-				if (moveTypes.some(m => speciesTypes.includes(m))) return null;
-			}
-			return this.checkCanLearn(move, species, setSources, set);
-		},
-	},
-	{
-		name: "[Gen 3] Emerald Open",
-
-		mod: 'gen3',
-		ruleset: ['[Gen 3] Draft League', 'One Boost Passer Clause', '!Evasion Moves Clause', 'Evasion Clause', 'Accuracy Moves Clause'],
-		banlist: [
-			'Focus Band', "King's Rock", 'Quick Claw',
-			'Ninjask + Swagger + Baton Pass', 'Spider Web + Baton Pass', 'Mean Look + Baton Pass',
-		],
-	},
+	*/
 
 	// Metagames
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Metagames",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 9] Draft Arena",
