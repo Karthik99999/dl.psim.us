@@ -1,7 +1,7 @@
 export const Moves: {[k: string]: ModdedMoveData} = {
 	aurawheel: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	bloodmoon: {
 		inherit: true,
@@ -9,23 +9,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	clangingscales: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	clangoroussoul: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	darkvoid: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	doomdesire: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	forestscurse: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	grassyglide: {
 		inherit: true,
@@ -41,11 +41,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	seedflare: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	strangesteam: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	syrupbomb: {
 		inherit: true,
@@ -53,14 +53,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	tailglow: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	takeheart: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 	toxicthread: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Legacy",
 	},
 };
