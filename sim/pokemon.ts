@@ -824,7 +824,7 @@ export class Pokemon {
 		for (const pokemon of this.battle.getAllActive()) {
 			// can't use hasAbility because it would lead to infinite recursion
 			if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid'] &&
-				!pokemon.transformed && !pokemon.abilityState.ending) {
+				!pokemon.transformed && !pokemon.abilityState.ending && !this.volatiles['commanding']) {
 				return true;
 			}
 		}
@@ -1196,7 +1196,8 @@ export class Pokemon {
 		const species = pokemon.species;
 		if (pokemon.fainted || this.illusion || pokemon.illusion || (pokemon.volatiles['substitute'] && this.battle.gen >= 5) ||
 			(pokemon.transformed && this.battle.gen >= 2) || (this.transformed && this.battle.gen >= 5) ||
-			species.name === 'Eternatus-Eternamax' || (species.baseSpecies === 'Ogerpon' && this.terastallized)) {
+			species.name === 'Eternatus-Eternamax' || (species.baseSpecies === 'Ogerpon' &&
+			(this.terastallized || pokemon.terastallized))) {
 			return false;
 		}
 
@@ -1292,7 +1293,7 @@ export class Pokemon {
 
 		// Pokemon transformed into Ogerpon cannot Terastallize
 		// restoring their ability to tera after they untransform is handled ELSEWHERE
-		if (this.species.baseSpecies === 'Ogerpon') this.canTerastallize = false;
+		if (this.species.baseSpecies === 'Ogerpon' && this.canTerastallize) this.canTerastallize = false;
 
 		return true;
 	}
@@ -1881,8 +1882,7 @@ export class Pokemon {
 			this.battle.debug('add volatile [' + status.id + '] interrupted');
 			return result;
 		}
-		this.volatiles[status.id] = {id: status.id};
-		this.volatiles[status.id].target = this;
+		this.volatiles[status.id] = {id: status.id, name: status.name, target: this};
 		if (source) {
 			this.volatiles[status.id].source = source;
 			this.volatiles[status.id].sourceSlot = source.getSlot();
