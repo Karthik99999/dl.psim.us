@@ -309,37 +309,37 @@ export const Formats: FormatList = [
 		column: 3,
 	},
 	{
-		name: "[Gen 8] Draft League",
+		name: "[Gen 8] Draft",
 
 		mod: 'gen8',
 		ruleset: ['Draft'],
 	},
 	{
-		name: "[Gen 7] Draft League",
+		name: "[Gen 7] Draft",
 
 		mod: 'gen7',
 		ruleset: ['Draft', '+LGPE'],
 	},
 	{
-		name: "[Gen 6] Draft League",
+		name: "[Gen 6] Draft",
 
 		mod: 'gen6',
 		ruleset: ['Draft'],
 	},
 	{
-		name: "[Gen 5] Draft League",
+		name: "[Gen 5] Draft",
 
 		mod: 'gen5',
 		ruleset: ['Draft'],
 	},
 	{
-		name: "[Gen 4] Draft League",
+		name: "[Gen 4] Draft",
 
 		mod: 'gen4',
 		ruleset: ['Draft', '!Team Preview'],
 	},
 	{
-		name: "[Gen 3] Draft League",
+		name: "[Gen 3] Draft",
 
 		mod: 'gen3',
 		ruleset: ['Draft', '!Team Preview'],
@@ -347,12 +347,23 @@ export const Formats: FormatList = [
 
 	// Custom Partner Formats
 	///////////////////////////////////////////////////////////////////
-	/*
 	{
 		section: "Custom Partner Formats",
 		column: 3,
 	},
-	*/
+	{
+		name: "[Gen 4] Distortion Draft",
+
+		mod: 'gen4',
+		ruleset: ['Draft', '!Team Preview', 'Evasion Items Clause', 'Accuracy Moves Clause', 'Baton Pass Stat Clause'],
+		banlist: [
+			'Sandshrew', 'Sandslash', 'Mewtwo', 'Mew', 'Lugia', 'Ho-Oh', 'Cacnea', 'Cacturne',
+			'Salamence', 'Latias', 'Latios', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys',
+			'Gible', 'Gabite', 'Garchomp', 'Dialga', 'Palkia', 'Giratina', 'Manaphy', 'Darkrai', 'Arceus',
+			'Sand Veil', 'Swinub + Snow Cloak', 'Piloswine + Snow Cloak', 'Mamoswine + Snow Cloak',
+			'Quick Claw', 'Swagger',
+		],
+	},
 
 	// Metagames
 	///////////////////////////////////////////////////////////////////
