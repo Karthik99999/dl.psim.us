@@ -7,8 +7,9 @@
     "esbuild": "^0.16.10",
     "preact": "^10.5.15",
     "preact-render-to-string": "^5.1.19",
-    "probe-image-size": "^5.0.0",
-    "sockjs": "^0.3.21"
+    "probe-image-size": "^7.2.3",
+    "sockjs": "^0.3.21",
+    "source-map-support": "^0.5.21"
   },
   "optionalDependencies": {
     "better-sqlite3": "^7.6.2",
@@ -79,7 +80,7 @@
     "@typescript-eslint/parser": "^5.8.0",
     "eslint": "^8.5.0",
     "mocha": "^8.2.0",
-    "smogon": "^2.2.1",
+    "smogon": "^3.0.0",
     "typescript": "^5.0.4"
   }
 }
