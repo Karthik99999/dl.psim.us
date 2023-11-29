@@ -29,18 +29,21 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex Draft",
 	
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['Draft', 'Min Source Gen = 9'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Tera Preview",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] Paldea Dex Doubles",
 	
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Draft'],
 	},
@@ -48,6 +51,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex VGC",
 	
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Draft', '!Draft', 'Draft VGC'],
 	},
@@ -55,6 +59,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Paldea Dex VGC Tera Preview",
 	
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex VGC', 'Tera Type Preview'],
 	},
@@ -62,6 +67,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] LC Paldea Dex Draft",
 	
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
 	},
 
@@ -75,42 +81,49 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Draft",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
 		name: "[Gen 9] National Dex Draft Tera Preview",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Draft', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['Draft', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex Legacy Tera Preview",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Legacy', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9] National Dex Unrestricted",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9] National Dex WiFi",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Draft', 'Adjust Level = 50'],
 	},
 	{
 		name: "[Gen 9] National Dex Doubles",
 
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] National Dex Draft'],
 	},
@@ -118,6 +131,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Doubles Legacy",
 
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] National Dex Legacy'],
 	},
@@ -125,6 +139,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex Doubles Unrestricted",
 
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] National Dex Unrestricted', '!Sleep Clause Mod'],
 	},
@@ -132,6 +147,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex 4v4",
 
 		mod: 'gen9',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
@@ -139,6 +155,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] LC National Dex Draft",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Draft', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -146,6 +163,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] LC National Dex Legacy",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -153,12 +171,14 @@ export const Formats: FormatList = [
 		name: "[Gen 9] National Dex CAP",
 
 		mod: 'gen9',
+		searchShow: false,
 		ruleset: ['[Gen 9] National Dex Draft', '+CAP'],
 	},
 	{
 		name: "[Gen 8] National Dex Draft",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
@@ -173,18 +193,21 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] Paldea Dex Draft",
 	
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['Draft', 'Min Source Gen = 9'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] Paldea Dex Tera Preview",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] Paldea Dex Doubles",
 	
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft'],
 	},
@@ -192,6 +215,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] Paldea Dex VGC",
 	
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', '!Draft', 'Draft VGC'],
 	},
@@ -199,6 +223,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] Paldea Dex VGC Tera Preview",
 	
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex VGC', 'Tera Type Preview'],
 	},
@@ -206,6 +231,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] LC Paldea Dex Draft",
 	
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
 	},
 
@@ -220,42 +246,49 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] National Dex Draft",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex Draft Tera Preview",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex Legacy",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['Draft', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex Legacy Tera Preview",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Tera Type Preview'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex Unrestricted",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex WiFi",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Adjust Level = 50'],
 	},
 	{
 		name: "[Gen 9 Pre-DLC] National Dex Doubles",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft'],
 	},
@@ -263,6 +296,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] National Dex Doubles Legacy",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy'],
 	},
@@ -270,6 +304,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] National Dex Doubles Unrestricted",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Unrestricted', '!Sleep Clause Mod'],
 	},
@@ -277,6 +312,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] National Dex 4v4",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
@@ -284,6 +320,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] LC National Dex Draft",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -291,6 +328,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] LC National Dex Legacy",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -298,6 +336,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9 Pre-DLC] National Dex CAP",
 
 		mod: 'gen9predlc',
+		searchShow: false,
 		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', '+CAP'],
 	},
 
@@ -312,36 +351,42 @@ export const Formats: FormatList = [
 		name: "[Gen 8] Draft",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Draft'],
 	},
 	{
 		name: "[Gen 7] Draft",
 
 		mod: 'gen7',
+		searchShow: false,
 		ruleset: ['Draft', '+LGPE'],
 	},
 	{
 		name: "[Gen 6] Draft",
 
 		mod: 'gen6',
+		searchShow: false,
 		ruleset: ['Draft'],
 	},
 	{
 		name: "[Gen 5] Draft",
 
 		mod: 'gen5',
+		searchShow: false,
 		ruleset: ['Draft'],
 	},
 	{
 		name: "[Gen 4] Draft",
 
 		mod: 'gen4',
+		searchShow: false,
 		ruleset: ['Draft', '!Team Preview'],
 	},
 	{
 		name: "[Gen 3] Draft",
 
 		mod: 'gen3',
+		searchShow: false,
 		ruleset: ['Draft', '!Team Preview'],
 	},
 
@@ -355,6 +400,7 @@ export const Formats: FormatList = [
 		name: "[Gen 4] Distortion Draft",
 
 		mod: 'gen4',
+		searchShow: false,
 		ruleset: ['Draft', '!Team Preview', 'Evasion Items Clause', 'Accuracy Moves Clause', 'Baton Pass Stat Clause'],
 		banlist: [
 			'Sandshrew', 'Sandslash', 'Mewtwo', 'Mew', 'Lugia', 'Ho-Oh', 'Cacnea', 'Cacturne',
