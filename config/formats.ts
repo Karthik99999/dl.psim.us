@@ -407,7 +407,7 @@ export const Formats: FormatList = [
 			'Salamence', 'Latias', 'Latios', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys',
 			'Gible', 'Gabite', 'Garchomp', 'Dialga', 'Palkia', 'Giratina', 'Manaphy', 'Darkrai', 'Arceus',
 			'Sand Veil', 'Swinub + Snow Cloak', 'Piloswine + Snow Cloak', 'Mamoswine + Snow Cloak',
-			'Quick Claw', 'Swagger',
+			'Quick Claw', 'Swagger', 'Baton Pass + Substitute',
 		],
 	},
 
