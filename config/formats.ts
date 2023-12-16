@@ -182,162 +182,162 @@ export const Formats: FormatList = [
 		ruleset: ['Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
-	// Paldea Pre-DLC Draft Tiers
+	// Paldea DLC 1 Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "Paldea Pre-DLC Draft Tiers",
+		section: "Paldea DLC 1 Draft Tiers",
 		column: 2,
 	},
 	{
-		name: "[Gen 9 Pre-DLC] Paldea Dex Draft",
+		name: "[Gen 9 DLC 1] Paldea Dex Draft",
 	
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		ruleset: ['Draft', 'Min Source Gen = 9'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] Paldea Dex Tera Preview",
+		name: "[Gen 9 DLC 1] Paldea Dex Tera Preview",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Tera Type Preview'],
+		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] Paldea Dex Doubles",
+		name: "[Gen 9 DLC 1] Paldea Dex Doubles",
 	
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft'],
+		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] Paldea Dex VGC",
+		name: "[Gen 9 DLC 1] Paldea Dex VGC",
 	
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', '!Draft', 'Draft VGC'],
+		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', '!Draft', 'Draft VGC'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] Paldea Dex VGC Tera Preview",
+		name: "[Gen 9 DLC 1] Paldea Dex VGC Tera Preview",
 	
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex VGC', 'Tera Type Preview'],
+		ruleset: ['[Gen 9 DLC 1] Paldea Dex VGC', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] LC Paldea Dex Draft",
+		name: "[Gen 9 DLC 1] LC Paldea Dex Draft",
 	
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
 	},
 
 	// National Draft Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "National Dex Pre-DLC Draft Tiers",
+		section: "National Dex DLC 1 Draft Tiers",
 		column: 2,
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Draft",
+		name: "[Gen 9 DLC 1] National Dex Draft",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		ruleset: ['Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Draft Tera Preview",
+		name: "[Gen 9 DLC 1] National Dex Draft Tera Preview",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Tera Type Preview'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Legacy",
+		name: "[Gen 9 DLC 1] National Dex Legacy",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		ruleset: ['Draft', '+Past', '+Legacy'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Legacy Tera Preview",
+		name: "[Gen 9 DLC 1] National Dex Legacy Tera Preview",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Tera Type Preview'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Legacy', 'Tera Type Preview'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Unrestricted",
+		name: "[Gen 9 DLC 1] National Dex Unrestricted",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		ruleset: ['Draft', '!Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex WiFi",
+		name: "[Gen 9 DLC 1] National Dex WiFi",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Adjust Level = 50'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Adjust Level = 50'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Doubles",
+		name: "[Gen 9 DLC 1] National Dex Doubles",
 
-		mod: 'gen9predlc',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft'],
-	},
-	{
-		name: "[Gen 9 Pre-DLC] National Dex Doubles Legacy",
-
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Draft'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex Doubles Unrestricted",
+		name: "[Gen 9 DLC 1] National Dex Doubles Legacy",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Unrestricted', '!Sleep Clause Mod'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Legacy'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex 4v4",
+		name: "[Gen 9 DLC 1] National Dex Doubles Unrestricted",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
+		searchShow: false,
+		gameType: 'doubles',
+		ruleset: ['[Gen 9 DLC 1] National Dex Unrestricted', '!Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 9 DLC 1] National Dex 4v4",
+
+		mod: 'gen9dlc1',
 		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] LC National Dex Draft",
+		name: "[Gen 9 DLC 1] LC National Dex Draft",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] LC National Dex Legacy",
+		name: "[Gen 9 DLC 1] LC National Dex Legacy",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 9 Pre-DLC] National Dex CAP",
+		name: "[Gen 9 DLC 1] National Dex CAP",
 
-		mod: 'gen9predlc',
+		mod: 'gen9dlc1',
 		searchShow: false,
-		ruleset: ['[Gen 9 Pre-DLC] National Dex Draft', '+CAP'],
+		ruleset: ['[Gen 9 DLC 1] National Dex Draft', '+CAP'],
 	},
 
 	// Past Gens Draft
