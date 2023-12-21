@@ -52,6 +52,7 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		searchShow: false,
+		bestOfDefault: true,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex Draft', '!Draft', 'Draft VGC'],
 	},
@@ -60,6 +61,7 @@ export const Formats: FormatList = [
 	
 		mod: 'gen9',
 		searchShow: false,
+		bestOfDefault: true,
 		gameType: 'doubles',
 		ruleset: ['[Gen 9] Paldea Dex VGC', 'Tera Type Preview'],
 	},
@@ -148,6 +150,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9',
 		searchShow: false,
+		bestOfDefault: true,
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
@@ -313,6 +316,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen9dlc1',
 		searchShow: false,
+		bestOfDefault: true,
 		gameType: 'doubles',
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
