@@ -3596,13 +3596,9 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		isNonstandard: "Past",
 	},
-	// TODO - Sprite & Fling Base Power
 	metalalloy: {
 		name: "Metal Alloy",
-		spritenum: 0,
-		fling: {
-			basePower: 30,
-		},
+		spritenum: 761,
 		num: 2482,
 		gen: 9,
 	},
@@ -5442,7 +5438,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Latios", "Latias"],
 		num: 225,
 		gen: 3,
-		isNonstandard: "Past",
 	},
 	spelltag: {
 		name: "Spell Tag",
