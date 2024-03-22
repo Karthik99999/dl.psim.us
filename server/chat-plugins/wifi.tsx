@@ -96,7 +96,9 @@ const gameidToGame: {[k: string]: Game} = {
 	sv: 'SV',
 };
 
-class Giveaway extends Rooms.SimpleRoomGame {
+abstract class Giveaway extends Rooms.SimpleRoomGame {
+	override readonly gameid = 'giveaway' as ID;
+	abstract type: string;
 	gaNumber: number;
 	host: User;
 	giver: User;
@@ -716,6 +718,7 @@ export class LotteryGiveaway extends Giveaway {
 				<p style={{textAlign: 'center'}}>{Chat.count(this.joined.size, 'users')} joined the giveaway.<br />
 				Our lucky winner{Chat.plural(this.winners)}: <b>{winnerNames}</b>!<br />Congratulations!</p>
 			</>));
+			this.room.sendMods(`|c|&|Participants: ${[...this.joined.values()].join(', ')}`);
 			for (const winner of this.winners) {
 				winner.sendTo(
 					this.room,
@@ -733,6 +736,7 @@ export class LotteryGiveaway extends Giveaway {
 }
 
 export class GTS extends Rooms.SimpleRoomGame {
+	override readonly gameid = 'gts' as ID;
 	gtsNumber: number;
 	room: Room;
 	giver: User;
