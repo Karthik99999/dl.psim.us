@@ -164,6 +164,24 @@ export const Formats: FormatList = [
 		ruleset: ['[Gen 9] National Dex 4v4', 'Tera Type Preview'],
 	},
 	{
+		name: "[Gen 9] National Dex 4v4 Legacy",
+
+		mod: 'gen9',
+		searchShow: false,
+		bestOfDefault: true,
+		gameType: 'doubles',
+		ruleset: ['Draft VGC', '+Past', '+Legacy'],
+	},
+	{
+		name: "[Gen 9] National Dex 4v4 Legacy Tera Preview",
+
+		mod: 'gen9',
+		searchShow: false,
+		bestOfDefault: true,
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] National Dex 4v4 Legacy', 'Tera Type Preview'],
+	},
+	{
 		name: "[Gen 9] LC National Dex Draft",
 
 		mod: 'gen9',
