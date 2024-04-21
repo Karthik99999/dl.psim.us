@@ -155,6 +155,15 @@ export const Formats: FormatList = [
 		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
 	},
 	{
+		name: "[Gen 9] National Dex 4v4 Tera Preview",
+
+		mod: 'gen9',
+		searchShow: false,
+		bestOfDefault: true,
+		gameType: 'doubles',
+		ruleset: ['[Gen 9] National Dex 4v4', 'Tera Type Preview'],
+	},
+	{
 		name: "[Gen 9] LC National Dex Draft",
 
 		mod: 'gen9',
