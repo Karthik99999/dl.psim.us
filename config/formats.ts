@@ -212,171 +212,12 @@ export const Formats: FormatList = [
 		ruleset: ['Standard Draft', '+Past', 'Z-Move Clause', 'Dynamax Clause'],
 	},
 
-	// Paldea DLC 1 Draft Tiers
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Paldea DLC 1 Draft Tiers",
-		column: 2,
-	},
-	{
-		name: "[Gen 9 DLC 1] Paldea Dex Draft",
-	
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['Standard Draft', 'Min Source Gen = 9'],
-	},
-	{
-		name: "[Gen 9 DLC 1] Paldea Dex Tera Preview",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9 DLC 1] Paldea Dex Doubles",
-	
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft'],
-	},
-	{
-		name: "[Gen 9 DLC 1] Paldea Dex VGC",
-	
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', '! Standard Draft', 'Draft VGC'],
-	},
-	{
-		name: "[Gen 9 DLC 1] Paldea Dex VGC Tera Preview",
-	
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] Paldea Dex VGC', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9 DLC 1] LC Paldea Dex Draft",
-	
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
-	},
-
-	// National Draft Tiers
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "National Dex DLC 1 Draft Tiers",
-		column: 2,
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Draft",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['Standard Draft', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Draft Tera Preview",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Legacy",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['Standard Draft', '+Past', '+Legacy'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Legacy Tera Preview",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Legacy', 'Tera Type Preview'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Unrestricted",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['Standard Draft', '! Obtainable', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+Legacy'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex WiFi",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Adjust Level = 50'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Doubles",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] National Dex Draft'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Doubles Legacy",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] National Dex Legacy'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex Doubles Unrestricted",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		gameType: 'doubles',
-		ruleset: ['[Gen 9 DLC 1] National Dex Unrestricted', '! Sleep Clause Mod'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex 4v4",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		bestOfDefault: true,
-		gameType: 'doubles',
-		ruleset: ['Draft VGC', '+Past', 'Allow Signature Moves', 'Z-Move Clause'],
-	},
-	{
-		name: "[Gen 9 DLC 1] LC National Dex Draft",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Draft', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 9 DLC 1] LC National Dex Legacy",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 9 DLC 1] National Dex CAP",
-
-		mod: 'gen9dlc1',
-		searchShow: false,
-		ruleset: ['[Gen 9 DLC 1] National Dex Draft', '+CAP'],
-	},
-
 	// Past Gens Draft
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Past Gen Draft Tiers",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 8] Draft",
@@ -425,7 +266,7 @@ export const Formats: FormatList = [
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Custom Partner Formats",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 4] Distortion Draft",
@@ -446,7 +287,7 @@ export const Formats: FormatList = [
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Metagames",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 9] Draft Arena",
