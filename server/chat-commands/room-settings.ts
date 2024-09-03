@@ -185,7 +185,7 @@ export const commands: Chat.ChatCommands = {
 				return this.parse(`/help automodchat`);
 			}
 		}
-		const validGroups = [...Config.groupsranking as string[], 'trusted'];
+		const validGroups = [...Config.groupsranking as string[], 'trusted', 'autoconfirmed'];
 		if (!validGroups.includes(rank)) {
 			return this.errorReply(`Invalid rank.`);
 		}
@@ -761,7 +761,7 @@ export const commands: Chat.ChatCommands = {
 	hightraffic(target, room, user) {
 		room = this.requireRoom();
 		if (!target) {
-			return this.sendReply(`This room is: ${room.settings.highTraffic ? 'high traffic' : 'low traffic'}`);
+			return this.sendReply(`This room is: ${room.settings.highTraffic ? 'high' : 'low'} traffic`);
 		}
 		this.checkCan('makeroom');
 
@@ -774,7 +774,7 @@ export const commands: Chat.ChatCommands = {
 		}
 		room.saveSettings();
 		this.modlog(`HIGHTRAFFIC`, null, `${!!room.settings.highTraffic}`);
-		this.addModAction(`This room was marked as high traffic by ${user.name}.`);
+		this.addModAction(`This room was marked as ${room.settings.highTraffic ? 'high' : 'low'} traffic by ${user.name}.`);
 	},
 	hightraffichelp: [
 		`/hightraffic [on|off] - (Un)marks a room as a high traffic room. Requires &`,
@@ -793,7 +793,7 @@ export const commands: Chat.ChatCommands = {
 		const id = toID(target);
 		if (!id || this.cmd === 'makechatroom') return this.parse('/help makechatroom');
 		if (!Rooms.global.addChatRoom(target)) {
-			return this.errorReply(`An error occurred while trying to create the room '${target}'.`);
+			return this.errorReply(`The room '${target}' already exists or it is using an invalid title.`);
 		}
 
 		const targetRoom = Rooms.search(target);
