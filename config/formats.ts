@@ -269,6 +269,17 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		column: 2,
 	},
 	{
+		name: "[Gen 6] Dedsafio",
+
+		mod: 'gen6',
+		searchShow: false,
+		ruleset: [
+			'Flat Rules', 'Sleep Clause Mod', 'OHKO Clause', 'HP Percentage Mod', 'Cancel Mod',
+			'Endless Battle Clause', 'Baton Pass Clause', 'Adjust Level = 50', 'Picked Team Size = 6',
+			'VGC Timer', 'Force Open Team Sheets',
+		],
+	},
+	{
 		name: "[Gen 4] Distortion Draft",
 
 		mod: 'gen4',
