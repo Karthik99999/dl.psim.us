@@ -663,10 +663,6 @@ const OFFICIAL_AVATARS_SELENA = new Set([
 	'kris',
 ]);
 
-const OFFICIAL_AVATARS_SELENA = new Set([
-	'kris',
-]);
-
 for (const avatar of OFFICIAL_AVATARS_BELIOT419) OFFICIAL_AVATARS.add(avatar);
 for (const avatar of OFFICIAL_AVATARS_GNOMOWLADNY) OFFICIAL_AVATARS.add(avatar);
 for (const avatar of OFFICIAL_AVATARS_BRUMIRAGE) OFFICIAL_AVATARS.add(avatar);
