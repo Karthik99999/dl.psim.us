@@ -70,7 +70,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	
 		mod: 'gen9',
 		searchShow: false,
-		ruleset: ['[Gen 9] Paldea Dex Draft', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9] Paldea Dex Draft', 'Item Clause = 2', 'Little Cup'],
 	},
 
 	// National Draft Tiers
@@ -186,7 +186,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen9',
 		searchShow: false,
-		ruleset: ['[Gen 9] National Dex Draft', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9] National Dex Draft', 'Item Clause = 2', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
@@ -194,7 +194,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen9',
 		searchShow: false,
-		ruleset: ['[Gen 9] National Dex Legacy', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['[Gen 9] National Dex Legacy', 'Item Clause = 2', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
