@@ -151,7 +151,7 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 		name: 'Draft VGC',
 		desc: "The custom Draft League ruleset, tailored for VGC",
 		ruleset: [
-			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Item Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
+			'Obtainable', '+Unreleased', '+Unobtainable', 'Team Preview', 'Item Clause = 1', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod',
 			'VGC Timer', 'Adjust Level = 50', 'Picked Team Size = 4',
 		],
 	},
