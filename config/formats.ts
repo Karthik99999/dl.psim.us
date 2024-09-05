@@ -275,7 +275,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		ruleset: [
 			'Flat Rules', 'Sleep Clause Mod', 'OHKO Clause', 'HP Percentage Mod', 'Endless Battle Clause',
-			'Baton Pass Clause', 'Adjust Level = 50', '!! Picked Team Size = 6', 'VGC Timer', 'Force Open Team Sheets',
+			'Baton Pass Clause', '!! Adjust Level = 50', '!! Picked Team Size = 6', 'VGC Timer', 'Force Open Team Sheets',
 		],
 	},
 	{
