@@ -276,7 +276,11 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: [
 			'Flat Rules', 'Sleep Clause Mod', 'OHKO Clause', 'HP Percentage Mod', 'Endless Battle Clause',
 			'Baton Pass Clause', '!! Adjust Level = 50', '!! Picked Team Size = 6', 'VGC Timer', 'Force Open Team Sheets',
+			'! Obtainable Moves', '! Obtainable Abilities',
 		],
+		onValidateSet(set) {
+			set.evs = {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84};
+		},
 	},
 	{
 		name: "[Gen 4] Distortion Draft",
