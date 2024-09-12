@@ -280,6 +280,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 		onValidateSet(set) {
 			set.evs = {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84};
+			set.ivs = {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31};
 		},
 	},
 	{
