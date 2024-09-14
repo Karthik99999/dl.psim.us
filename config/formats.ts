@@ -273,11 +273,13 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen6',
 		searchShow: false,
+		gameType: 'doubles',
 		ruleset: [
 			'Flat Rules', 'Sleep Clause Mod', 'OHKO Clause', 'HP Percentage Mod', 'Endless Battle Clause',
 			'Baton Pass Clause', '!! Adjust Level = 50', '!! Picked Team Size = 6', 'VGC Timer', 'Force Open Team Sheets',
 			'! Obtainable Moves', '! Obtainable Abilities',
 		],
+		unbanlist: ['Mythical', 'Restricted Legendary', 'Past', 'Unobtainable'],
 		onValidateSet(set) {
 			set.evs = {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84};
 			set.ivs = {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31};
